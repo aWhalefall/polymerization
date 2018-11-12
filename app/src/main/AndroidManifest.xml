@@ -3,6 +3,7 @@
     package="com.wc.polymerization">
 
     <application
+        android:name=".base.AppContext"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
