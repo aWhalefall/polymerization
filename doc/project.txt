@@ -1,0 +1,8 @@
+1.组件化搭建
+
+   1>过程中:gradle 依赖无法下载
+   解决：更改gradle版本为可以依赖的版本，默认新建demo的gradle版本为最新版本。
+   2> 项目的主题找不到
+   解决：更改supportV7依赖,项目主题包含在v7中
+
+   tips: android 主题的各种玩法 http://www.cnblogs.com/zhouyou96/p/5323138.html

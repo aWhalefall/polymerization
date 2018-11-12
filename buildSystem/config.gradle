@@ -1,0 +1,104 @@
+ext.deps = [:]
+
+def versions = [:]
+//Libraries
+versions.gsonVersion = '2.7'
+versions.supportv7Version = '25.0.0'
+versions.annotationsVersion = '24.2.1'
+versions.cardViewVersion = '25.3.1'
+versions.supportv4Version = '25.0.0'
+versions.recyclerViewV7Version = '25.0.0'
+versions.glideVersion = '4.5.0'
+versions.okHttpVersion = '3.8.1'
+versions.eventbusAnnotationProcessorVersion = '3.0.1'
+versions.imagepickerVersion = '0.3.2'
+versions.eventbusVersion = '3.0.0'
+versions.volleyVersion = '1.0.0'
+versions.designViewVersion = "26.1.0"
+versions.rxjavaVersion = '1.3.0'
+versions.supportcoreuiVersion = "25.0.0"
+versions.packerVersion = "2.0.0"
+versions.greenDaoVersion = "3.2.0"
+versions.easyPermissionsVersion = '1.0.1'
+versions.debugdbVersion = "1.0.0"
+versions.constraintVersion = "1.0.2"
+versions.multidexVersion = "1.0.3"
+versions.jodoVersion = '2.9.4'
+
+
+//Testing
+versions.robolectricVersion = '3.0'
+versions.jUnitVersion = '4.12'
+versions.mockitoCoreVersion = '2.8.47'
+versions.mockitoAndroidVersion = '2.8.47'
+versions.espressoVersion = '2.2.2'
+//Development
+versions.leakcanaryAndroidVersion = '1.5.1'
+
+def deps = [:]
+
+def polymerizationDependencies = [:]
+polymerizationDependencies.gson = "com.google.code.gson:gson:$versions.gsonVersion"
+polymerizationDependencies.eventbus = "org.greenrobot:eventbus:$versions.eventbusVersion"
+polymerizationDependencies.design = "com.android.support:design:$versions.designViewVersion"
+polymerizationDependencies.eventbusannotation = "org.greenrobot:eventbus-annotation-processor:$versions.eventbusAnnotationProcessorVersion"
+polymerizationDependencies.supportv7 = "com.andrid.support:appcompat-v7:$versions.supportv7Version"
+polymerizationDependencies.annotations = "com.android.support:support-annotations:$versions.annotationsVersion"
+polymerizationDependencies.cardview = "com.android.support:cardview-v7:$versions.cardViewVersion"
+polymerizationDependencies.supportV4 = "com.android.support:support-v4:$versions.supportv4Version"
+polymerizationDependencies.recyclerview = "com.android.support:recyclerview-v7:$versions.recyclerViewV7Version"
+polymerizationDependencies.glide = "com.github.bumptech.glide:glide:$versions.glideVersion"
+polymerizationDependencies.imagepicker = "com.lzy.widget:imagepicker:$versions.imagepickerVersion"
+polymerizationDependencies.volley = "com.android.volley:volley:$versions.volleyVersion"
+polymerizationDependencies.rxjava = "io.reactivex:rxjava:$versions.rxjavaVersion"
+polymerizationDependencies.pkng = "com.mcxiaoke.packer-ng:helper:$versions.packerVersion"
+polymerizationDependencies.greendao = "org.greenrobot:greendao:$versions.greenDaoVersion"
+polymerizationDependencies.debugdb = "com.amitshekhar.android:debug-db:$versions.debugdbVersion"
+polymerizationDependencies.constraint = "com.android.support.constraint:constraint-layout:$versions.constraintVersion"
+polymerizationDependencies.multidex = "com.android.support:multidex:$versions.multidexVersion"
+polymerizationDependencies.easyPermissions = "pub.devrel:easypermissions:$versions.easyPermissionsVersion"
+polymerizationDependencies.joda = "joda-time:joda-time:$versions.jodoVersion"
+deps.nplDependencies = polymerizationDependencies
+
+def polymerizationTestDependencies = [:]
+polymerizationTestDependencies.mockitoandroid = "org.mockito:mockito-android:$versions.mockitoAndroidVersion"
+polymerizationTestDependencies.mockitocore = "org.mockito:mockito-core:$versions.mockitoCoreVersion"
+polymerizationTestDependencies.junit4 = "junit:junit:$versions.jUnitVersion"
+polymerizationTestDependencies.espresso = "com.android.support.test.espresso:espresso-core:$versions.espressoVersion"
+deps.nplTestDependencies = polymerizationTestDependencies
+
+def developmentDependencies = [:]
+developmentDependencies.leakCanary = "com.squareup.leakcanary:leakcanary-android:$versions.leakcanaryAndroidVersion"
+deps.developmentDependencies = developmentDependencies
+
+def commDependencies = [:]
+commDependencies.supportcoreui = "com.android.support:support-core-ui:$versions.supportcoreuiVersion"
+deps.commDependencies = commDependencies
+
+def okgoDependencies = [:]
+okgoDependencies.okhttp = "com.squareup.okhttp3:okhttp:$versions.okHttpVersion"
+deps.okgoDependencies = okgoDependencies
+
+def recyclerviewDependencies = [:]
+recyclerviewDependencies.supportV7 = "com.android.support:appcompat-v7:$versions.supportv7Version"
+recyclerviewDependencies.recyclerview = "com.android.support:recyclerview-v7:$versions.recyclerViewV7Version"
+deps.recyclerviewDependencies = recyclerviewDependencies
+
+
+def build_versions = [:]
+build_versions.min_sdk = 18
+build_versions.target_sdk = 27
+build_versions.build_tools = "27.0.3"
+ext.build_versions = build_versions
+ext.deps = deps
+
+def addRepos(RepositoryHandler handler) {
+    handler.google()
+    handler.jcenter()
+    handler.maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+}
+
+ext.addRepos = this.&addRepos
+
+
+
