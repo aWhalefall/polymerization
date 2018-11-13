@@ -21,15 +21,19 @@ android {
         }
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-//    网络请求框架
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    //    网络请求框架
     api deps.polymerizationDependencies.supportV4
     api 'com.squareup.retrofit2:retrofit:2.4.0'
     api deps.polymerizationDependencies.rxjava
-//    配合rxJava 进行线程切换管理
+    //    配合rxJava 进行线程切换管理
     api 'io.reactivex.rxjava2:rxandroid:2.1.0'
     api deps.okgoDependencies.okhttp
     api 'junit:junit:4.12'
@@ -38,5 +42,6 @@ dependencies {
     api 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
     api 'com.squareup.retrofit2:converter-gson:2.3.0'
     api 'com.squareup.okhttp3:logging-interceptor:3.8.1'
-
+    api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    api 'com.safframework.log:saf-log:1.5.4'  //rxjava 作者写日志打印kotlin 代码
 }

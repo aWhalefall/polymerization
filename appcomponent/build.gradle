@@ -1,4 +1,15 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+
+kapt {
+    arguments {
+        arg("moduleName", project.getName())
+    }
+    generateStubs = true
+}
 
 android {
     compileSdkVersion build_versions.target_sdk
@@ -21,11 +32,19 @@ android {
         }
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
     api fileTree(include: ['*.jar'], dir: 'libs')
     api deps.recyclerviewDependencies.supportV7
+    api deps.polymerizationDependencies.multidex
+    api deps.polymerizationDependencies.gson
+    api deps.polymerizationDependencies.annotations
     testImplementation 'junit:junit:4.12'
+    kapt rootProject.ext.opt["arouter-compiler"]
     api project(':libcore')
 }

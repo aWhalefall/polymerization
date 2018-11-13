@@ -2,9 +2,9 @@ ext.deps = [:]
 
 def versions = [:]
 //Libraries
-versions.gsonVersion = '2.7'
+versions.gsonVersion = '2.8.0'
 versions.supportv7Version = '25.2.0'
-versions.annotationsVersion = '24.2.1'
+versions.annotationsVersion = '25.2.0'
 versions.cardViewVersion = '25.3.1'
 versions.supportv4Version = '25.2.0'
 versions.recyclerViewV7Version = '25.0.0'

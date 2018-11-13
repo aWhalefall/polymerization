@@ -23,18 +23,46 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
+
+    signingConfigs {
+        debugConfig {
+            keyAlias "polymerization"
+            keyPassword "252303"
+            storePassword "252303"
+            storeFile file('../jks/polymerization')
+            v2SigningEnabled false
+        }
+
+        releaseConfig {
+            keyAlias 'polymerization'
+            keyPassword '252303'
+            storeFile file('../jks/polymerization')
+            storePassword '252303'
+            v2SigningEnabled false
+        }
+    }
+
     buildTypes {
         release {
+            buildConfigField "boolean", "IS_DEBUG", "false"
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.releaseConfig
+        }
+        debug {
+            buildConfigField "boolean", "IS_DEBUG", "true"
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debugConfig
         }
     }
 }
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     testImplementation 'junit:junit:4.12'
     kapt rootProject.ext.opt["arouter-compiler"]
