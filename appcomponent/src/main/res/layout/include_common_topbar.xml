@@ -67,8 +67,8 @@
             android:gravity="center"
             android:text="右边"
             android:visibility="gone"
-            android:textSize="16sp"
-            android:textColor="@drawable/rightvalue_selector" />
+            android:textSize="16sp" />
+        <!--android:textColor="@drawable/rightvalue_selector"-->
 
         <ImageButton
             android:id="@+id/ic_comright_iv"

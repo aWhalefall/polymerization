@@ -1,12 +1,12 @@
 package com.wc.polymerization.base
 
-import android.app.Application
 import android.content.Context
 import android.support.multidex.MultiDex
 import com.alibaba.android.arouter.launcher.ARouter
 import com.wc.polymerization.BuildConfig
 import corebase.CoreBase
 import okhttp.NetWorkManager
+import utils.sptool.SpManager
 
 
 class AppContext : CoreBase(){
@@ -14,6 +14,8 @@ class AppContext : CoreBase(){
     override fun onCreate() {
         super.onCreate()
        initArouter()
+        //init sharepreference
+        SpManager.setContext(this)
         //初始化网路
         NetWorkManager.getInstance().init()
     }

@@ -44,6 +44,7 @@ dependencies {
     api deps.polymerizationDependencies.multidex
     api deps.polymerizationDependencies.gson
     api deps.polymerizationDependencies.annotations
+    api deps.polymerizationDependencies.design
     testImplementation 'junit:junit:4.12'
     kapt rootProject.ext.opt["arouter-compiler"]
     api project(':libcore')
