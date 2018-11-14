@@ -2,7 +2,7 @@ package com.wc.polymerization
 
 import android.view.View
 import bean.JavaBean
-import com.base.BaseActivity
+import com.appcomponent.base.BaseActivity
 import com.safframework.log.L
 import io.reactivex.functions.Consumer
 import okhttp.NetWorkManager

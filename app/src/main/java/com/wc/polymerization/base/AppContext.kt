@@ -5,10 +5,11 @@ import android.content.Context
 import android.support.multidex.MultiDex
 import com.alibaba.android.arouter.launcher.ARouter
 import com.wc.polymerization.BuildConfig
+import corebase.CoreBase
 import okhttp.NetWorkManager
 
 
-class AppContext : Application(){
+class AppContext : CoreBase(){
 
     override fun onCreate() {
         super.onCreate()

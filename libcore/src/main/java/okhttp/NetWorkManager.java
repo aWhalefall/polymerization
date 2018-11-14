@@ -1,8 +1,8 @@
 package okhttp;
 
 
-import com.google.gson.Gson;
-
+import okhttp.Cookie.HttpCookieJar;
+import okhttp3.CookieJar;
 import okhttp3.OkHttpClient;
 import retrofit.request.Request;
 import retrofit2.Retrofit;
@@ -40,6 +40,7 @@ public class NetWorkManager {
     public void init() {
         // 初始化okhttp
         OkHttpClient client = new OkHttpClient.Builder()
+                .cookieJar(HttpCookieJar.create())
                 .build();
 
         // 初始化Retrofit
@@ -47,7 +48,7 @@ public class NetWorkManager {
                 .client(client)
                 .baseUrl(Request.HOST)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create(new Gson()))
+                .addConverterFactory(GsonConverterFactory.create())
                 .build();
     }
 

@@ -1,4 +1,4 @@
-package com.base
+package com.appcomponent.base
 
  interface ViewAction {
     fun init()

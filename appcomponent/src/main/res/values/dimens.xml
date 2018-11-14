@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--bottom bar dimens-->
+    <dimen name="bb_height">56dp</dimen>
+    <dimen name="bb_default_elevation">8dp</dimen>
+    <dimen name="bb_fake_shadow_height">4dp</dimen>
+
+    <dimen name="text_18sp">18sp</dimen>
+    <dimen name="text_17sp">17sp</dimen>
+    <dimen name="text_16sp">16sp</dimen>
+    <dimen name="text_15sp">15sp</dimen>
+    <dimen name="text_14sp">14sp</dimen>
+    <dimen name="text_14dp">14dp</dimen>
+
+    <dimen name="text_13sp">13sp</dimen>
+    <dimen name="text_12sp">12sp</dimen>
+    <dimen name="text_11sp">11sp</dimen>
+    <dimen name="text_10sp">10sp</dimen>
+    <dimen name="text_19sp">19sp</dimen>
+    <dimen name="text_20sp">20sp</dimen>
+    <dimen name="text_21sp">21sp</dimen>
+    <dimen name="text_22sp">22sp</dimen>
+    <dimen name="text_23sp">23sp</dimen>
+    <dimen name="text_24sp">24sp</dimen>
+    <dimen name="text_25sp">25sp</dimen>
+    <dimen name="text_26sp">26sp</dimen>
+    <dimen name="text_27sp">27sp</dimen>
+
+    <dimen name="padding_20dp">20dp</dimen>
+    <dimen name="padding_16dp">16dp</dimen>
+    <dimen name="padding_15dp">15dp</dimen>
+    <dimen name="padding_13dp">13dp</dimen>
+    <dimen name="padding_11dp">11dp</dimen>
+    <dimen name="padding_10dp">10dp</dimen>
+    <dimen name="padding_8dp">8dp</dimen>
+    <dimen name="topbar_height">44dp</dimen>
+     <!--gridview+viewpager-->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="normal_height">45dp</dimen>
+    <dimen name="normal_width">400dp</dimen>
+    <dimen name="space_15dp">15dp</dimen>
+    <dimen name="space_5dp">5dp</dimen>
+    <dimen name="space_9dp">9dp</dimen>
+    <dimen name="com_height">44dp</dimen>
+    <dimen name="share_width">52dp</dimen>
+    <dimen name="share_height">52dp</dimen>
+    <dimen name="common_navigator_height">35dp</dimen>
+    <dimen name="vertify_com_height">24dp</dimen>
+    <dimen name="width_150">150dp</dimen>
+    <dimen name="width_113">113dp</dimen>
+
+
+</resources>
