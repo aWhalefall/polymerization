@@ -1,6 +1,8 @@
 package okhttp;
 
 
+import com.google.gson.Gson;
+
 import okhttp3.OkHttpClient;
 import retrofit.request.Request;
 import retrofit2.Retrofit;
@@ -45,7 +47,7 @@ public class NetWorkManager {
                 .client(client)
                 .baseUrl(Request.HOST)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(new Gson()))
                 .build();
     }
 

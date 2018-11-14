@@ -1,11 +1,12 @@
-package retrofit.respond
+package utils
 
 import io.reactivex.Observable
 import io.reactivex.ObservableSource
 import io.reactivex.ObservableTransformer
 import io.reactivex.functions.Function
-import retrofit.exception.LocalException
-import retrofit.exception.ServiceException
+import retrofit.Exception.LocalException
+import retrofit.Exception.ServiceException
+import retrofit.respond.Response
 
 /**
  * Author: yangweichao
@@ -15,8 +16,9 @@ import retrofit.exception.ServiceException
 
 
 //转换器
-object ResponseTransformer {
+ object ResponseTransformer {
 
+    @JvmStatic
     fun <T> handleResult(): ObservableTransformer<Response<T>, T> {
         return  ObservableTransformer {
             upstream -> upstream
@@ -47,10 +49,10 @@ object ResponseTransformer {
 
         @Throws(Exception::class)
         override fun apply(tResponse: Response<T>): ObservableSource<T> {
-            val code = tResponse.code
-            val message = tResponse.msg
-            return if (code == 200) {
-                Observable.just(tResponse.data!!)
+            val code = tResponse.showapi_res_code
+            val message = tResponse.showapi_res_error
+            return if (code == 0) {
+                Observable.just(tResponse.showapi_res_body!!)
             } else {
                 Observable.error(ServiceException(code, message))
             }

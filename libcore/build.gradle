@@ -1,4 +1,15 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+
+kapt {
+    arguments {
+        arg("moduleName", project.getName())
+    }
+    generateStubs = true
+}
 
 android {
     compileSdkVersion build_versions.target_sdk
@@ -25,6 +36,12 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    sourceSets {
+        main {
+            java.srcDirs = ['src/main/java']
+            jniLibs.srcDirs = ['libs']
+        }
+    }
 }
 
 dependencies {
@@ -43,5 +60,6 @@ dependencies {
     api 'com.squareup.retrofit2:converter-gson:2.3.0'
     api 'com.squareup.okhttp3:logging-interceptor:3.8.1'
     api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    kapt rootProject.ext.opt["arouter-compiler"]
     api 'com.safframework.log:saf-log:1.5.4'  //rxjava 作者写日志打印kotlin 代码
 }

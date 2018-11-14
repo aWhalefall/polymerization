@@ -87,7 +87,7 @@ deps.recyclerviewDependencies = recyclerviewDependencies
 
 def build_versions = [:]
 build_versions.min_sdk = 16
-build_versions.target_sdk = 27
+build_versions.target_sdk = 26
 build_versions.build_tools = "27.0.3"
 ext.build_versions = build_versions
 ext.deps = deps
