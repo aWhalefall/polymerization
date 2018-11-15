@@ -2,19 +2,20 @@
 <tabs>
     <tab
         id="@+id/tab_news"
-
+        icon="@drawable/ic_news_selector"
+        size="12sp"
         title="新闻" />
-    <!--icon="@drawable/ic_bill_selector"-->
-    <tab
-        id="@+id/tab_chart"
 
-        title="@string/text_chart" />
+    <tab
+        size="12sp"
+        id="@+id/tab_chart"
+        icon="@drawable/ic_video_selector"
+        title="视频" />
     <!--<tab-->
         <!--id="@+id/tab_record"-->
         <!--icon="@drawable/ic_record_selector" />-->
     <tab
         id="@+id/tab_rebate"
-
         size="10sp"
         title="@string/text_rebate" />
     <tab

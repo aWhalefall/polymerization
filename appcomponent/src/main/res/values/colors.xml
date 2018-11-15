@@ -3,7 +3,7 @@
     <!--bottom bar colors-->
     <color name="bb_inActiveBottomBarItemColor">#747474</color>
     <color name="bb_darkBackgroundColor">#212121</color>
-    <color name="bb_tabletRightBorderDark">#505050</color>
+    <color name="bb_tabletRightBorderDark">#ff0000</color>
 
     <color name="colorPrimary">#574f62</color>
     <color name="colorPrimaryDark">#574f62</color>
