@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="NullableNotNullManager">
+    <option name="myDefaultNullable" value="android.support.annotation.Nullable" />
+    <option name="myDefaultNotNull" value="android.support.annotation.NonNull" />
+    <option name="myNullables">
+      <value>
+        <list size="7">
+          <item index="0" class="java.lang.String" itemvalue="org.jetbrains.annotations.Nullable" />
+          <item index="1" class="java.lang.String" itemvalue="javax.annotation.Nullable" />
+          <item index="2" class="java.lang.String" itemvalue="javax.annotation.CheckForNull" />
+          <item index="3" class="java.lang.String" itemvalue="edu.umd.cs.findbugs.annotations.Nullable" />
+          <item index="4" class="java.lang.String" itemvalue="android.support.annotation.Nullable" />
+          <item index="5" class="java.lang.String" itemvalue="androidx.annotation.Nullable" />
+          <item index="6" class="java.lang.String" itemvalue="androidx.annotation.RecentlyNullable" />
+        </list>
+      </value>
+    </option>
+    <option name="myNotNulls">
+      <value>
+        <list size="6">
+          <item index="0" class="java.lang.String" itemvalue="org.jetbrains.annotations.NotNull" />
+          <item index="1" class="java.lang.String" itemvalue="javax.annotation.Nonnull" />
+          <item index="2" class="java.lang.String" itemvalue="edu.umd.cs.findbugs.annotations.NonNull" />
+          <item index="3" class="java.lang.String" itemvalue="android.support.annotation.NonNull" />
+          <item index="4" class="java.lang.String" itemvalue="androidx.annotation.NonNull" />
+          <item index="5" class="java.lang.String" itemvalue="androidx.annotation.RecentlyNonNull" />
+        </list>
+      </value>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+  <component name="SvnBranchConfigurationManager">
+    <option name="myConfigurationMap">
+      <map>
+        <entry key="$PROJECT_DIR$/news">
+          <value>
+            <SvnBranchConfiguration>
+              <option name="branchUrls">
+                <list>
+                  <option value="svn://10.160.29.168/%E5%A4%A7%E6%95%B0%E6%8D%AE%E9%A3%8E%E6%8E%A7" />
+                  <option value="svn://10.160.29.168/alg" />
+                  <option value="svn://10.160.29.168/bolt" />
+                  <option value="svn://10.160.29.168/branches" />
+                  <option value="svn://10.160.29.168/op" />
+                  <option value="svn://10.160.29.168/rs_trunk_nmd" />
+                  <option value="svn://10.160.29.168/sjkf" />
+                  <option value="svn://10.160.29.168/sp2p" />
+                  <option value="svn://10.160.29.168/tags" />
+                </list>
+              </option>
+              <option name="trunkUrl" value="svn://10.160.29.168/trunk" />
+            </SvnBranchConfiguration>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/usercenter">
+          <value>
+            <SvnBranchConfiguration>
+              <option name="branchUrls">
+                <list>
+                  <option value="svn://10.160.29.168/%E5%A4%A7%E6%95%B0%E6%8D%AE%E9%A3%8E%E6%8E%A7" />
+                  <option value="svn://10.160.29.168/alg" />
+                  <option value="svn://10.160.29.168/bolt" />
+                  <option value="svn://10.160.29.168/branches" />
+                  <option value="svn://10.160.29.168/op" />
+                  <option value="svn://10.160.29.168/rs_trunk_nmd" />
+                  <option value="svn://10.160.29.168/sjkf" />
+                  <option value="svn://10.160.29.168/sp2p" />
+                  <option value="svn://10.160.29.168/tags" />
+                </list>
+              </option>
+              <option name="trunkUrl" value="svn://10.160.29.168/trunk" />
+            </SvnBranchConfiguration>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

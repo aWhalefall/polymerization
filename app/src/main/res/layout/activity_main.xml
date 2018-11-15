@@ -10,10 +10,6 @@
         android:layout_height="match_parent"
         android:layout_above="@+id/bottom" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:onClick="apiRequest"
-        android:layout_height="wrap_content" />
 
     <com.appcomponent.widget.bottombar.BottomBar
         android:id="@+id/bottom"

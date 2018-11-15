@@ -2,9 +2,10 @@ package com.appcomponent.base;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 
-public class BaseActivity extends AppCompatActivity implements ViewAction {
+public class BaseActivity extends FragmentActivity implements ViewAction {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -40,4 +41,6 @@ public class BaseActivity extends AppCompatActivity implements ViewAction {
     public void initLayout() {
 
     }
+
+
 }
