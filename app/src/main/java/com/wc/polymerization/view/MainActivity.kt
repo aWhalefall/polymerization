@@ -53,24 +53,6 @@ class MainActivity : BaseActivity(), OnTabSelectListener, OnTabReselectListener 
         setContentView(R.layout.activity_main)
     }
 
-    fun apiRequest(view: View){
-
-
-        ArouterHelper.startActivity(PathConfig.LOGIN_ACTIVITY)
-    }
-
-
-    fun apiReques2t(view: View){
-//        NetWorkManager.getRequest()
-//                .getWeatherByAddress("79656", "80ec326d18234d18832d2785f02d7df4", "10")
-//                .compose(ResponseTransformer.handleResult())
-//                .compose(RxJavaUtils.observableToMain())
-//                .subscribe(Consumer<JavaBean>() {
-//                    L.d(it.toString())
-//                }, Consumer<Throwable>() {
-//                    L.d("errow")
-//                })
-    }
 
     override fun onTabSelected(tabId: Int) {
         when (tabId) {

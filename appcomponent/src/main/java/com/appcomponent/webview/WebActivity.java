@@ -11,8 +11,10 @@ import android.webkit.DownloadListener;
 import android.webkit.WebSettings;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.appcomponent.base.BaseActivity;
 import com.appcomponent.constant.ConstanPool;
+import com.appcomponent.router.PathConfig;
 import com.appcomponent.utils.StringUtil;
 import com.appcomponent.utils.UrlConstans;
 import com.appcomponent.widget.TopBar;
@@ -22,7 +24,7 @@ import com.wx.polymerization.appcomponent.R;
 import java.net.URI;
 import java.util.List;
 
-import okhttp.Cookie.HttpCookieJar;
+import com.polymerization.core.okhttp.Cookie.HttpCookieJar;
 import okhttp3.Cookie;
 import okhttp3.HttpUrl;
 
@@ -34,7 +36,7 @@ import static android.webkit.WebSettings.LOAD_DEFAULT;
  * Description: 二次改造需求。
  */
 
-
+@Route(path = PathConfig.WEBVIEW_ACTIVITY)
 public class WebActivity extends BaseActivity implements DownloadListener, TopBar.OnLeftLayoutListener,
         ProgressWebView.ProgressWebLisneter, TopBar.OnRightLayoutListener {
 

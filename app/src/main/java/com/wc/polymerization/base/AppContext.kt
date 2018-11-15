@@ -3,9 +3,9 @@ package com.wc.polymerization.base
 import android.content.Context
 import android.support.multidex.MultiDex
 import com.alibaba.android.arouter.launcher.ARouter
-import corebase.CoreBase
-import okhttp.NetWorkManager
-import utils.sptool.SpManager
+import com.polymerization.core.corebase.CoreBase
+import com.polymerization.core.okhttp.NetWorkManager
+import com.polymerization.core.utils.sptool.SpManager
 
 
 class AppContext : CoreBase(){

@@ -1,2 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.wx.polymerization.appcomponent" />
+    package="com.wx.polymerization.appcomponent">
+
+    <application>
+        <activity android:name="com.appcomponent.webview.WebActivity" />
+    </application>
+
+</manifest>

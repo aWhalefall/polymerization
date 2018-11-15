@@ -49,6 +49,7 @@ dependencies {
     api deps.polymerizationDependencies.multidex
     api deps.polymerizationDependencies.gson
     api deps.polymerizationDependencies.design
+    api deps.polymerizationDependencies.glide
 
     api project(':libcore')
     kapt rootProject.ext.opt["arouter-compiler"]

@@ -37,4 +37,12 @@ public class PathConfig {
 
     public static final String MAIN_ACTIVITY = GROUP_MAIN+ "main_activity";
 
+
+    /**
+     * 进入网络
+     */
+    public static final String GROUP_COM = "/com/";
+
+    public static final String WEBVIEW_ACTIVITY = GROUP_COM + "webview_activity";
+
 }
