@@ -10,6 +10,7 @@ public class BaseActivity extends AppCompatActivity implements ViewAction {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         init();
+        initLayout();
         initView();
         initListener();
         initValue();
@@ -32,6 +33,11 @@ public class BaseActivity extends AppCompatActivity implements ViewAction {
 
     @Override
     public void initValue() {
+
+    }
+
+    @Override
+    public void initLayout() {
 
     }
 }

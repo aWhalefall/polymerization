@@ -34,5 +34,10 @@
      3.2 增加Sharepreferce 工具类
      3.3 增加 webview widget
 
+     day4
+
+     调试Arouter。
+     中间卡了好久，问题是baseFragment 竟然没有继承Fragment，导致在Fragment上的Route 注解的没法识别，呃哈哈哈
+
 
 

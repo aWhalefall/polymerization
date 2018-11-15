@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tabs>
+    <tab
+        id="@+id/tab_news"
+
+        title="新闻" />
+    <!--icon="@drawable/ic_bill_selector"-->
+    <tab
+        id="@+id/tab_chart"
+
+        title="@string/text_chart" />
+    <!--<tab-->
+        <!--id="@+id/tab_record"-->
+        <!--icon="@drawable/ic_record_selector" />-->
+    <tab
+        id="@+id/tab_rebate"
+
+        size="10sp"
+        title="@string/text_rebate" />
+    <tab
+        id="@+id/tab_mine"
+
+        title="@string/text_mine" />
+</tabs>

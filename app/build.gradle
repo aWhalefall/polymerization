@@ -3,14 +3,12 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
-
 kapt {
     arguments {
         arg("moduleName", project.getName())
     }
     generateStubs = true
 }
-
 
 android {
     compileSdkVersion build_versions.target_sdk
@@ -64,16 +62,22 @@ android {
             jniLibs.srcDirs = ['libs']
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     testImplementation 'junit:junit:4.12'
-    kapt rootProject.ext.opt["arouter-compiler"]
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
     implementation project(':appcomponent')
+    compile deps.polymerizationDependencies.annotations
     implementation project(':news')
-    implementation project(':usercenter')
+        implementation project(':usercenter')
+
+    kapt rootProject.ext.opt["arouter-compiler"]
+
 }

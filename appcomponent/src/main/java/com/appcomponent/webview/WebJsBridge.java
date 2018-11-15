@@ -74,23 +74,23 @@ public class WebJsBridge implements Serializable {
 
             @Override
             public void share(JsonObject param, String uniqueId) {
-               // wxshare(param, uniqueId);
+                // wxshare(param, uniqueId);
 
             }
 
             @Override
             public void showShareBtn(JsonObject param, String uniqueId) {
-              //  showWxShareBtn(param, uniqueId);
+                //  showWxShareBtn(param, uniqueId);
             }
 
             @Override
             public void toFinancial(JsonObject param) {
-               // toHomeFinancial(param);
+                // toHomeFinancial(param);
             }
 
             @Override
             public void toHome(JsonObject param) {
-               // toHomepage(param);
+                // toHomepage(param);
             }
 
             @Override
@@ -100,22 +100,22 @@ public class WebJsBridge implements Serializable {
 
             @Override
             public void toTel(JsonObject param) {
-               // toTelephone(param);
+                // toTelephone(param);
             }
 
             @Override
             public void toMessage(JsonObject param) {
-               // toSendMessage(param);
+                // toSendMessage(param);
             }
 
             @Override
             public void toNativerror(JsonObject param) {
-               // toNativefromerror(param);
+                // toNativefromerror(param);
             }
 
             @Override
             public void toBrowser(JsonObject param) {
-               // toBrowserView(param);
+                // toBrowserView(param);
             }
 
 

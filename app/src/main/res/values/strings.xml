@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">polymerization</string>
+    <string name="text_record">记</string>
+    <string name="text_bill">账单</string>
+    <string name="text_chart">图表</string>
+    <string name="text_calender">日历</string>
+    <string name="text_rebate">理财返利</string>
+    <string name="text_mine">我的</string>
 </resources>
