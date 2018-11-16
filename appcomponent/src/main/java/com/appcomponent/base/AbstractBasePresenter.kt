@@ -3,7 +3,7 @@ package com.appcomponent.base
 import java.util.*
 
 
-abstract class AbstractBasePresenter<Params, Data> : BasePresenter<Params> {
+abstract class AbstractBasePresenter<Params, Data> : BasePresenter {
 
 
     val TAG: String = this.javaClass.simpleName
@@ -31,9 +31,6 @@ abstract class AbstractBasePresenter<Params, Data> : BasePresenter<Params> {
         mBaseModel.cancelRequest()
     }
 
-    override fun requestSuccess(responseJson: String) {
-        // TODO: 2018/11/14 Json 解析
-    }
 
     override fun requestError(code: Int, errorMsg: String) {
         mBaseView.showDataFailure(code.toString() + ":" + errorMsg)
@@ -44,6 +41,6 @@ abstract class AbstractBasePresenter<Params, Data> : BasePresenter<Params> {
     }
 
     override fun getParams(): HashMap<String, String> {
-        return HashMap();
+        return HashMap()
     }
 }

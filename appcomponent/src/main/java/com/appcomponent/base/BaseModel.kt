@@ -14,7 +14,11 @@ interface BaseModel {
 
     fun requestToServer()
 
-    fun requestToServer(url: String)
+    /**
+     * 请求接受任意多的类型
+     */
+    fun requestToServer(args: Any)
+
 
     fun setRequestType(method: Int)
 

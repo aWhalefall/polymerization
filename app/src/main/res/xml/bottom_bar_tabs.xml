@@ -4,22 +4,21 @@
         id="@+id/tab_news"
         icon="@drawable/ic_news_selector"
         size="12sp"
-        title="新闻" />
+        title="@string/text_news" />
 
     <tab
         size="12sp"
         id="@+id/tab_chart"
         icon="@drawable/ic_video_selector"
-        title="视频" />
-    <!--<tab-->
-        <!--id="@+id/tab_record"-->
-        <!--icon="@drawable/ic_record_selector" />-->
+        title="@string/text_video" />
+
     <tab
         id="@+id/tab_rebate"
         size="10sp"
-        title="@string/text_rebate" />
+        icon="@drawable/ic_pre_selector"
+        title="@string/text_other" />
     <tab
         id="@+id/tab_mine"
-
+        icon="@drawable/ic_mine_selector"
         title="@string/text_mine" />
 </tabs>

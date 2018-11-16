@@ -15,7 +15,7 @@ import java.util.*
  */
 
 
-interface BasePresenter<Param> {
+interface BasePresenter{
 
     /**
      * Author: yangweichao
@@ -24,7 +24,7 @@ interface BasePresenter<Param> {
      */
 
 
-    fun requestServer(param: Param)
+    fun requestServer(vararg param: Any)
 
     /**
      * Author: yangweichao
