@@ -7,7 +7,9 @@ import com.module.news.bussniess.NewPresenter
 import com.polymerization.core.bean.JavaBean
 import com.polymerization.core.okhttp.NetWorkManager
 import com.safframework.log.L
+import io.reactivex.Observable
 import io.reactivex.functions.Consumer
+import io.reactivex.functions.Function
 
 class WxNewsModel(basePresenter: NewPresenter) : BaseModel {
 
@@ -16,12 +18,18 @@ class WxNewsModel(basePresenter: NewPresenter) : BaseModel {
 
     override fun requestToServer(param: Any) {
         val args = param as Array<*>
+
         NetWorkManager.getRequest()
-                .getWeatherByAddress(args[0].toString(), args[1].toString(), args[2].toString())
+                .getWeatherByAddress(
+                        args[0].toString(),
+                        args[1].toString(),
+                        args[2].toString(),
+                        args[3].toString())
                 .compose(ResponseTransformer.handleResult())
                 .compose(RxJavaUtils.observableToMain())
                 .subscribe(Consumer<JavaBean> {
                     newPresenter.serverResponse(it)
+                    L.d(it.toString())
                 }, Consumer<Throwable> {
                     L.d(it.message)
                     // basePresenter.requestError(it.localizedMessage)
@@ -44,4 +52,8 @@ class WxNewsModel(basePresenter: NewPresenter) : BaseModel {
     override fun cancelRequest() {
         // TODO: 2018/11/16 全局取消 当前网络请求
     }
+}
+
+private fun <T> Observable<T>.concatMap(function: Function<String, T>) {
+
 }
