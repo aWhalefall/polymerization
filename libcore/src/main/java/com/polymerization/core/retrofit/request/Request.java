@@ -13,11 +13,10 @@ public interface Request {
     
     @GET("181-1")
     Observable<Response<JavaBean>> getWeatherByAddress(
-            @Query("showapi_appid") String lv1,
-            @Query("showapi_sign") String v2,
             @Query("num") String v3,
             @Query("page") String v4
             );
+
 
 }
 

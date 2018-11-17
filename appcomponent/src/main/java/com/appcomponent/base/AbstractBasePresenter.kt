@@ -7,14 +7,15 @@ abstract class AbstractBasePresenter<Params, Data> : BasePresenter {
 
 
     val TAG: String = this.javaClass.simpleName
-    lateinit var mBaseModel: BaseModel
-    lateinit var mBaseView: BaseView
+    var mBaseModel: BaseModel
+    var mBaseView: BaseView
     var params: Params? = null
     var clazz: Class<Data>
 
     constructor(mBaseView: BaseView, clazz: Class<Data>) {
         this.mBaseView = mBaseView
         this.clazz = clazz
+        mBaseModel = getModel()
     }
 
     /**

@@ -17,7 +17,16 @@ public class PathConfig {
 
     public static final String NEWS_FRAGMENT_REBATE = GROUP_REBATE + "news_fragment_delegate";
 
-    public static final String MINE_REBATE_ACTIVITY = GROUP_REBATE + "mine_rebate_activity";
+
+
+
+    /**
+     * 视频
+     */
+    private static final String GROUP_VIDEO = "/video/";
+
+    public static final String VIDEO_FRAGMENT = GROUP_VIDEO + "video_fragment_delegate";
+
 
     /**
      * activity 路径
@@ -36,6 +45,7 @@ public class PathConfig {
     public static final String GROUP_MAIN = "/main/";
 
     public static final String MAIN_ACTIVITY = GROUP_MAIN+ "main_activity";
+    public static final String VIDEO_ACTIVITY = GROUP_MAIN+ "video_activity";
 
 
     /**

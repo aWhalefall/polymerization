@@ -11,7 +11,10 @@ import com.appcomponent.router.ArouterHelper
 import com.appcomponent.router.PathConfig
 import com.appcomponent.widget.bottombar.OnTabReselectListener
 import com.appcomponent.widget.bottombar.OnTabSelectListener
+import com.component.router.delegate.MineFragmentDelegate
 import com.component.router.delegate.NewsFragmentDelegate
+import com.component.router.delegate.VideFragmentDelegate
+import com.component.router.delegate.VideoFragmentDelegate
 import com.safframework.log.L
 import com.wc.polymerization.R
 import com.wc.polymerization.base.AppContext
@@ -32,6 +35,8 @@ class MainActivity : BaseActivity(), OnTabSelectListener, OnTabReselectListener 
     val TAG_FOUR = 3
     private lateinit var fm: FragmentManager
     internal var newsFragment: BaseFragment? = null
+    var videoFragment: BaseFragment? = null
+    var userCenterFragment: BaseFragment? = null
     private var showFg: Fragment? = null
     private var showPage = TAG_ONE
 
@@ -56,11 +61,23 @@ class MainActivity : BaseActivity(), OnTabSelectListener, OnTabReselectListener 
 
     override fun onTabSelected(tabId: Int) {
         when (tabId) {
-            R.id.tab_news -> {
+            R.id.tab_video -> {
                 if (newsFragment == null) {
                     newsFragment = ArouterHelper.getServiceByClazz(NewsFragmentDelegate::class.java).fragment
                 }
                 showFragment(newsFragment!!, TAG_ONE)
+            }
+            R.id.tab_news -> {
+                if (userCenterFragment == null) {
+                    userCenterFragment = ArouterHelper.getServiceByClazz(MineFragmentDelegate::class.java).fragment
+                }
+                showFragment(userCenterFragment!!, TAG_TWO)
+            }
+            R.id.tab_search -> {
+                if (videoFragment == null) {
+                    videoFragment = ArouterHelper.getServiceByClazz(VideFragmentDelegate::class.java).fragment
+                }
+                showFragment(videoFragment!!, TAG_THREE)
             }
         }
     }
@@ -110,11 +127,13 @@ class MainActivity : BaseActivity(), OnTabSelectListener, OnTabReselectListener 
             TAG_ONE -> {
                 findViewById<View>(R.id.tab_news).performClick()
             }
-//            TAG_TWO -> {
-//            }
-//
-//            TAG_THREE -> {
-//            }
+            TAG_TWO -> {
+                findViewById<View>(R.id.tab_video).performClick()
+            }
+
+            TAG_THREE -> {
+                findViewById<View>(R.id.tab_search).performClick()
+            }
 //
 //            TAG_FOUR -> {
 //            }

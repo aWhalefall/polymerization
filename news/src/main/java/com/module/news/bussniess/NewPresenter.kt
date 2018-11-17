@@ -9,7 +9,7 @@ import com.polymerization.core.bean.JavaBean
 class NewPresenter(mBaseView: BaseView, clazz: Class<JavaBean>) :
         AbstractBasePresenter<Any, JavaBean>(mBaseView, clazz) {
 
-    private var wxModel: WxNewsModel = WxNewsModel(this)
+
 
     override fun requestSuccess(responseJson: String) {
     }
@@ -20,12 +20,12 @@ class NewPresenter(mBaseView: BaseView, clazz: Class<JavaBean>) :
     }
 
     override fun requestServer(vararg args: Any) {
-        wxModel.requestToServer(args)
+       mBaseModel.requestToServer(args)
     }
 
 
     override fun getModel(): BaseModel {
-        return wxModel
+        return WxNewsModel(this)
     }
 
 }

@@ -8,12 +8,12 @@
 
     <tab
         size="12sp"
-        id="@+id/tab_chart"
+        id="@+id/tab_video"
         icon="@drawable/ic_video_selector"
         title="@string/text_video" />
 
     <tab
-        id="@+id/tab_rebate"
+        id="@+id/tab_search"
         size="10sp"
         icon="@drawable/ic_pre_selector"
         title="@string/text_other" />

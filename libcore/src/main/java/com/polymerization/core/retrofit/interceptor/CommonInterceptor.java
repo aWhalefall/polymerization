@@ -27,6 +27,8 @@ public class CommonInterceptor implements Interceptor {
         HttpUrl.Builder authorizedUrlBuilder = oldRequest.url()
                 .newBuilder()
                 .scheme(oldRequest.url().scheme())
+                .setQueryParameter("showapi_appid",mApiKey)
+                .setQueryParameter("showapi_sign",mApiSecret)
                 .host(oldRequest.url().host());
 
 

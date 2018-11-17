@@ -4,10 +4,13 @@ package com.polymerization.core.okhttp;
 import com.polymerization.core.okhttp.Cookie.HttpCookieJar;
 
 import okhttp3.OkHttpClient;
+
+import com.polymerization.core.retrofit.interceptor.CommonInterceptor;
 import com.polymerization.core.retrofit.request.Request;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 /**
  * Author: yangweichao
@@ -40,6 +43,7 @@ public class NetWorkManager {
     public void init() {
         // 初始化okhttp
         OkHttpClient client = new OkHttpClient.Builder()
+                .addInterceptor(new CommonInterceptor("79656", "80ec326d18234d18832d2785f02d7df4"))
                 .cookieJar(HttpCookieJar.create())
                 .build();
 
@@ -49,6 +53,7 @@ public class NetWorkManager {
                 .baseUrl(Request.HOST)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(ScalarsConverterFactory.create())
                 .build();
     }
 
@@ -59,6 +64,16 @@ public class NetWorkManager {
             }
         }
         return request;
+    }
+
+    /**
+     *
+     * @param requestServerClazz
+     * @param <service>
+     * @return
+     */
+    public static  <service>  service creatRequest(Class<service> requestServerClazz){
+        return retrofit.create(requestServerClazz);
     }
 
 

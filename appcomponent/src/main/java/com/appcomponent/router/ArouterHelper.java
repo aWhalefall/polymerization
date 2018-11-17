@@ -26,7 +26,7 @@ public class ArouterHelper {
      * @return
      */
 
-    public IProvider getServiceByPath(String path) {
+    public static IProvider getServiceByPath(String path) {
         return (IProvider) ARouter.getInstance().build(path).navigation();
     }
 

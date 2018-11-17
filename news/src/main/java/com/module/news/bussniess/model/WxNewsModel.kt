@@ -22,9 +22,7 @@ class WxNewsModel(basePresenter: NewPresenter) : BaseModel {
         NetWorkManager.getRequest()
                 .getWeatherByAddress(
                         args[0].toString(),
-                        args[1].toString(),
-                        args[2].toString(),
-                        args[3].toString())
+                        args[1].toString())
                 .compose(ResponseTransformer.handleResult())
                 .compose(RxJavaUtils.observableToMain())
                 .subscribe(Consumer<JavaBean> {

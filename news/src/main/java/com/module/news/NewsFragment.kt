@@ -38,13 +38,19 @@ class NewsFragment : BaseFragment(), NewsFragmentDelegate, View.OnClickListener,
     private var mrefreshLayout: RefreshLayout? = null
 
 
+    fun init() {
+        newPresenter = NewPresenter(this, JavaBean::class.java)
+        newPresenter.requestServer( "10", currentPage)
+    }
+
+
 
     override fun init(context: Context?) {
         context
     }
 
 
-    var newList: MutableList<JavaBean.NewslistEntity> = ArrayList()
+    var newList: MutableList<JavaBean.NewslistEntity> = ArrayList<JavaBean.NewslistEntity>()
 
     private lateinit var newPresenter: NewPresenter
 
@@ -97,11 +103,6 @@ class NewsFragment : BaseFragment(), NewsFragmentDelegate, View.OnClickListener,
     }
 
 
-    fun init() {
-        newPresenter = NewPresenter(this, JavaBean::class.java)
-        newPresenter.requestServer("79656", "80ec326d18234d18832d2785f02d7df4", "10", currentPage)
-    }
-
     override fun setContainerId(id: Int) {
 
     }
@@ -119,6 +120,9 @@ class NewsFragment : BaseFragment(), NewsFragmentDelegate, View.OnClickListener,
         topbar.setTopbarTitle("微信精选")
         topbar.setLineVisiable(View.GONE)
         topbar.setTopbarLeftLayoutHide()
+
+        refreshLayout.autoRefresh()
+
         init()
         initListener()
 
@@ -132,13 +136,13 @@ class NewsFragment : BaseFragment(), NewsFragmentDelegate, View.OnClickListener,
             override fun onLoadMore(refreshLayout: RefreshLayout) {
                 isLoadMore = true
                 currentPage++
-                newPresenter.requestServer("79656", "80ec326d18234d18832d2785f02d7df4", "15", currentPage)
+                newPresenter.requestServer( "15", currentPage)
             }
 
             override fun onRefresh(refreshLayout: RefreshLayout) {
                 isLoadMore = false
                 currentPage = 1
-                newPresenter.requestServer("79656", "80ec326d18234d18832d2785f02d7df4", "15", 1)
+                newPresenter.requestServer( "15", 1)
 
             }
 
