@@ -58,7 +58,7 @@ public class WebActivity extends BaseActivity implements DownloadListener, TopBa
 
 
     @Override
-    public void init() {
+    public void initParameter() {
         Intent intent = getIntent();
         title = intent.getStringExtra(ConstanPool.WEB_TITLE);
         url = intent.getStringExtra(ConstanPool.WEB_URL);
@@ -104,6 +104,10 @@ public class WebActivity extends BaseActivity implements DownloadListener, TopBa
 
     }
 
+    @Override
+    public void initLayout() {
+
+    }
 
     private void initWebViewDefateSetting() {
 //        if (AppConfig.DEBUG) {

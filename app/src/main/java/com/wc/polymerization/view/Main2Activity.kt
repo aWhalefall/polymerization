@@ -8,8 +8,8 @@ import com.wc.polymerization.R
 @Route(path = PathConfig.MAIN_ACTIVITY)
 class Main2Activity : BaseActivity() {
 
-    override fun init() {
-        super.init()
+    override fun initParameter() {
+        super.initParameter()
     }
 
     override fun initView() {

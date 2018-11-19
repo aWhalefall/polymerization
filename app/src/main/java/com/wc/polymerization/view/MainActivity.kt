@@ -8,13 +8,11 @@ import android.view.View
 import com.appcomponent.base.BaseActivity
 import com.appcomponent.base.BaseFragment
 import com.appcomponent.router.ArouterHelper
-import com.appcomponent.router.PathConfig
 import com.appcomponent.widget.bottombar.OnTabReselectListener
 import com.appcomponent.widget.bottombar.OnTabSelectListener
 import com.component.router.delegate.MineFragmentDelegate
 import com.component.router.delegate.NewsFragmentDelegate
 import com.component.router.delegate.VideFragmentDelegate
-import com.component.router.delegate.VideoFragmentDelegate
 import com.safframework.log.L
 import com.wc.polymerization.R
 import com.wc.polymerization.base.AppContext
@@ -40,8 +38,8 @@ class MainActivity : BaseActivity(), OnTabSelectListener, OnTabReselectListener 
     private var showFg: Fragment? = null
     private var showPage = TAG_ONE
 
-    override fun init() {
-        super.init()
+    override fun initParameter() {
+        super.initParameter()
         AppContext.Instance.instance
     }
 
@@ -62,17 +60,18 @@ class MainActivity : BaseActivity(), OnTabSelectListener, OnTabReselectListener 
     override fun onTabSelected(tabId: Int) {
         when (tabId) {
             R.id.tab_video -> {
-                if (newsFragment == null) {
-                    newsFragment = ArouterHelper.getServiceByClazz(NewsFragmentDelegate::class.java).fragment
-                }
-                showFragment(newsFragment!!, TAG_ONE)
-            }
-            R.id.tab_news -> {
                 if (userCenterFragment == null) {
                     userCenterFragment = ArouterHelper.getServiceByClazz(MineFragmentDelegate::class.java).fragment
                 }
                 showFragment(userCenterFragment!!, TAG_TWO)
             }
+            R.id.tab_news -> {
+                if (newsFragment == null) {
+                    newsFragment = ArouterHelper.getServiceByClazz(NewsFragmentDelegate::class.java).fragment
+                }
+                showFragment(newsFragment!!, TAG_ONE)
+            }
+
             R.id.tab_search -> {
                 if (videoFragment == null) {
                     videoFragment = ArouterHelper.getServiceByClazz(VideFragmentDelegate::class.java).fragment
