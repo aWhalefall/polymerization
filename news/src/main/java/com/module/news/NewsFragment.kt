@@ -114,9 +114,6 @@ class NewsFragment : BaseFragment(), NewsFragmentDelegate, View.OnClickListener,
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        topbar.setTopbarTitle("微信精选")
-        topbar.setLineVisiable(View.GONE)
-        topbar.setTopbarLeftLayoutHide()
 
         refreshLayout.autoRefresh()
 

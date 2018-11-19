@@ -40,7 +40,6 @@ class VideoFragment : BaseFragment(), VideFragmentDelegate, VideoView {
         return R.layout.videmo_fragment
     }
 
-
     private var videoPresenter: VideoPresenter = VideoPresenter(this, FlowerBean::class.java)
 
     private lateinit var newList: MutableList<ItemEntity>

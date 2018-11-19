@@ -7,6 +7,6 @@ package com.component.router.delegate
  * Description: 新闻
  */
 
-interface MineFragmentDelegate : BaseFragmentDelegate
+interface MineFragmentDelegate : BaseFragmentDelegate{}
 
 

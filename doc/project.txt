@@ -41,3 +41,9 @@
 
 
 
+    day 5
+
+     调整baseActivity 过程中，AppcomActivity 与 继承的FragmentActivity 过程中，出现资源或者类无法找到原因
+
+     解决：将v4，appcom_v7 包调整到高版本，并且v4 和 v7同时调整，我这里调整为27.0.2
+

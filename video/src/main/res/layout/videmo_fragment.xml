@@ -5,10 +5,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.appcomponent.widget.TopBar
-        android:id="@+id/topbar"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/com_height" />
 
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
         android:id="@+id/refreshLayout"

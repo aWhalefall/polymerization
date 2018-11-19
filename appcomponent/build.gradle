@@ -45,7 +45,7 @@ android {
 }
 
 dependencies {
-    api deps.recyclerviewDependencies.supportV7
+    api deps.polymerizationDependencies.supportv7
     api deps.polymerizationDependencies.multidex
     api deps.polymerizationDependencies.gson
     api deps.polymerizationDependencies.design

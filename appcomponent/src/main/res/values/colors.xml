@@ -19,9 +19,9 @@
         <color name="bb_darkBackgroundColor">#212121</color>
         <color name="bb_tabletRightBorderDark">#ff0000</color>
 
-        <color name="colorPrimary">#574f62</color>
-        <color name="colorPrimaryDark">#574f62</color>
-        <color name="colorAccent">#4aca9a</color>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
 
         <color name="background">#f8f8f8</color>
 

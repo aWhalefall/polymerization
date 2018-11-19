@@ -3,10 +3,10 @@ ext.deps = [:]
 def versions = [:]
 //Libraries
 versions.gsonVersion = '2.8.0'
-versions.supportv7Version = '25.2.0'
+versions.supportv7Version = '27.0.2'
 versions.annotationsVersion = '25.2.0'
 versions.cardViewVersion = '25.3.1'
-versions.supportv4Version = '25.2.0'
+versions.supportv4Version = '27.0.2'
 versions.recyclerViewV7Version = '25.0.0'
 versions.glideVersion = '4.5.0'
 versions.okHttpVersion = '3.11.0'
@@ -42,7 +42,7 @@ polymerizationDependencies.gson = "com.google.code.gson:gson:$versions.gsonVersi
 polymerizationDependencies.eventbus = "org.greenrobot:eventbus:$versions.eventbusVersion"
 polymerizationDependencies.design = "com.android.support:design:$versions.designViewVersion"
 polymerizationDependencies.eventbusannotation = "org.greenrobot:eventbus-annotation-processor:$versions.eventbusAnnotationProcessorVersion"
-polymerizationDependencies.supportv7 = "com.andrid.support:appcompat-v7:$versions.supportv7Version"
+polymerizationDependencies.supportv7 = "com.android.support:appcompat-v7:$versions.supportv7Version"
 polymerizationDependencies.annotations = "com.android.support:support-annotations:$versions.annotationsVersion"
 polymerizationDependencies.cardview = "com.android.support:cardview-v7:$versions.cardViewVersion"
 polymerizationDependencies.supportV4 = "com.android.support:support-v4:$versions.supportv4Version"
@@ -80,7 +80,6 @@ okgoDependencies.okhttp = "com.squareup.okhttp3:okhttp:$versions.okHttpVersion"
 deps.okgoDependencies = okgoDependencies
 
 def recyclerviewDependencies = [:]
-recyclerviewDependencies.supportV7 = "com.android.support:appcompat-v7:$versions.supportv7Version"
 recyclerviewDependencies.recyclerview = "com.android.support:recyclerview-v7:$versions.recyclerViewV7Version"
 deps.recyclerviewDependencies = recyclerviewDependencies
 

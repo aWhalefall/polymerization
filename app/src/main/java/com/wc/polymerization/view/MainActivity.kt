@@ -1,12 +1,12 @@
 package com.wc.polymerization.view
 
-//import utils.ResponseTransformer
+
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentActivity
 import android.support.v4.app.FragmentManager
 import android.view.View
-import com.appcomponent.base.BaseActivity
 import com.appcomponent.base.BaseFragment
+import com.appcomponent.base.ToolbarBaseActivity
 import com.appcomponent.router.ArouterHelper
 import com.appcomponent.widget.bottombar.OnTabReselectListener
 import com.appcomponent.widget.bottombar.OnTabSelectListener
@@ -15,7 +15,6 @@ import com.component.router.delegate.NewsFragmentDelegate
 import com.component.router.delegate.VideFragmentDelegate
 import com.safframework.log.L
 import com.wc.polymerization.R
-import com.wc.polymerization.base.AppContext
 import kotlinx.android.synthetic.main.activity_main.*
 
 /**
@@ -24,8 +23,7 @@ import kotlinx.android.synthetic.main.activity_main.*
  * Description:  mvp封装格式借鉴 http://zengfanyu.top/2017/10/22/MVP2/
  */
 
-class MainActivity : BaseActivity(), OnTabSelectListener, OnTabReselectListener {
-
+class MainActivity : ToolbarBaseActivity(), OnTabSelectListener, OnTabReselectListener {
 
     val TAG_ONE = 0
     val TAG_TWO = 1
@@ -38,10 +36,6 @@ class MainActivity : BaseActivity(), OnTabSelectListener, OnTabReselectListener 
     private var showFg: Fragment? = null
     private var showPage = TAG_ONE
 
-    override fun initParameter() {
-        super.initParameter()
-        AppContext.Instance.instance
-    }
 
     override fun initListener() {
         super.initListener()
@@ -64,12 +58,14 @@ class MainActivity : BaseActivity(), OnTabSelectListener, OnTabReselectListener 
                     userCenterFragment = ArouterHelper.getServiceByClazz(MineFragmentDelegate::class.java).fragment
                 }
                 showFragment(userCenterFragment!!, TAG_TWO)
+                setDefaultTitle("微信精选")
             }
             R.id.tab_news -> {
                 if (newsFragment == null) {
                     newsFragment = ArouterHelper.getServiceByClazz(NewsFragmentDelegate::class.java).fragment
                 }
                 showFragment(newsFragment!!, TAG_ONE)
+                setDefaultTitle("视频")
             }
 
             R.id.tab_search -> {
@@ -77,6 +73,7 @@ class MainActivity : BaseActivity(), OnTabSelectListener, OnTabReselectListener 
                     videoFragment = ArouterHelper.getServiceByClazz(VideFragmentDelegate::class.java).fragment
                 }
                 showFragment(videoFragment!!, TAG_THREE)
+                setDefaultTitle("搜索")
             }
         }
     }
@@ -146,10 +143,21 @@ class MainActivity : BaseActivity(), OnTabSelectListener, OnTabReselectListener 
 
     }
 
-
     override fun onDestroy() {
         super.onDestroy()
         intent.putExtra("page", showPage)
+    }
+
+    override fun getActionBarId(): Int {
+        return R.id.toolbar
+    }
+
+    override fun getActionBarTitleId(): Int {
+        return R.id.actionbar_title
+    }
+
+    override fun provideNavigationIcon(): Int {
+        return 0
     }
 
 

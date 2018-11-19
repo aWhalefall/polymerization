@@ -5,9 +5,9 @@ package com.appcomponent.base.action
  * 1.8 接口默认实现
  */
 interface BaseTemplate {
-    fun initParameter(){}
-    fun initLayout(){}
-    fun initView(){}
-    fun initListener(){}
-    fun initValue(){}
+    fun initParameter()
+    fun initLayout()
+    fun initView()
+    fun initListener()
+    fun initValue()
 }

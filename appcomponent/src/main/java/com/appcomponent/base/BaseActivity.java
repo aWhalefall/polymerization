@@ -18,13 +18,6 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseTemp
     protected Activity context;
 
     @Override
-    protected void onStart() {
-        super.onStart();
-        context=this;
-        deleteAction = new ProxyActionTemplate();
-    }
-
-    @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initParameter();
@@ -34,6 +27,37 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseTemp
         initValue();
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        deleteAction = new ProxyActionTemplate();
+
+    }
+
+    @Override
+    public void initParameter() {
+        context = this;
+    }
+
+    @Override
+    public void initLayout() {
+
+    }
+
+    @Override
+    public void initView() {
+
+    }
+
+    @Override
+    public void initListener() {
+
+    }
+
+    @Override
+    public void initValue() {
+
+    }
 
     protected <SubView extends View> SubView findView(int resId) {
         return (SubView) findViewById(resId);

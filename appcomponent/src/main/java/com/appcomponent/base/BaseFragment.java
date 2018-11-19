@@ -61,4 +61,29 @@ public abstract class BaseFragment extends Fragment implements BaseTemplate {
         deleteAction = new ProxyActionTemplate();
     }
 
+    @Override
+    public void initParameter() {
+
+    }
+
+    @Override
+    public void initLayout() {
+
+    }
+
+    @Override
+    public void initView() {
+
+    }
+
+    @Override
+    public void initListener() {
+
+    }
+
+    @Override
+    public void initValue() {
+
+    }
+
 }
