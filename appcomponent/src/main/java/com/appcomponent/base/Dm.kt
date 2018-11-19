@@ -1,8 +1,9 @@
 package com.appcomponent.base
 
 class Dm :BaseActivity(){
-    override fun init() {
-        super.init()
+
+    override fun initParameter() {
+        super.initParameter()
     }
 
     override fun initLayout() {
