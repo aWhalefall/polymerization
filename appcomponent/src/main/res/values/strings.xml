@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">appcomponent</string>
+    <string name="dialog_title">dialogTitle</string>
 </resources>

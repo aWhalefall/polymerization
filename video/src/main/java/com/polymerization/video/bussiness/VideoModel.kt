@@ -38,7 +38,6 @@ class VideoModel(mBasePresenter: VideoPresenter) : BaseModel {
                         var flowers: MutableList<ItemEntity> = ArrayList()
                         linkedmap.values.forEach {
                             try {
-
                                 with(it as LinkedTreeMap<*, String>) {
                                     var item = ItemEntity().clone()
                                     item.thumb = it["thumb"]

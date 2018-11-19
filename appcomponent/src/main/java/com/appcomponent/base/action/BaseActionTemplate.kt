@@ -1,7 +1,6 @@
 package com.appcomponent.base.action
 
 import android.app.Activity
-import android.content.Context
 import android.view.View
 
 /**

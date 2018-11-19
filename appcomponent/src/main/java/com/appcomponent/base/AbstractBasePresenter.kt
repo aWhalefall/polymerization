@@ -28,7 +28,6 @@ abstract class AbstractBasePresenter<Params, Data> : BasePresenter {
     abstract fun serverResponse(data: Data)
 
     override fun cancelRequest() {
-
         mBaseModel.cancelRequest()
     }
 
