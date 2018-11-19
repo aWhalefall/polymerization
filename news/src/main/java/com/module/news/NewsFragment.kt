@@ -2,9 +2,7 @@ package com.module.news
 
 import android.content.Context
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.appcomponent.base.BaseFragment
@@ -31,6 +29,9 @@ import kotlinx.android.synthetic.main.item_news.view.*
  */
 @Route(path = PathConfig.NEWS_FRAGMENT_REBATE)
 class NewsFragment : BaseFragment(), NewsFragmentDelegate, View.OnClickListener, NewView {
+    override fun initContentView(): Int {
+        return R.layout.fragment_news
+    }
 
 
     var currentPage: Int = 1 //当前页面
@@ -111,10 +112,6 @@ class NewsFragment : BaseFragment(), NewsFragmentDelegate, View.OnClickListener,
         get() = this
 
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        return inflater.inflate(R.layout.fragment_news,container,false)
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         topbar.setTopbarTitle("微信精选")
@@ -130,8 +127,7 @@ class NewsFragment : BaseFragment(), NewsFragmentDelegate, View.OnClickListener,
     }
 
 
-    private fun initListener() {
-
+    override fun initListener() {
         refreshLayout.setOnRefreshLoadMoreListener(object : OnRefreshLoadMoreListener {
             override fun onLoadMore(refreshLayout: RefreshLayout) {
                 isLoadMore = true

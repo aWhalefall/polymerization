@@ -2,9 +2,7 @@ package com.polymerization.video
 
 import android.content.Context
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.appcomponent.base.BaseFragment
@@ -24,7 +22,6 @@ import io.github.armcha.recyclerviewkadapter.kadapter.setUp
 import kotlinx.android.synthetic.main.item_view.view.*
 import kotlinx.android.synthetic.main.videmo_fragment.*
 import java.util.*
-import kotlin.math.nextDown
 
 
 /**
@@ -37,6 +34,11 @@ import kotlin.math.nextDown
 
 @Route(path = "/module/video")
 class VideoFragment : BaseFragment(), VideFragmentDelegate, VideoView {
+
+
+    override fun initContentView(): Int {
+        return R.layout.videmo_fragment
+    }
 
 
     private var videoPresenter: VideoPresenter = VideoPresenter(this, FlowerBean::class.java)
@@ -63,10 +65,6 @@ class VideoFragment : BaseFragment(), VideFragmentDelegate, VideoView {
         context
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.videmo_fragment, container, false)
-    }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -77,7 +75,7 @@ class VideoFragment : BaseFragment(), VideFragmentDelegate, VideoView {
 
     private var currentPage: Int = 1
 
-    private fun initListener() {
+    override fun initListener() {
 
         refreshLayout.setOnRefreshLoadMoreListener(object : OnRefreshLoadMoreListener {
             override fun onLoadMore(refreshLayout: RefreshLayout) {

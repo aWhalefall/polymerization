@@ -30,7 +30,7 @@ public abstract class BaseFragment extends Fragment implements BaseTemplate {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         initParameter();
-        rootView = initContentView();
+        rootView = inflater.inflate(initContentView(), container, false);
         return rootView;
     }
 
@@ -39,7 +39,7 @@ public abstract class BaseFragment extends Fragment implements BaseTemplate {
      *
      * @return
      */
-    protected abstract View initContentView();
+    protected abstract int initContentView();
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
