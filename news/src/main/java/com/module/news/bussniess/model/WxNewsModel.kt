@@ -1,7 +1,7 @@
 package com.module.news.bussniess.model
 
 import com.appcomponent.base.BaseModel
-import com.appcomponent.utils.ResponseTransformer
+import com.polymerization.core.retrofit.convert.ResponseTransformer
 import com.appcomponent.utils.RxJavaUtils
 import com.module.news.bussniess.NewPresenter
 import com.polymerization.core.bean.JavaBean

@@ -16,6 +16,12 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
  * Author: yangweichao
  * Date:   2018/11/13 3:21 PM
  * Description:
+ * 1.拦截器设置【日志，公共头部，cache】
+ * 2.okhttp 基础参数设置
+ * 3.配置https证书
+ * 4.初始化retrofit2，okhttp
+ * 5.添加转换器
+ *
  */
 
 

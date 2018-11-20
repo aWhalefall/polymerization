@@ -9,10 +9,11 @@ import android.view.View;
 import com.appcomponent.base.action.BaseActionTemplate;
 import com.appcomponent.base.action.BaseTemplate;
 import com.appcomponent.base.action.ProxyActionTemplate;
+import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
 import org.jetbrains.annotations.NotNull;
 
-public abstract class BaseActivity extends AppCompatActivity implements BaseTemplate {
+public abstract class BaseActivity extends RxAppCompatActivity implements BaseTemplate {
 
     protected BaseActionTemplate deleteAction;
     protected Activity context;

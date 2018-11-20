@@ -4,7 +4,7 @@ package com.polymerization.core.retrofit.respond;
  * Created by Zaifeng on 2018/2/28.
  * 返回结果封装
  */
-
+//处理Response data返回null的情况
 public class Response<T> {
 
     private int showapi_res_code; // 返回的code

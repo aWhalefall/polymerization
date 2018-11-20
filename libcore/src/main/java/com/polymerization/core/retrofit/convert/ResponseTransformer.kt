@@ -1,4 +1,4 @@
-package com.appcomponent.utils
+package com.polymerization.core.retrofit.convert
 
 import io.reactivex.Observable
 import io.reactivex.ObservableSource

@@ -48,6 +48,9 @@ dependencies {
     api deps.okgoDependencies.okhttp
     api 'junit:junit:4.12'
 
+    api 'com.trello.rxlifecycle2:rxlifecycle:2.1.0'
+    api 'com.trello.rxlifecycle2:rxlifecycle-components:2.1.0'
+
 
     api deps.polymerizationDependencies.gson
     api 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
