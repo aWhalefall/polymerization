@@ -1,7 +1,8 @@
 package com.module.news.bussniess.model
 
 import com.appcomponent.base.BaseModel
-import com.polymerization.core.retrofit.convert.ResponseTransformer
+import com.appcomponent.utils.ResponseTransformer
+
 import com.appcomponent.utils.RxJavaUtils
 import com.module.news.bussniess.NewPresenter
 import com.polymerization.core.bean.JavaBean
@@ -23,8 +24,8 @@ class WxNewsModel(basePresenter: NewPresenter) : BaseModel {
                 .getWeatherByAddress(
                         args[0].toString(),
                         args[1].toString())
-                .compose(ResponseTransformer.handleResult())
                 .compose(RxJavaUtils.observableToMain())
+                .compose(ResponseTransformer.handleResult())
                 .subscribe(Consumer<JavaBean> {
                     newPresenter.serverResponse(it)
                     L.d(it.toString())
