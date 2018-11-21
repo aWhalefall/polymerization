@@ -25,17 +25,19 @@ class VideoModel(mBasePresenter: VideoPresenter) : BaseModel {
 
 
         NetWorkManager.creatRequest(VideoRequest::class.java)
-                .getFlowerFuli(params[0].toString(),
-                        params[1].toString(), params[2].toString()).enqueue(object : retrofit2.Callback<Any> {
+                .getFlowerFuli(
+                        params[0].toString(),
+                        params[1].toString(),
+                        params[2].toString())
+                .enqueue(object : retrofit2.Callback<Any> {
                     override fun onFailure(call: Call<Any>, t: Throwable) {
                         L.d("d")
                     }
-
                     override fun onResponse(call: Call<Any>, response: retrofit2.Response<Any>) {
                         var linkedmap = (response.body() as LinkedTreeMap<String, *>).get("showapi_res_body") as LinkedTreeMap<String, *>
                         var flowerBean = FlowerBean()
 
-                        var flowers: MutableList<ItemEntity> = ArrayList()
+                        val flowers: MutableList<ItemEntity> = ArrayList()
                         linkedmap.values.forEach {
                             try {
 

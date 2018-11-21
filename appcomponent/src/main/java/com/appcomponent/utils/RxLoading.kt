@@ -1,7 +1,7 @@
-package com.polymerization.core.retrofit.convert
+package com.appcomponent.utils
 
-import android.app.Activity
-import com.polymerization.core.utils.DialogUtils
+import android.support.v7.app.AppCompatActivity
+import com.lib.dialogext.ExtDialogUtils
 import io.reactivex.ObservableTransformer
 import java.lang.ref.WeakReference
 
@@ -13,22 +13,25 @@ import java.lang.ref.WeakReference
  * ObservableTransformer, A 装饰模式--{A}
  */
 
-class RxLoading {
+object RxLoading {
+
 
     /**
      * showDialog 显示隐藏 带tips的
      */
-    fun <T> applyProgressBar(context: Activity, msgTips: String): ObservableTransformer<T, T> {
+    @JvmStatic
+    fun <T> applyProgressBar(context: AppCompatActivity, msgTips: String): ObservableTransformer<T, T> {
         val activityWeakReference = WeakReference(context)
         //showDialog
-        DialogUtils.showDialog(activityWeakReference.get(),msgTips)
+        var dia = ExtDialogUtils.showPhoneDialog(activityWeakReference.get(), msgTips)
 
         return ObservableTransformer { upstream ->
             upstream.doOnSubscribe {
-
             }.doOnTerminate {
                 if (activityWeakReference.get() != null && !activityWeakReference.get()!!.isFinishing) {
-                    DialogUtils.dimisssDialog()
+                    //DialogUtils.dimisssDialog()
+                    dia.dismiss()
+
                 }
             }
         }
@@ -37,7 +40,8 @@ class RxLoading {
     /**
      * 不带的tips的
      */
-    fun <T> applyProgressBar(context: Activity): ObservableTransformer<T, T> {
+    @JvmStatic
+    fun <T> applyProgressBar(context: AppCompatActivity): ObservableTransformer<T, T> {
         return applyProgressBar(context, "")
     }
 

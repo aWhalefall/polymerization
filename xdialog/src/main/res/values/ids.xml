@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <item name="rela_group_title" type="id" />
+    <item name="view_title_divider" type="id" />
+    <item name="view_bottom_divider" type="id" />
+    <item name="line_bottom_area" type="id" />
+    <item name="custom_view" type="id" />
+    <item name="cancel_bottom_view" type="id" />
+    <item name="visible_area" type="id" />
+
+</resources>

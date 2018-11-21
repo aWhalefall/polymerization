@@ -15,6 +15,7 @@ import com.component.router.delegate.NewsFragmentDelegate
 import com.component.router.delegate.VideFragmentDelegate
 import com.safframework.log.L
 import com.wc.polymerization.R
+import io.reactivex.Observable
 import kotlinx.android.synthetic.main.activity_main.*
 
 /**

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="nydialog_color_9999">#999999</color>
+    <!-- dialogs color -->
+    <color name="order_textview_color_border">#EBEBEB</color>
+    <color name="order_textview_color_normal_right">#999</color>
+    <color name="xiaonuo_dialog_cancletextcolor">#FFFFFF</color>
+    <color name="xiaonuo_dialog_confirmtextcolor">#503214</color>
+    <color name="main_color_white">#ffffffff</color>
+    <color name="loan_butBackground">#ed6d48</color>
+    <color name="color_hei_8">#7F000000</color>
+    <color name="text_666666">#666666</color>
+    <color name="color_e2e2e2">#e2e2e2</color>
+    <color name="color_00B0FF">#00B0FF</color>
+    <color name="color_f8f8f8">#f8f8f8</color>
+    <color name="color_d2d2d2">#d2d2d2</color>
+</resources>

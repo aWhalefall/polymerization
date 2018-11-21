@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="sp_12">12sp</dimen>
+    <dimen name="sp_16">16sp</dimen>
+    <dimen name="sp_17">17sp</dimen>
+    <dimen name="sp_14">14sp</dimen>
+    <dimen name="sp_15">15sp</dimen>
+    <dimen name="sp_title">17sp</dimen>
+    <dimen name="sp_18">18sp</dimen>
+    <dimen name="sp_30">30sp</dimen>
+
+    <!-- padding -->
+    <dimen name="global_padding_small">7dp</dimen>
+    <dimen name="global_padding_large">15dp</dimen>
+    <dimen name="global_item_height_small">20dp</dimen>
+
+    <!--common dialog-->
+    <dimen name="dlg_m_height">223dip</dimen>
+    <dimen name="dlg_big_height">240dip</dimen>
+    <dimen name="dlg_big_height8">290dip</dimen>
+    <dimen name="dlg_big_height2">260dip</dimen>
+    <dimen name="dlg_m_width">280dip</dimen>
+
+    <dimen name="dlg_cancel_width">30dip</dimen>
+    <dimen name="dlg_cancel_height">30dip</dimen>
+    <dimen name="dlg_cancel_margin_top">50dip</dimen>
+    <dimen name="dlg_btn_margin_left">20dip</dimen>
+    <dimen name="dlg_btn_margin_right">20dip</dimen>
+    <dimen name="dlg_btn_margin_bottom">0dip</dimen>
+    <dimen name="dlg_btn_margin_top">0dip</dimen>
+    <dimen name="dlg_btn_width">130dip</dimen>
+    <dimen name="dlg_btn_height">50dip</dimen>
+    <dimen name="dlg_btn_margin_mid">10dip</dimen>
+    <dimen name="dlg_btn_one_width">240dip</dimen>
+    <dimen name="dlg_title_margin_top">20dip</dimen>
+    <dimen name="dlg_button_text_size">18dip</dimen>
+    <dimen name="time_title_textsize">18sp</dimen>
+
+    <dimen name="dlg_3_button_width">73dip</dimen>
+    <dimen name="dlg_2_button_width">100dip</dimen>
+    <dimen name="dlg_1_button_width">192dip</dimen>
+
+</resources>

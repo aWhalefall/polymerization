@@ -1,1 +1,1 @@
-include ':app', ':libcore', ':usercenter', ':news', ':appcomponent', ':video'
+include ':app', ':libcore', ':usercenter', ':news', ':appcomponent', ':video', ':xdialog'

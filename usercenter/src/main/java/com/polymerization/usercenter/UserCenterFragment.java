@@ -5,6 +5,7 @@ import android.content.Context;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.appcomponent.base.BaseFragment;
 import com.component.router.delegate.MineFragmentDelegate;
+import com.wc.polymerization.usercenter.R;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -12,6 +13,7 @@ import org.jetbrains.annotations.NotNull;
 public class UserCenterFragment extends BaseFragment implements MineFragmentDelegate {
 
 
+    String TAG = UserCenterFragment.class.getSimpleName();
 
     @NotNull
     @Override
@@ -27,6 +29,11 @@ public class UserCenterFragment extends BaseFragment implements MineFragmentDele
 
 
     @Override
+    protected int initContentView() {
+        return R.layout.click_main;
+    }
+
+    @Override
     public void initParameter() {
 
     }
@@ -37,27 +44,27 @@ public class UserCenterFragment extends BaseFragment implements MineFragmentDele
     }
 
     @Override
-    public void initLayout() {
-
-    }
-
-    @Override
-    public void initView() {
-
-    }
-
-    @Override
     public void initListener() {
 
     }
 
     @Override
     public void initValue() {
+//
+//        Observable.subscribe(new Consumer() {
+//            @Override
+//            public void accept(Object o) throws Exception {
+//                L.d(o.toString());
+//            }
+//        });
+//        Observable.subscribe(new Consumer() {
+//            @Override
+//            public void accept(Object o) throws Exception {
+//                L.d("第二个 " + o.toString());
+//            }
+//        });
 
     }
 
-    @Override
-    protected int initContentView() {
-        return 0;
-    }
+
 }

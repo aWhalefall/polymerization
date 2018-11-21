@@ -2,11 +2,13 @@
  * File Name: EtaoShiDialogView.java 
  * History:
  * Created by LiBingbing on 2013-9-6
+ * modify by NuoyuanTeam 2017-9-6
  */
-package com.appcomponent.widget.dialog;
+package com.lib.dialogext.widget;
 
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -24,10 +26,10 @@ import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import com.wx.polymerization.appcomponent.R;
+import com.lib.dialogext.R;
 
 
-public class EtaoShiDialogView extends RelativeLayout {
+public class NyDialogView extends RelativeLayout {
     // ==========================================================================
     // Constants
     // ==========================================================================
@@ -63,30 +65,32 @@ public class EtaoShiDialogView extends RelativeLayout {
 
     private View mTitleDividerHView;
     private View mCancelBottomView;
-    //3  4  7 10  33
-    private final int ViewID_3 = 3;
-    private final int ViewID_4 = 4;
-    private final int ViewID_7 = 7;
-    private final int ViewID_10 = 10;
-    private final int ViewID_33 = 33;
-    private final int View_ID_44 = 44;
-    private final int View_ID_55 = 55;
-    public static int setheight = 0;
-    public static int setWidth = 0;
+
+    private final int ViewID_3 = R.id.rela_group_title;
+    private final int ViewID_4 = R.id.view_title_divider;
+    private final int ViewID_7 = R.id.view_bottom_divider;
+    private final int ViewID_10 = R.id.line_bottom_area;
+    private final int ViewID_33 = R.id.custom_view;
+    private final int View_ID_44 = R.id.cancel_bottom_view;
+    private final int View_ID_55 = R.id.visible_area;
+
+    public int setheight = 0;
+    public int setWidth = 0;
+    private LinearLayout.LayoutParams mContainerLp;
 
     // ==========================================================================
     // Constructors
     // ==========================================================================
-    public EtaoShiDialogView(Activity activity) {
+    public NyDialogView(Activity activity) {
         super(activity);
         mActivity = activity;
         initLayout();
     }
 
-    public EtaoShiDialogView(Activity activity, int w, int h) {
+    public NyDialogView(Activity activity, int w, int h) {
         super(activity);
-        setheight = h;
-        setWidth = w;
+        setheight = dip2px(activity, h);
+        setWidth = dip2px(activity, w);
         mActivity = activity;
         initLayout();
     }
@@ -107,58 +111,56 @@ public class EtaoShiDialogView extends RelativeLayout {
     // Methods
     // ==========================================================================
     private void initLayout() {
-        LayoutParams rp;
+        RelativeLayout.LayoutParams rp;
         LinearLayout.LayoutParams lp;
 
+        //线性布局容器
         mVisibleArea = new LinearLayout(mActivity);
         mVisibleArea.setId(View_ID_55);
         mVisibleArea.setOrientation(LinearLayout.VERTICAL);
         int w = getResources().getDimensionPixelSize(R.dimen.dlg_m_width);
         int h = getResources().getDimensionPixelSize(R.dimen.dlg_m_height);
-        rp = new LayoutParams(setWidth == 0 ? w : setWidth, setheight == 0 ? h : setheight);
+        rp = new RelativeLayout.LayoutParams(setWidth == 0 ? w : setWidth, setheight == 0 ? h : setheight);
         rp.addRule(RelativeLayout.CENTER_IN_PARENT);
         addView(mVisibleArea, rp);
 
-        // 分隔线
-        mTitleDivider = new View(mActivity);
-        mTitleDivider.setId(ViewID_4);
-        mTitleDivider.setBackgroundColor(mActivity.getResources().getColor(R.color.order_textview_color_border));
-        // mTitleDivider.setBackgroundResource(R.drawable.dlg_divider_tile);
-        lp = new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT, 1);
-        // rp.addRule(RelativeLayout.BELOW, mGrpTitle.getId());
-//        mVisibleArea.addView(mTitleDivider, lp);
-
-        mContainer = new RelativeLayout(mActivity);
-        lp = new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.MATCH_PARENT);
-        lp.weight = 1;
-        mVisibleArea.addView(mContainer, lp);
-
-        // 标题栏
+        // 相对布局标题栏
         mGrpTitle = new RelativeLayout(mActivity);
         mGrpTitle.setId(ViewID_3);
-        rp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+        rp = new RelativeLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
         rp.addRule(RelativeLayout.CENTER_HORIZONTAL);
-        rp.topMargin = mActivity.getResources().getDimensionPixelSize(R.dimen.dlg_title_margin_top);
-        mContainer.addView(mGrpTitle, rp);
+        mVisibleArea.addView(mGrpTitle, rp);
+
         // 标题文字
         mTxtTitle = new TextView(mActivity);
-        mTxtTitle.setTextColor(mActivity.getResources().getColor(R.color.color_999999));
+        mTxtTitle.setTextColor(mActivity.getResources().getColor(R.color.nydialog_color_9999));
         mTxtTitle.setTextSize(TypedValue.COMPLEX_UNIT_PX, mActivity.getResources().getDimensionPixelSize(R.dimen.time_title_textsize));
-        mTxtTitle.setText(R.string.dialog_title);
+        mTxtTitle.setText(R.string.time_title_hint);
         mTxtTitle.setGravity(Gravity.CENTER_HORIZONTAL);
         mTxtTitle.setLineSpacing(5, 1);
-        rp = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+        rp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+        rp.topMargin = mActivity.getResources().getDimensionPixelOffset(R.dimen.dlg_title_margin_top);
         rp.addRule(RelativeLayout.CENTER_IN_PARENT);
         mGrpTitle.addView(mTxtTitle, rp);
 
         // 分隔线
+        mTitleDivider = new View(mActivity);
+        mTitleDivider.setId(ViewID_4);
+        lp = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, 1);
+        mVisibleArea.addView(mTitleDivider, lp);
+
+        //展示内容
+        mContainer = new RelativeLayout(mActivity);
+        mContainerLp = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+        mContainerLp.weight = 1;
+        mVisibleArea.addView(mContainer, mContainerLp);
+
+        // 分隔线
         mBottomDivider = new View(mActivity);
         mBottomDivider.setId(ViewID_7);
-        mBottomDivider.setBackgroundColor(mActivity.getResources().getColor(R.color.order_textview_color_border));
-        //		 mTitleDivider.setBackgroundResource(R.drawable.dlg_divider_tile);
-        lp = new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT, 1);
-        // rp.addRule(RelativeLayout.BELOW, mGrpTitle.getId());
-//        mVisibleArea.addView(mBottomDivider, lp);
+        mBottomDivider.setBackgroundColor(mActivity.getResources().getColor(R.color.order_textview_color_normal_right));
+        lp = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, 1);
+        mVisibleArea.addView(mBottomDivider, lp);
 
 
         // 底部按钮区域
@@ -182,46 +184,18 @@ public class EtaoShiDialogView extends RelativeLayout {
         mBtnNegative.setTextColor(getResources().getColor(R.color.order_textview_color_normal_right));
         mBtnNegative.setTextSize(TypedValue.COMPLEX_UNIT_PX, mActivity.getResources().getDimensionPixelSize(R.dimen.dlg_button_text_size));
 
-        // LinearLayout.LayoutParams negativeParams = new
-        // LinearLayout.LayoutParams(buttonWidth,
-        // LinearLayout.LayoutParams.WRAP_CONTENT);
-        // mGrpButtons.setLayoutParams(negativeParams);
-
         // 中间按钮
         mBtnNeutral = new TextView(mActivity);
         mBtnNeutral.setVisibility(View.GONE);
         mBtnNeutral.setGravity(Gravity.CENTER);
         mBtnNeutral.setTextColor(mActivity.getResources().getColor(R.color.order_textview_color_normal_right));
         mBtnNeutral.setTextSize(TypedValue.COMPLEX_UNIT_PX, mActivity.getResources().getDimensionPixelSize(R.dimen.dlg_button_text_size));
-        // 分隔线
-        mTitleDividerHView = new View(mActivity);
-        mTitleDividerHView.setBackgroundColor(mActivity.getResources().getColor(R.color.order_textview_color_border));
-        // mTitleDivider.setBackgroundResource(R.drawable.dlg_divider_tile);
-        LinearLayout.LayoutParams lpHView = new LinearLayout.LayoutParams(1, LinearLayout.LayoutParams.WRAP_CONTENT);
+
         // 右侧按钮
         mBtnPositive = new TextView(mActivity);
         mBtnPositive.setGravity(Gravity.CENTER);
         mBtnPositive.setTextColor(mActivity.getResources().getColor(R.color.xiaonuo_dialog_cancletextcolor));
         mBtnPositive.setTextSize(TypedValue.COMPLEX_UNIT_PX, mActivity.getResources().getDimensionPixelSize(R.dimen.dlg_button_text_size));
-
-        // LinearLayout.LayoutParams positiveParams = new
-        // LinearLayout.LayoutParams(buttonWidth,
-        // LinearLayout.LayoutParams.WRAP_CONTENT);
-        // mGrpButtons.setLayoutParams(positiveParams);
-        //  显示左右按钮状态
-        // if (BuildOption.USE_ICS_FEATURE) {
-        // lp = new LinearLayout.LayoutParams(buttonWidth, buttonHeight);
-        // lp.weight = 0;
-        // mGrpButtons.addView(mBtnNegative, lp);
-        // lp = new LinearLayout.LayoutParams(buttonWidth, buttonHeight);
-        // lp.weight = 0;
-        // lp.leftMargin = padding;
-        // mGrpButtons.addView(mBtnNeutral, lp);
-        // lp = new LinearLayout.LayoutParams(buttonWidth, buttonHeight);
-        // lp.weight = 0;
-        // lp.leftMargin = padding;
-        // mGrpButtons.addView(mBtnPositive, lp);
-        // } else {
 
         int padding = mActivity.getResources().getDimensionPixelSize(R.dimen.dlg_btn_margin_mid);
 
@@ -229,6 +203,13 @@ public class EtaoShiDialogView extends RelativeLayout {
         lp.weight = 1;
         lp.rightMargin = padding;
         mGrpButtons.addView(mBtnNegative, lp);
+
+        // 分隔线
+        mTitleDividerHView = new View(mActivity);
+        mTitleDividerHView.setBackgroundColor(mActivity.getResources().getColor(R.color.order_textview_color_normal_right));
+        LinearLayout.LayoutParams lpHView = new LinearLayout.LayoutParams(1, dip2px(mActivity, 40));
+        mGrpButtons.addView(mTitleDividerHView, lpHView);
+
 
         lp = new LinearLayout.LayoutParams(buttonWidth, buttonHeight);
         lp.weight = 1;
@@ -241,27 +222,21 @@ public class EtaoShiDialogView extends RelativeLayout {
         mGrpButtons.addView(mBtnNeutral, lp);
 
 
-        //底部取消按钮 TODO finish
+        //底部取消按钮
         mCancelBottomView = new View(mActivity);
         mCancelBottomView.setId(View_ID_44);
-        mCancelBottomView.setBackgroundResource(0);
+        mCancelBottomView.setBackgroundResource(R.drawable.dialog_black_close);
         rp = new LayoutParams(getResources().getDimensionPixelSize(R.dimen.dlg_cancel_width), getResources().getDimensionPixelSize(R.dimen.dlg_cancel_height));
         rp.topMargin = mActivity.getResources().getDimensionPixelSize(R.dimen.dlg_cancel_margin_top);
         rp.addRule(RelativeLayout.CENTER_HORIZONTAL);
         rp.addRule(RelativeLayout.BELOW, View_ID_55);
         addView(mCancelBottomView, rp);
 
-        // }
-
-        // // 分隔线
-        // View buttonDivider = new View(mActivity);
-        // buttonDivider.setId(R.id.dlg_button_bar_divider);
-        // buttonDivider.setBackgroundResource(R.drawable.divider_dialog);
-        // rp = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, 1);
-        // rp.addRule(RelativeLayout.ABOVE, mGrpButtons.getId());
-        // mVisibleArea.addView(buttonDivider, rp);
     }
 
+    /**
+     * reset Btn width
+     */
     private void resetButtonsWidth() {
         int visibleButtons = 1 + (mBtnNegative.getVisibility() == View.GONE ? 0 : 1) + (mBtnNeutral.getVisibility() == View.GONE ? 0 : 1);
 
@@ -296,13 +271,16 @@ public class EtaoShiDialogView extends RelativeLayout {
         }
     }
 
-    // public void setTitleBackgroundColor(int color) {
-    //
-    // mGrpTitle.setBackgroundColor(color);
-    // }
-    //
+    /**
+     * content area BackGround
+     *
+     * @param color
+     */
     public void setContainerBackground(int color) {
         mContainer.setBackgroundColor(color);
+    }
+    public void setContainerBackgroundResource(int color) {
+        mContainer.setBackgroundResource(color);
     }
 
     public void setBuilderSize(int w, int h) {
@@ -394,6 +372,12 @@ public class EtaoShiDialogView extends RelativeLayout {
         mGrpButtons.setVisibility(visibility);
     }
 
+    public void setButtonsPadding(int l, int t, int r, int b) {
+        mGrpButtons.setPadding(dip2px(mActivity, l), dip2px(mActivity, t),
+                dip2px(mActivity, r),
+                dip2px(mActivity, b));
+    }
+
 
     public void setCancelBottomViewVisible(boolean isvisiable) {
         int visiable = isvisiable ? View.VISIBLE : View.GONE;
@@ -411,6 +395,10 @@ public class EtaoShiDialogView extends RelativeLayout {
     //解决：申请转让下面灰色的线也是黄色的。
     public void setTitleDividerColor(int color) {
         mTitleDivider.setBackgroundColor(color);
+    }
+
+    public void setmBottomDividerVisiable(int visiable) {
+        mBottomDivider.setVisibility(visiable);
     }
 
     public void setTitleTextColor(int color) {
@@ -464,24 +452,21 @@ public class EtaoShiDialogView extends RelativeLayout {
         mGrpTitle.removeAllViews();
         mGrpTitle.getLayoutParams().height = LayoutParams.WRAP_CONTENT;
         ViewGroup.LayoutParams lp = v.getLayoutParams();
-        if (!(lp instanceof LayoutParams)) {
-            v.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+        if (!(lp instanceof RelativeLayout.LayoutParams)) {
+            v.setLayoutParams(new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
         }
         mGrpTitle.addView(v);
     }
 
     public void setContentView(final View v) {
-        if (null != mContent) {
-            mContainer.removeView(mContent);
-        }
-
+        mContainer.removeAllViews();
         mContent = v;
         if (mContent == null) {
             return;
         }
 
         mContent.setId(ViewID_33);
-        final LayoutParams rp = new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT);
+        final RelativeLayout.LayoutParams rp = new RelativeLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
         rp.addRule(RelativeLayout.CENTER_IN_PARENT);
         rp.addRule(RelativeLayout.BELOW, ViewID_3);
         mContainer.addView(mContent, rp);
@@ -502,8 +487,8 @@ public class EtaoShiDialogView extends RelativeLayout {
 
     public void setTextContent(final CharSequence msg, boolean scrollable) {
         final TextView v = new TextView(mActivity);
-        v.setTextColor(mActivity.getResources().getColor(R.color.color_999999));
-        v.setTextSize(TypedValue.COMPLEX_UNIT_PX, mActivity.getResources().getDimensionPixelSize(R.dimen.text_16sp));
+        v.setTextColor(mActivity.getResources().getColor(R.color.nydialog_color_9999));
+        v.setTextSize(TypedValue.COMPLEX_UNIT_PX, mActivity.getResources().getDimensionPixelSize(R.dimen.sp_16));
         v.setGravity(Gravity.CENTER);
         int padding = mActivity.getResources().getDimensionPixelSize(R.dimen.global_item_height_small);
         v.setPadding(padding, padding, padding, padding);
@@ -519,7 +504,7 @@ public class EtaoShiDialogView extends RelativeLayout {
                     setContentView(null);
                     ScrollView scrollView = new ScrollView(getContext());
                     RelativeLayout container = new RelativeLayout(getContext());
-                    container.addView(v, new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+                    container.addView(v, new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
                     scrollView.addView(container, new ScrollView.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
                     setContentView(scrollView);
                 }
@@ -558,13 +543,10 @@ public class EtaoShiDialogView extends RelativeLayout {
         setContentView(v);
     }
 
-    public void setPositiveButtonVisible(boolean visible) {
-        mBtnPositive.setVisibility(visible ? View.VISIBLE : View.GONE);
-        resetButtonsWidth();
+    private int dip2px(Context context, float dipValue) {
+        final float scale = context.getResources().getDisplayMetrics().density;
+        return (int) (dipValue * scale + 0.5f);
     }
 
 
-    // ==========================================================================
-    // Inner/Nested Classes
-    // ==========================================================================
 }

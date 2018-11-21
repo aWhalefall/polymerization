@@ -2,7 +2,7 @@ package com.polymerization.core.utils
 
 import android.app.Activity
 
-object DialogUtils{
+public object DialogUtils{
 
 
     /**

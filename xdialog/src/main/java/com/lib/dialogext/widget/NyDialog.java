@@ -3,45 +3,27 @@
  * History:
  * Created by LiBingbing on 2013-9-16
  */
-package com.appcomponent.widget.dialog;
+package com.lib.dialogext.widget;
 
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.view.Window;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ListAdapter;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 
-import com.wx.polymerization.appcomponent.R;
-
-import java.util.Timer;
-import java.util.TimerTask;
+public class NyDialog extends Dialog {
 
 
-public class EtaoShiDialog extends Dialog {
-
-    // ==========================================================================
-    // Constants
-    // ==========================================================================
-
-    // ==========================================================================
-    // Fields
-    // ==========================================================================
     private Activity mActivity;
-    protected EtaoShiDialogView mView;
 
-    // ==========================================================================
-    // Constructors
-    // ==========================================================================
-    public EtaoShiDialog(Activity activity) {
+    protected NyDialogView mView;
+
+
+    public NyDialog(Activity activity) {
         super(activity);
         mActivity = activity;
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -49,37 +31,38 @@ public class EtaoShiDialog extends Dialog {
         setCanceledOnTouchOutside(false);
     }
 
-    // ==========================================================================
-    // Getters
-    // ==========================================================================
+
+    public NyDialog(Activity activity, int themeResId) {
+        super(activity, themeResId);
+        mActivity = activity;
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        setCanceledOnTouchOutside(false);
+    }
+
+
     public Activity getActivity() {
         return mActivity;
     }
 
-    public EtaoShiDialogView getDialogView() {
+    public NyDialogView getDialogView() {
         return mView;
     }
 
-    // ==========================================================================
-    // Setters
-    // ==========================================================================
-
-    // ==========================================================================
-    // Methods
-    // ==========================================================================
     public static class Builder {
 
         private Activity mActivity;
 
-        private EtaoShiDialog mDialog;
+        private NyDialog mDialog;
 
-        private OnClickListener mPositiveClickListener;
+        private DialogInterface.OnClickListener mPositiveClickListener;
 
-        private OnClickListener mNeutralClickListener;
+        private DialogInterface.OnClickListener mNeutralClickListener;
 
-        private OnClickListener mNegativeClickListener;
+        private DialogInterface.OnClickListener mNegativeClickListener;
 
-        private OnCancelListener mCancelClickListener;
+        private DialogInterface.OnCancelListener mCancelClickListener;
+
 
         /**
          * 改变diglog整体大小
@@ -91,8 +74,8 @@ public class EtaoShiDialog extends Dialog {
          */
         public Builder(Activity activity, int w, int h) {
             mActivity = activity;
-            mDialog = new EtaoShiDialog(activity);
-            mDialog.mView = new EtaoShiDialogView(mActivity, w, h);
+            mDialog = new NyDialog(activity);
+            mDialog.mView = new NyDialogView(mActivity, w, h);
             mDialog.mView.setPositiveButtonText(android.R.string.ok);
             mDialog.mView.setPositiveButtonListener(new View.OnClickListener() {
 
@@ -104,7 +87,7 @@ public class EtaoShiDialog extends Dialog {
                 }
 
             });
-            mDialog.mView.setNeutralButtonText("dd");
+            mDialog.mView.setNeutralButtonText("");
             mDialog.mView.setNeutralButtonListener(new View.OnClickListener() {
 
                 public void onClick(View v) {
@@ -149,160 +132,10 @@ public class EtaoShiDialog extends Dialog {
                     LayoutParams.WRAP_CONTENT);
         }
 
-        /**
-         * 验证码构造模块
-         */
-        private EditText inputEt;
-        private ImageView codeImg;
-        private ImageView refreshImg;
-        public RelativeLayout layout;
-
-        /**
-         * 短信验证码 图形CODE构造
-         *
-         * @param inputEt
-         * @param codeImg
-         * @param refreshImg
-         * @param layout
-         */
-        public void setCodeGraphicBuilder(EditText inputEt, ImageView codeImg, ImageView refreshImg, RelativeLayout layout) {
-            this.inputEt = inputEt;
-            this.codeImg = codeImg;
-            this.layout = layout;
-            this.refreshImg = refreshImg;
-        }
-
-        /**
-         * 购买 图形CODE 构造
-         *
-         * @param inputEt
-         * @param refreshImg
-         */
-        public void setCodeBuyBuilder(EditText inputEt, ImageView refreshImg) {
-            this.inputEt = inputEt;
-            this.refreshImg = refreshImg;
-        }
-
-        /**
-         * 获取图形CODE-短信模块专用
-         */
-        public void showSmsCodeErr() {
-            if (layout == null && refreshImg == null && inputEt == null) return;
-            layout.setVisibility(View.VISIBLE);
-            refreshImg.performClick();
-            inputEt.setText("");
-            //三秒后消失
-            Timer timer = new Timer();
-            timer.schedule(new TimerTask() {
-                @Override
-                public void run() {
-                    if (mActivity != null) {
-                        mActivity.runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                layout.setVisibility(View.INVISIBLE);
-                            }
-                        });
-                    }
-                }
-            }, 3000);
-        }
-
-        public void showBuyCodeErr() {
-            refreshImg.performClick();
-            inputEt.setText("");
-        }
 
         public void dismiss() {
             if (mDialog != null) mDialog.dismiss();
         }
-
-        /**
-         * 支付协议特殊模块--------------⬇️start⬇️-----------------------
-         * 支付协议构造属性
-         */
-        private EditText codeEt;
-        private TextView errorTv, negativeBtn, positiveBtn;
-        private RelativeLayout vcodeView;
-        private RelativeLayout progressBar;
-
-        /**
-         * 银行卡协议支付，短信验证码 构造
-         *
-         * @param codeEt    输入验证码框
-         * @param errorTv   错误文案提示
-         * @param vcodeView 发送验证码控件（VcodeView），activity中调用需要强转
-         */
-        public void setAgreementPayCodeBuilder(EditText codeEt, TextView errorTv, RelativeLayout vcodeView, RelativeLayout progressBar, TextView negativeBtn, TextView positiveBtn) {
-            this.codeEt = codeEt;
-            this.layout = vcodeView;
-            this.errorTv = errorTv;
-            this.progressBar = progressBar;
-            this.negativeBtn = negativeBtn;
-            this.positiveBtn = positiveBtn;
-        }
-
-        public void showAgreementPayErrorMsg(String msg) {
-            hindAgreementProgressBar();
-            if (errorTv != null && !msg.isEmpty()) {
-                errorTv.setVisibility(View.VISIBLE);
-                errorTv.setText(msg);
-            }
-        }
-
-        public void hindAgreementPayErrorMsg() {
-            if (errorTv != null) {
-                errorTv.setVisibility(View.GONE);
-            }
-        }
-
-        public String getVerifyCodeFromEt() {
-            if (codeEt != null) {
-                return codeEt.getText().toString().trim();
-            }
-            return null;
-        }
-
-        public void showAgreementProgressBar() {
-            if (progressBar != null) {
-                hindAgreementPayErrorMsg();
-                setBtnEnable(false);
-                progressBar.setVisibility(View.VISIBLE);
-            }
-        }
-
-        public void hindAgreementProgressBar() {
-            if (progressBar != null) {
-                progressBar.setVisibility(View.GONE);
-                setBtnEnable(true);
-            }
-        }
-
-        public void clearEt() {
-            if (codeEt != null) {
-                codeEt.setText("");
-            }
-        }
-
-        public void setBtnEnable(boolean canClick) {
-            if (negativeBtn != null && positiveBtn != null) {
-                negativeBtn.setEnabled(canClick);
-                positiveBtn.setEnabled(canClick);
-                if (canClick) {
-                    negativeBtn.setTextColor(ContextCompat.getColor(mActivity, R.color.color_FF6F00));
-                    positiveBtn.setTextColor(ContextCompat.getColor(mActivity, R.color.color_FF6F00));
-                } else {
-                    negativeBtn.setTextColor(ContextCompat.getColor(mActivity, R.color.color_666666));
-                    positiveBtn.setTextColor(ContextCompat.getColor(mActivity, R.color.color_666666));
-                }
-            }
-        }
-
-
-        /**
-         * 支付协议特殊模块--------------⬆️end⬆️-----------------------
-         */
-
 
         /**
          * end
@@ -312,8 +145,12 @@ public class EtaoShiDialog extends Dialog {
 
         public Builder(Context activity) {
             mActivity = (Activity) activity;
-            mDialog = new EtaoShiDialog(mActivity);
-            mDialog.mView = new EtaoShiDialogView(mActivity);
+            mDialog = new NyDialog(mActivity);
+            mDialog.mView = new NyDialogView(mActivity);
+            initDialogView();
+        }
+
+        private void initDialogView() {
             mDialog.mView.setPositiveButtonText(android.R.string.ok);
             mDialog.mView.setPositiveButtonListener(new View.OnClickListener() {
 
@@ -372,21 +209,31 @@ public class EtaoShiDialog extends Dialog {
                     LayoutParams.WRAP_CONTENT);
         }
 
+        public Builder(Context activity, int theme) {
+            mActivity = (Activity) activity;
+            mDialog = new NyDialog(mActivity, theme);
+            mDialog.mView = new NyDialogView(mActivity);
+            initDialogView();
+        }
+
+        public Builder(Context activity, int w, int h, int theme) {
+            mActivity = (Activity) activity;
+            mDialog = new NyDialog(mActivity, theme);
+            mDialog.mView = new NyDialogView(mActivity, w, h);
+            initDialogView();
+        }
+
         public Builder setBackgroundColor(int resID) {
             mDialog.mView.setBackgroundColor(resID);
             return this;
         }
 
-        // public Builder setTitleBackgroundColor(int color) {
-        // mDialog.mView.setTitleBackgroundColor(color);
-        // return this;
-        // }
-        //
-        // public Builder setContainerBackgroundColor(int color) {
-        // mDialog.mView.setContainerBackgroundColor(color);
-        // return this;
-        // }
-
+        /**
+         * set dialog背景
+         *
+         * @param resId recommond shap type
+         * @return
+         */
         public Builder setVisibleAreaBackgroundResource(int resId) {
             mDialog.mView.setVisibleAreaBackgroudResource(resId);
             return this;
@@ -397,11 +244,18 @@ public class EtaoShiDialog extends Dialog {
             return this;
         }
 
-        public Builder setBottomBackgroundColor(int color) {
+
+        public Builder setBottomViableAreaBackgroundColor(int color) {
             mDialog.mView.setBottomBackgroundColor(color);
             return this;
         }
 
+        /**
+         * recommond shap Type
+         *
+         * @param resId
+         * @return
+         */
         public Builder setBtnNegativeBackgroundResource(int resId) {
             mDialog.mView.setBtnNegativeBackgroundResource(resId);
             return this;
@@ -422,6 +276,10 @@ public class EtaoShiDialog extends Dialog {
             return this;
         }
 
+        /**
+         * @param text
+         * @return
+         */
         public Builder setTitle(CharSequence text) {
             if (null != text) {
                 mDialog.mView.setTitle(text);
@@ -429,6 +287,12 @@ public class EtaoShiDialog extends Dialog {
             return this;
         }
 
+        /**
+         * set top title  textview color
+         *
+         * @param color title text color
+         * @return
+         */
         public Builder setTitleColor(int color) {
             mDialog.mView.setTitleTextColor(color);
             return this;
@@ -439,45 +303,67 @@ public class EtaoShiDialog extends Dialog {
             return this;
         }
 
-        public Builder setButtonsVisible(boolean b) {
+        /**
+         * @param b
+         * @return
+         */
+        public Builder setBottomViableAreaVisible(boolean b) {
             mDialog.mView.setButtonsVisible(b);
             return this;
         }
 
-        public Builder setCancelBottomViewVisible(boolean b) {
-            mDialog.mView.setCancelBottomViewVisible(b);
+        /**
+         * Set whether the CancelBottomVie is visible. The default is true.
+         *
+         * @param visible
+         * @return
+         */
+        public Builder setCancelBottomViewVisible(boolean visible) {
+            mDialog.mView.setCancelBottomViewVisible(visible);
             return this;
         }
 
-        public Builder setPositiveButtonText(int textResId) {
+        public Builder setPositiveBtnText(int textResId) {
             mDialog.mView.setPositiveButtonText(textResId);
             return this;
         }
 
-        public Builder setPositiveButtonText(CharSequence text) {
+        public Builder setPositiveBtnText(CharSequence text) {
             if (null != text) {
                 mDialog.mView.setPositiveButtonText(text);
             }
             return this;
         }
 
-        public Builder setPositiveButtonClickable(boolean clickable) {
+        public Builder setPositiveBtnClickable(boolean clickable) {
             mDialog.mView.setPositiveButtonClickable(clickable);
             return this;
         }
 
-        public Builder setPositiveButtonEnable(boolean enable) {
+        public Builder setPositiveBtnEnable(boolean enable) {
             mDialog.mView.setPositiveButtonEnable(enable);
             return this;
         }
 
+        /**
+         * set confirm btn listener
+         *
+         * @param l interface callback
+         * @return
+         */
         public Builder setPositiveButtonListener(
-                OnClickListener l) {
+                DialogInterface.OnClickListener l) {
             mPositiveClickListener = l;
             return this;
         }
 
-        public Builder setPositiveButtonTextColor(int color) {
+        /**
+         * 确认按钮 color
+         *
+         * @param color
+         * @return
+         */
+        public Builder setPositiveBtnTextColor(int color) {
             mDialog.mView.setButtonPositiveTextColor(color);
             return this;
         }
@@ -507,27 +393,46 @@ public class EtaoShiDialog extends Dialog {
             return this;
         }
 
+        /**
+         * 中性的按钮
+         *
+         * @param l
+         * @return
+         */
         public Builder setNeutralButtonListener(
-                OnClickListener l) {
+                DialogInterface.OnClickListener l) {
             mNeutralClickListener = l;
             return this;
         }
 
-        public Builder setPositiveButtonVisible(boolean visible) {
-            mDialog.mView.setPositiveButtonVisible(visible);
-            return this;
-        }
-
+        /**
+         * et cancelBtn is can visiable,default is visiable
+         *
+         * @param visible
+         * @return
+         */
         public Builder setNegativeButtonVisible(boolean visible) {
             mDialog.mView.setNegativeButtonVisible(visible);
             return this;
         }
 
+        /**
+         * set cancel btn textValue
+         *
+         * @param textResId Text资源id
+         * @return
+         */
         public Builder setNegativeButtonText(int textResId) {
             mDialog.mView.setNegativeButtonText(textResId);
             return this;
         }
 
+        /**
+         * ['negətɪv]  取消按钮
+         *
+         * @param text
+         * @return
+         */
         public Builder setNegativeButtonText(CharSequence text) {
             if (null != text) {
                 mDialog.mView.setNegativeButtonText(text);
@@ -535,8 +440,14 @@ public class EtaoShiDialog extends Dialog {
             return this;
         }
 
+        /**
+         * 取消按钮监听回调
+         *
+         * @param l
+         * @return
+         */
         public Builder setNegativeButtonListener(
-                OnClickListener l) {
+                DialogInterface.OnClickListener l) {
             mNegativeClickListener = l;
             return this;
         }
@@ -551,6 +462,12 @@ public class EtaoShiDialog extends Dialog {
             return this;
         }
 
+        /**
+         * 添加内容到的中间自定义区域
+         *
+         * @param text
+         * @return
+         */
         public Builder setTextContent(CharSequence text) {
             if (null != text) {
                 mDialog.mView.setTextContent(text);
@@ -558,6 +475,13 @@ public class EtaoShiDialog extends Dialog {
             return this;
         }
 
+        /**
+         * 中间内容区域
+         *
+         * @param text       内容
+         * @param scrollable 超出范围是否可以滚动
+         * @return
+         */
         public Builder setTextContent(CharSequence text, boolean scrollable) {
             if (null != text) {
                 mDialog.mView.setTextContent(text, scrollable);
@@ -570,6 +494,12 @@ public class EtaoShiDialog extends Dialog {
             return this;
         }
 
+        /**
+         * 中间内容区域
+         *
+         * @param //view
+         * @return
+         */
         public Builder setContentView(View v) {
             mDialog.mView.setContentView(v);
             return this;
@@ -592,6 +522,21 @@ public class EtaoShiDialog extends Dialog {
             return this;
         }
 
+        public Builder setContainerBackgroundResource(int color) {
+            mDialog.mView.setContainerBackgroundResource(color);
+            return this;
+        }
+
+        public Builder setmBottomDividerVisiable(int visiable) {
+            mDialog.mView.setmBottomDividerVisiable(visiable);
+            return this;
+        }
+
+        public Builder setBottomViewPadding(int l, int t, int r, int b) {
+            mDialog.mView.setButtonsPadding(l, t, r, b);
+            return this;
+        }
+
 
         public Builder setOnDismissListener(OnDismissListener l) {
             mDialog.setOnDismissListener(l);
@@ -609,13 +554,11 @@ public class EtaoShiDialog extends Dialog {
             return this;
         }
 
-        public EtaoShiDialog create() {
+        public NyDialog create() {
             return mDialog;
         }
 
 
     }
-    // ==========================================================================
-    // Inner/Nested Classes
-    // ==========================================================================
+
 }

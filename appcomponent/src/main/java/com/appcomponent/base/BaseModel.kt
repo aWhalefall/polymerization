@@ -13,7 +13,6 @@ package com.appcomponent.base
 interface BaseModel {
 
     fun requestToServer()
-
     /**
      * 请求接受任意多的类型
      */

@@ -1,5 +1,6 @@
 package com.appcomponent.utils
 
+import android.support.v7.app.AppCompatActivity
 import io.reactivex.Observable
 import io.reactivex.ObservableSource
 import io.reactivex.ObservableTransformer
