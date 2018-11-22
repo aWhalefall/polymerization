@@ -14,14 +14,6 @@ zero to  one
 
 
 
-
-
-
-
-
-
-
-
 功能封装进度
 
 
@@ -61,3 +53,15 @@ zero to  one
 
      调试Arouter。
      中间卡了好久，问题是baseFragment 竟然没有继承Fragment，导致在Fragment上的Route 注解的没法识别，呃哈哈哈
+
+
+ 11.21
+
+     增加公共弹窗，封装加载框到网络请求中。绑定activity
+
+ 11.22
+
+     订阅手动解绑<实现方式比较low>
+
+     自动解绑没有找到的合适的入口 RxlifeCycle 2
+
