@@ -10,7 +10,6 @@ class NewPresenter(mBaseView: BaseView, clazz: Class<JavaBean>) :
         AbstractBasePresenter<Any, JavaBean>(mBaseView, clazz) {
 
 
-
     override fun requestSuccess(responseJson: String) {
     }
 
@@ -27,5 +26,4 @@ class NewPresenter(mBaseView: BaseView, clazz: Class<JavaBean>) :
     override fun getModel(): BaseModel {
         return WxNewsModel(this)
     }
-
 }

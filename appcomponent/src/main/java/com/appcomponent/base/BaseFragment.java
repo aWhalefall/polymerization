@@ -99,4 +99,9 @@ public abstract class BaseFragment extends RxFragment implements BaseTemplate {
 
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        bindUntilEvent(FragmentEvent.DESTROY);
+    }
 }
