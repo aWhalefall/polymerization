@@ -1,7 +1,9 @@
 package com.appcomponent.widget;
 
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -54,6 +56,19 @@ public class TopBar extends RelativeLayout {
     private Context context;
 
     /**
+     * 根据属性进行默认设置
+     */
+    private String titleText;
+
+    private boolean canBack;
+
+    private String backText;
+
+    private String moreText;
+
+    private int moreImg;
+
+    /**
      * 点击监听
      */
     private OnLeftLayoutListener onLeftLayoutListener = null;
@@ -71,19 +86,30 @@ public class TopBar extends RelativeLayout {
 
 
     public TopBar(Context context) {
-        super(context);
-        this.context = context;
-        init();
+        super(context, null);
+
     }
 
     public TopBar(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.context = context;
-        init();
+
+        LayoutInflater.from(context).inflate(R.layout.include_common_topbar, this, true);
+        TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.TemplateTitle, 0, 0);
+        try {
+            titleText = ta.getString(R.styleable.TemplateTitle_titleText);
+            canBack = ta.getBoolean(R.styleable.TemplateTitle_canBack, false);
+            backText = ta.getString(R.styleable.TemplateTitle_backText);
+            moreImg = ta.getResourceId(R.styleable.TemplateTitle_moreImg, 0);
+            moreText = ta.getString(R.styleable.TemplateTitle_moreText);
+            init();
+        } finally {
+            ta.recycle();
+        }
+
     }
 
     private void init() {
-        LayoutInflater.from(context).inflate(R.layout.include_common_topbar, this, true);
         topbarBg = findViewById(R.id.topbar_layout);
         bottomLine = findViewById(R.id.bottom_line);
         leftLayout = findViewById(R.id.topbarLeftLinearLayout);
@@ -93,10 +119,19 @@ public class TopBar extends RelativeLayout {
         rightButton = findViewById(R.id.ic_comright_iv);
         rightTextView = findViewById(R.id.ic_comright_tv);
 
-        leftLayout.setOnClickListener(new ActionClick());
+
         topTitleTextView.setOnClickListener(new ActionClick());
         rightButton.setOnClickListener(new ActionClick());
         rightTextView.setOnClickListener(new ActionClick());
+
+        topTitleTextView.setText(titleText);
+        leftTextView.setText(backText);
+        rightTextView.setText(moreText);
+        rightButton.setImageResource(moreImg);
+        leftLayout.setVisibility(canBack ? View.VISIBLE : View.GONE);
+        if (canBack) {
+            leftLayout.setOnClickListener(new ActionClick());
+        }
     }
 
     /**
@@ -464,6 +499,8 @@ public class TopBar extends RelativeLayout {
                 if (onLeftLayoutListener != null) {
                     onLeftLayoutListener.onLeftClick();
                 }
+                // 2018/11/22 直接关闭
+                ((Activity) getContext()).finish();
 
             } else if (i == R.id.text_title) {
                 if (onMidLayoutListener != null) {

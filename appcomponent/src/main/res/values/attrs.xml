@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <declare-styleable name="TemplateTitle" tools:ignore="MissingDefaultResource">
+        <!-- 标题文案 -->
+        <attr name="titleText" format="string"/>
+        <!-- 是否有back按钮 -->
+        <attr name="canBack" format="boolean"/>
+        <!-- back按钮文案 -->
+        <attr name="backText" format="string"/>
+        <!-- 右侧更多功能按钮图片 -->
+        <attr name="moreImg" format="reference"/>
+        <!-- 右侧更多功能按钮文字 -->
+        <attr name="moreText" format="string"/>
+    </declare-styleable>
 
     <declare-styleable name="BottomBar">
         <attr name="bb_tabXmlResource" format="reference" />
@@ -21,5 +34,9 @@
         <attr name="bb_titleTypeFace" format="string" />
         <attr name="bb_showShadow" format="boolean" />
     </declare-styleable>
+
+
+
+
 
 </resources>
