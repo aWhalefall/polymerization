@@ -15,7 +15,6 @@ import java.lang.ref.WeakReference
 
 object RxLoading {
 
-
     /**
      * showDialog 显示隐藏 带tips的
      */
@@ -23,15 +22,12 @@ object RxLoading {
     fun <T> applyProgressBar(context: AppCompatActivity, msgTips: String): ObservableTransformer<T, T> {
         val activityWeakReference = WeakReference(context)
         //showDialog
-        var dia = ExtDialogUtils.showPhoneDialog(activityWeakReference.get(), msgTips)
-
+        ExtDialogUtils.showLoading(activityWeakReference.get())
         return ObservableTransformer { upstream ->
             upstream.doOnSubscribe {
             }.doOnTerminate {
                 if (activityWeakReference.get() != null && !activityWeakReference.get()!!.isFinishing) {
-                    //DialogUtils.dimisssDialog()
-                    dia.dismiss()
-
+                    ExtDialogUtils.dismiss()
                 }
             }
         }

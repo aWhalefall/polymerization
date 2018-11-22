@@ -118,9 +118,9 @@ public class NyDialogView extends RelativeLayout {
         mVisibleArea = new LinearLayout(mActivity);
         mVisibleArea.setId(View_ID_55);
         mVisibleArea.setOrientation(LinearLayout.VERTICAL);
-        int w = getResources().getDimensionPixelSize(R.dimen.dlg_m_width);
-        int h = getResources().getDimensionPixelSize(R.dimen.dlg_m_height);
-        rp = new RelativeLayout.LayoutParams(setWidth == 0 ? w : setWidth, setheight == 0 ? h : setheight);
+        int w = setWidth == 0 ? getResources().getDimensionPixelSize(R.dimen.dlg_m_width): setWidth;
+        int h = setheight == 0 ?getResources().getDimensionPixelSize(R.dimen.dlg_m_height): setheight;
+        rp = new RelativeLayout.LayoutParams(w,h);
         rp.addRule(RelativeLayout.CENTER_IN_PARENT);
         addView(mVisibleArea, rp);
 

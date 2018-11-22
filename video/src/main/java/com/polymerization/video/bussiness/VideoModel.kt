@@ -23,7 +23,6 @@ class VideoModel(mBasePresenter: VideoPresenter) : BaseModel {
     override fun requestToServer(args: Any) {
         val params = args as Array<*>
 
-
         NetWorkManager.creatRequest(VideoRequest::class.java)
                 .getFlowerFuli(
                         params[0].toString(),
@@ -40,14 +39,12 @@ class VideoModel(mBasePresenter: VideoPresenter) : BaseModel {
                         val flowers: MutableList<ItemEntity> = ArrayList()
                         linkedmap.values.forEach {
                             try {
-
-                                with(it as LinkedTreeMap<*, String>) {
+                                it as LinkedTreeMap<*, String>
                                     var item = ItemEntity().clone()
                                     item.thumb = it["thumb"]
                                     item.url = it["url"]
                                     item.title = it["title"]
                                     flowers.add(item)
-                                }
                             } catch (e: Exception) {
                                 L.e("error" + it.toString())
                             }

@@ -10,23 +10,20 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.lib.dialogext.adapter.InnerWaitPayment;
 import com.lib.dialogext.adapter.ListAdapter;
 import com.lib.dialogext.widget.NyDialog;
-
 import java.util.ArrayList;
-
 
 public class ExtDialogUtils {
 
+    public static NyDialog dialog;
     /**
      * 样式1 模板
      *
      * @param activity
      */
     public static void modelOne(Context activity) {
-
         NyDialog.Builder builder = new NyDialog.Builder(activity);
         builder.setTitle("测试");
         builder.setTitleColor(activity.getResources().getColor(R.color.colorAccent));//标题
@@ -41,7 +38,7 @@ public class ExtDialogUtils {
         builder.setTitleVisible(true);
 
         //builder.setBtnNeutralBackgroundResource(R.drawable.btn_com_buy_selected);
-        // builder.setNeutralButtonText("中间");
+        //builder.setNeutralButtonText("中间");
         //builder.setNeutralButtonVisible(true);
 
         // 背景色
@@ -60,8 +57,10 @@ public class ExtDialogUtils {
         builder.setCancelBottomViewVisible(true);
 
         NyDialog dialog = builder.create();
+        ExtDialogUtils.dialog = dialog;
         dialog.show();
     }
+
 
     /**
      * 样式2 模板 按钮不吸边
@@ -166,7 +165,6 @@ public class ExtDialogUtils {
         Dialog dialog = builder.create();
 
         Window window = dialog.getWindow();
-
         // 设置显示动画
         //window.setWindowAnimations(R.style.SlipDialogAnimation);
         WindowManager.LayoutParams wl = window.getAttributes();
@@ -181,7 +179,7 @@ public class ExtDialogUtils {
 
         View view = activity.getLayoutInflater().inflate(R.layout.dialog_callserveshotline, null);
         NyDialog.Builder builder = new NyDialog.Builder(activity);
-        TextView hotlinePhonenumber_tv = (TextView) view.findViewById(R.id.hotlinePhonenumber_tv);
+        TextView hotlinePhonenumber_tv = view.findViewById(R.id.hotlinePhonenumber_tv);
         builder.setBottomViableAreaVisible(false).setTitleVisible(false).setCancelBottomViewVisible(false);
         hotlinePhonenumber_tv.setText(phoneNumber);
         Dialog dialog = builder.create();
@@ -200,6 +198,36 @@ public class ExtDialogUtils {
         dialog.setCanceledOnTouchOutside(false);
         dialog.show();
         return dialog;
+    }
+
+    /**
+     * 显示加载框
+     *
+     * @param activity
+     */
+    public static void showLoading(Activity activity) {
+        View view = activity.getLayoutInflater().inflate(R.layout.view_progress_loading, null);
+        NyDialog.Builder builder = new NyDialog.Builder(activity, 150, 140, R.style.dialog);
+        builder.setBottomViableAreaVisible(false)
+                .setTitleVisible(false)
+                .setCancelBottomViewVisible(false)
+                .setContentView(view);
+        dialog = buildDialog(builder);
+        dialog.setCanceledOnTouchOutside(true);
+        dialog.show();
+    }
+
+    public static void dismiss() {
+        if (dialog != null)
+            dialog.dismiss();
+    }
+
+    private static NyDialog buildDialog(NyDialog.Builder builder) {
+        if (dialog == null) {
+            return builder.create();
+        } else {
+            return dialog;
+        }
     }
 
 }

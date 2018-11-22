@@ -29,6 +29,17 @@ import kotlinx.android.synthetic.main.item_news.view.*
  */
 @Route(path = PathConfig.NEWS_FRAGMENT_REBATE)
 class NewsFragment : BaseFragment(), NewsFragmentDelegate, View.OnClickListener, NewView {
+
+
+    private lateinit var kadapter: Kadapter<JavaBean.NewslistEntity>
+
+
+    var newList: MutableList<JavaBean.NewslistEntity> = ArrayList<JavaBean.NewslistEntity>()
+
+    private lateinit var newPresenter: NewPresenter
+
+
+
     override fun initContentView(): Int {
         return R.layout.fragment_news
     }
@@ -51,24 +62,19 @@ class NewsFragment : BaseFragment(), NewsFragmentDelegate, View.OnClickListener,
     }
 
 
-    var newList: MutableList<JavaBean.NewslistEntity> = ArrayList<JavaBean.NewslistEntity>()
-
-    private lateinit var newPresenter: NewPresenter
 
 
     override fun showLoading(isShow: Boolean) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun showDataSuccess(msg: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun showDataFailure(msg: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
     }
 
-    private lateinit var kadapter: Kadapter<JavaBean.NewslistEntity>
+
 
     override fun showDataSuccess(obj: Any) {
         with(obj as JavaBean) {
