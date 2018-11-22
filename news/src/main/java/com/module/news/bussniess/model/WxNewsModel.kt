@@ -1,6 +1,6 @@
 package com.module.news.bussniess.model
 
-import com.appcomponent.base.BaseModel
+import com.appcomponent.base.AbsBaseModel
 import com.appcomponent.utils.ResponseTransformer
 import com.appcomponent.utils.RxJavaUtils
 import com.appcomponent.utils.RxLoading
@@ -8,17 +8,16 @@ import com.appcomponent.utils.StackManager
 import com.module.news.bussniess.NewPresenter
 import com.polymerization.core.bean.JavaBean
 import com.polymerization.core.okhttp.NetWorkManager
-
 import com.safframework.log.L
-import io.reactivex.Observable
 import io.reactivex.functions.Action
 import io.reactivex.functions.Consumer
-import io.reactivex.functions.Function
-
-class WxNewsModel(basePresenter: NewPresenter) : BaseModel {
 
 
-    var newPresenter: NewPresenter = basePresenter
+/**
+ * // TODO: 2018/11/22  将参数传递给父类，写法繁琐
+ *
+ */
+class WxNewsModel(basePresenter: NewPresenter) : AbsBaseModel<NewPresenter>(basePresenter) {
 
     override fun requestToServer(param: Any) {
         val args = param as Array<*>
@@ -31,16 +30,19 @@ class WxNewsModel(basePresenter: NewPresenter) : BaseModel {
                 .compose(ResponseTransformer.handleResult())
                 .compose(RxLoading.applyProgressBar(StackManager.currentActivity()))
                 .subscribe(Consumer<JavaBean> {
-                    newPresenter.serverResponse(it)
+                    basePresenter.serverResponse(it)
                     L.d(it.toString())
                 }, Consumer<Throwable> {
                     L.d(it.message)
                     // basePresenter.requestError(it.localizedMessage)
                 }, Action {
                     L.d("网络请求完毕")
+                }, Consumer {
+                    addDisposable(it)
                 })
-    }
 
+
+    }
 
     private var method: Int = 0
 
@@ -53,12 +55,5 @@ class WxNewsModel(basePresenter: NewPresenter) : BaseModel {
     override fun setRequestType(method: Int) {
         this.method = method
     }
-
-    override fun cancelRequest() {
-        // TODO: 2018/11/16 全局取消 当前网络请求
-    }
-}
-
-private fun <T> Observable<T>.concatMap(function: Function<String, T>) {
 
 }

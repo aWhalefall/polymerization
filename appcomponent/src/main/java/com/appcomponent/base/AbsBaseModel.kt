@@ -1,6 +1,6 @@
 package com.appcomponent.base
 
-import io.reactivex.disposables.CompositeDisposable
+import com.appcomponent.widget.CompositeDisposableManager
 import io.reactivex.disposables.Disposable
 
 /**
@@ -18,20 +18,14 @@ abstract class AbsBaseModel<T : AbstractBasePresenter<*, *>>(basePresenter: T) :
     var basePresenter: T = basePresenter
 
     /**
-     * 复合订阅容器
-     */
-    private val compositeDisposable: CompositeDisposable = CompositeDisposable()
-
-
-    /**
      * 在订阅事件中进行Disposable 收集；
      */
     protected fun addDisposable(a: Disposable) {
-        compositeDisposable.add(a)
+        CompositeDisposableManager.add(a)
     }
 
     override fun cancelRequest() {
-        compositeDisposable.clear()
+        CompositeDisposableManager.removeAll()
     }
 
 }
