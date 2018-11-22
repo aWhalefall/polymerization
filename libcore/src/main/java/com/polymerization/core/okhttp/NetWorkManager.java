@@ -2,11 +2,12 @@ package com.polymerization.core.okhttp;
 
 
 import com.polymerization.core.okhttp.Cookie.HttpCookieJar;
-
-import okhttp3.OkHttpClient;
-
 import com.polymerization.core.retrofit.interceptor.CommonInterceptor;
 import com.polymerization.core.retrofit.request.Request;
+
+import java.util.concurrent.TimeUnit;
+
+import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -32,6 +33,15 @@ public class NetWorkManager {
     private static Retrofit retrofit;
     private static volatile Request request = null;
 
+
+    private static long NET_CONNECT_WRITER =10;
+    private static long NET_CONNECT_TIMEOUT = 10;
+    private static long NET_CONNECT_READ = 30;
+
+
+    //网络读写时间
+
+
     public static NetWorkManager getInstance() {
         if (mInstance == null) {
             synchronized (NetWorkManager.class) {
@@ -49,6 +59,9 @@ public class NetWorkManager {
     public void init() {
         // 初始化okhttp
         OkHttpClient client = new OkHttpClient.Builder()
+                .connectTimeout(NET_CONNECT_TIMEOUT,TimeUnit.SECONDS)
+                .writeTimeout(NET_CONNECT_WRITER,TimeUnit.SECONDS)
+                .readTimeout(NET_CONNECT_READ,TimeUnit.SECONDS)
                 .addInterceptor(new CommonInterceptor("79656", "80ec326d18234d18832d2785f02d7df4"))
                 .cookieJar(HttpCookieJar.create())
                 .build();

@@ -57,10 +57,10 @@ public abstract class BaseActivity extends RxAppCompatActivity implements BaseTe
     @Override
     protected void onResume() {
         super.onResume();
-        Observable.interval(1, TimeUnit.SECONDS)
-                .doOnDispose(() -> L.i("Unsubscribing subscription from onResume()"))
-                .compose(bindUntilEvent(ActivityEvent.DESTROY))
-                .subscribe(num -> L.i("Started in onResume(), running until in onDestroy(): " + num));
+//        Observable.interval(1, TimeUnit.SECONDS)
+//                .doOnDispose(() -> L.i("Unsubscribing subscription from onResume()"))
+//                .compose(bindUntilEvent(ActivityEvent.DESTROY))
+//                .subscribe(num -> L.i("Started in onResume(), running until in onDestroy(): " + num));
     }
 
     @Override
