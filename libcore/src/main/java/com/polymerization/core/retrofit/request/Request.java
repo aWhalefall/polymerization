@@ -10,7 +10,7 @@ public interface Request {
 
     // 填上需要访问的服务器地址
      String HOST = "http://route.showapi.com/";
-    
+
     @GET("181-1")
     Observable<Response<JavaBean>> getWeatherByAddress(
             @Query("num") String v3,

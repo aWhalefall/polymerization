@@ -15,22 +15,17 @@ import okhttp3.Cookie;
  * Description:
  */
 
+public final class SerializableHttpCookie implements Serializable {
 
-public final class HttpCookies implements Serializable {
     private transient final Cookie cookies;
     private transient Cookie clientCookies;
 
-    public HttpCookies(@NonNull Cookie cookies) {
+    public SerializableHttpCookie(@NonNull Cookie cookies) {
         this.cookies = cookies;
     }
 
-    // FIXME: 2018/11/14  这里clientCookie 需要优化，貌似永远为null
     public Cookie getCookies() {
-        Cookie bestCookies = cookies;
-        if (clientCookies != null) {
-            bestCookies = clientCookies;
-        }
-        return bestCookies;
+        return clientCookies;
     }
 
     private void writeObject(@NonNull ObjectOutputStream out) throws IOException {
@@ -65,5 +60,8 @@ public final class HttpCookies implements Serializable {
         builder = secure ? builder.secure() : builder;
         builder = httpOnly ? builder.httpOnly() : builder;
         clientCookies = builder.build();
+
+
+
     }
 }

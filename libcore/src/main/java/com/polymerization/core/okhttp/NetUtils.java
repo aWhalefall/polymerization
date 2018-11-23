@@ -8,6 +8,7 @@ import com.polymerization.core.retrofit.request.Request;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -26,14 +27,14 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
  */
 
 
+public class NetUtils {
 
-public class NetWorkManager {
-
-    private static NetWorkManager mInstance;
+    private static NetUtils mInstance;
     private static Retrofit retrofit;
     private static volatile Request request = null;
 
-
+    // 填上需要访问的服务器地址
+    private static String HOST = "http://www.wanandroid.com/";
     private static long NET_CONNECT_WRITER =10;
     private static long NET_CONNECT_TIMEOUT = 10;
     private static long NET_CONNECT_READ = 30;
@@ -42,11 +43,11 @@ public class NetWorkManager {
     //网络读写时间
 
 
-    public static NetWorkManager getInstance() {
+    public static NetUtils getInstance() {
         if (mInstance == null) {
-            synchronized (NetWorkManager.class) {
+            synchronized (NetUtils.class) {
                 if (mInstance == null) {
-                    mInstance = new NetWorkManager();
+                    mInstance = new NetUtils();
                 }
             }
         }
@@ -63,13 +64,14 @@ public class NetWorkManager {
                 .writeTimeout(NET_CONNECT_WRITER,TimeUnit.SECONDS)
                 .readTimeout(NET_CONNECT_READ,TimeUnit.SECONDS)
                 .addInterceptor(new CommonInterceptor("79656", "80ec326d18234d18832d2785f02d7df4"))
+                .addInterceptor(new HttpLoggingInterceptor())
                 .cookieJar(HttpCookieJar.create())
                 .build();
 
         // 初始化Retrofit
         retrofit = new Retrofit.Builder()
                 .client(client)
-                .baseUrl(Request.HOST)
+                .baseUrl(HOST)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .addConverterFactory(ScalarsConverterFactory.create())

@@ -250,8 +250,11 @@ public final class SpTool {
     }
 
     public Map<String, ?> getAll() {
+
         Map<String, ?> map = mSp.getAll();
+
         Map<String, Object> result = new HashMap<>();
+
         for (Map.Entry<String, ?> entry : map.entrySet()) {
             String key = decode(entry.getKey());
             if (entry.getValue() instanceof Set) {

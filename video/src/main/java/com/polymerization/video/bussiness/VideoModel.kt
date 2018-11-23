@@ -3,7 +3,7 @@ package com.polymerization.video.bussiness
 import com.appcomponent.base.BaseModel
 import com.appcomponent.utils.RxJavaUtils
 import com.google.gson.internal.LinkedTreeMap
-import com.polymerization.core.okhttp.NetWorkManager
+import com.polymerization.core.okhttp.NetUtils
 import com.polymerization.video.model.FlowerBean
 import com.polymerization.video.model.ItemEntity
 import com.safframework.log.L
@@ -23,7 +23,7 @@ class VideoModel(mBasePresenter: VideoPresenter) : BaseModel {
     override fun requestToServer(args: Any) {
         val params = args as Array<*>
 
-        NetWorkManager.creatRequest(VideoRequest::class.java)
+        NetUtils.creatRequest(VideoRequest::class.java)
                 .getFlowerFuli(
                         params[0].toString(),
                         params[1].toString(),

@@ -75,4 +75,5 @@ dependencies {
     api 'com.jakewharton.rxbinding3:rxbinding:3.0.0-alpha1'
     kapt rootProject.ext.opt["arouter-compiler"]
     implementation project(':video')
+    implementation project(':loginmodule')
 }

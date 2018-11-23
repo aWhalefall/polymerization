@@ -32,11 +32,11 @@ final class GsonResponseBodyConverter<T> implements Converter<ResponseBody, Obje
         try {
             Response response = (Response) adapter.fromJson(value.charStream());
 
-            if (response.getShowapi_res_code() == 0) {
-                return response.getShowapi_res_body();
+            if (response.errorCode == 0) {
+                return response.data;
             } else {
                 // TODO: 2018/11/20 抛出异常 ，如果定义
-                throw new ServerResponseException(response.getShowapi_res_code(), response.getShowapi_res_error());
+                throw new ServerResponseException(response.errorCode, response.errorMsg);
             }
 
         } finally {

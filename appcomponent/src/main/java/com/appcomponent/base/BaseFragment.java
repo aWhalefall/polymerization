@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import com.appcomponent.base.action.BaseActionTemplate;
 import com.appcomponent.base.action.BaseTemplate;
 import com.appcomponent.base.action.ProxyActionTemplate;
+import com.appcomponent.widget.CompositeDisposableManager;
 import com.safframework.log.L;
 import com.trello.rxlifecycle2.android.FragmentEvent;
 import com.trello.rxlifecycle2.components.support.RxFragment;
@@ -103,5 +104,7 @@ public abstract class BaseFragment extends RxFragment implements BaseTemplate {
     public void onDestroy() {
         super.onDestroy();
         bindUntilEvent(FragmentEvent.DESTROY);
+        //todo 取消解绑原理
+        CompositeDisposableManager.INSTANCE.removeAll();
     }
 }

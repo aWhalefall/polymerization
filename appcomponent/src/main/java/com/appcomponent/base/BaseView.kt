@@ -9,6 +9,7 @@ package com.appcomponent.base
 
 interface BaseView {
 
+
     fun showLoading(isShow:Boolean)
 
     fun showDataSuccess(msg: String)

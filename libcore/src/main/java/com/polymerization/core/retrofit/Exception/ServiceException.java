@@ -1,9 +1,11 @@
 package com.polymerization.core.retrofit.Exception;
 
 /**
- * Created by Zaifeng on 2018/2/28.
- * 异常处理
+ * Author: yangweichao
+ * Date:   2018/11/23 4:10 PM
+ * Description: 异常处理
  */
+
 
 public class ServiceException extends Exception {
     private int code;

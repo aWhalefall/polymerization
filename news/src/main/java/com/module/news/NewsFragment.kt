@@ -51,8 +51,8 @@ class NewsFragment : BaseFragment(), NewsFragmentDelegate, View.OnClickListener,
 
 
     fun init() {
-        newPresenter = NewPresenter(this, JavaBean::class.java)
-        newPresenter.requestServer( "10", currentPage)
+         newPresenter = NewPresenter(this, JavaBean::class.java)
+        //newPresenter.requestServer( "10", currentPage)
     }
 
 

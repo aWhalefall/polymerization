@@ -1,16 +1,19 @@
 package com.polymerization.usercenter;
 
 import android.content.Context;
+import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.appcomponent.base.BaseFragment;
+import com.appcomponent.router.ArouterHelper;
+import com.appcomponent.router.PathConfig;
 import com.component.router.delegate.MineFragmentDelegate;
 import com.wc.polymerization.usercenter.R;
 
 import org.jetbrains.annotations.NotNull;
 
 @Route(path = "/mine/usercenter")
-public class UserCenterFragment extends BaseFragment implements MineFragmentDelegate {
+public class UserCenterFragment extends BaseFragment implements MineFragmentDelegate, View.OnClickListener {
 
 
     String TAG = UserCenterFragment.class.getSimpleName();
@@ -45,6 +48,7 @@ public class UserCenterFragment extends BaseFragment implements MineFragmentDele
 
     @Override
     public void initListener() {
+        findView(R.id.tv_text).setOnClickListener(this);
 
     }
 
@@ -67,4 +71,8 @@ public class UserCenterFragment extends BaseFragment implements MineFragmentDele
     }
 
 
+    @Override
+    public void onClick(View v) {
+        ArouterHelper.startActivity(PathConfig.LOGIN_ACTIVITY);
+    }
 }

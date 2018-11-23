@@ -32,13 +32,13 @@ import com.polymerization.core.utils.sptool.SpTool;
 public final class PersistentCookieStore {
     private final SpTool cookieSp;
     private final String cookieSpName = "spCookie";
-    private final Map<String, ConcurrentHashMap<String, Cookie>> cookies;
+    private final Map<String, ConcurrentHashMap<String, Cookie>> cacheCookies;
 
     public PersistentCookieStore() {
         cookieSp = SpManager.getSp(cookieSpName);
-        cookies = new HashMap<>();
+        cacheCookies = new ConcurrentHashMap<>();
 
-        // 将持久化的cookies缓存到内存中 即map cookies
+        // 将持久化的cacheCookies缓存到内存中 即map cacheCookies
         Map<String, ?> prefsMap = cookieSp.getAll();
         for (Map.Entry<String, ?> entry : prefsMap.entrySet()) {
             String[] cookieNames = TextUtils.split((String) entry.getValue(), ",");
@@ -47,10 +47,10 @@ public final class PersistentCookieStore {
                 if (encodedCookie != null) {
                     Cookie decodedCookie = decodeCookie(encodedCookie);
                     if (decodedCookie != null) {
-                        if (!cookies.containsKey(entry.getKey())) {
-                            cookies.put(entry.getKey(), new ConcurrentHashMap<String, Cookie>());
+                        if (!cacheCookies.containsKey(entry.getKey())) {
+                            cacheCookies.put(entry.getKey(), new ConcurrentHashMap<String, Cookie>());
                         }
-                        cookies.get(entry.getKey()).put(name, decodedCookie);
+                        cacheCookies.get(entry.getKey()).put(name, decodedCookie);
                     }
                 }
             }
@@ -60,7 +60,7 @@ public final class PersistentCookieStore {
     /**
      * 另多域名共用Cookie时配置
      */
-    public String compatibilityMultitypeHost(String urlHost) {
+    public String supportDomains(String urlHost) {
 //        if (urlHost.equals("m.nuojinsuo.cn")
 //                || urlHost.equals("ups.nuojinsuo.cn")
 //                || urlHost.equals("pay.nuojinsuo.cn")
@@ -79,45 +79,45 @@ public final class PersistentCookieStore {
         String host = compatibilityMultitypeHost(url.host());
         String name = getCookieToken(cookie);
 
-        //将cookies缓存到内存中 如果缓存过期 就重置此cookie
+        //将cacheCookies缓存到内存中 如果缓存过期 就重置此cookie
         if (!cookie.persistent()) {
-            if (!cookies.containsKey(host)) {
-                cookies.put(host, new ConcurrentHashMap<String, Cookie>());
+            if (!cacheCookies.containsKey(host)) {
+                cacheCookies.put(host, new ConcurrentHashMap<String, Cookie>());
             }
-            cookies.get(host).put(name, cookie);
+            cacheCookies.get(host).put(name, cookie);
         } else {
-            if (cookies.containsKey(host)) {
-                cookies.get(host).remove(name);
+            if (cacheCookies.containsKey(host)) {
+                cacheCookies.get(host).remove(name);
             }
         }
 
-        //将cookies持久化到本地
-        cookieSp.putString(host, TextUtils.join(",", cookies.get(host).keySet()));
+        //将cacheCookies持久化到本地
+        cookieSp.putString(host, TextUtils.join(",", cacheCookies.get(host).keySet()));
         cookieSp.putString(name, encodeCookie(new NetCookies(cookie)));
     }*/
 
     protected String getCookieToken(@NonNull Cookie cookie) {
-        return cookie.name();
+        return cookie.name() + "#$" + cookie.domain();
     }
 
     public void add(@NonNull HttpUrl url, @NonNull Cookie cookie) {
-        String host = compatibilityMultitypeHost(url.host());
+        String host = supportDomains(url.host());
         String name = getCookieToken(cookie);
-        if (!cookies.containsKey(host)) {
-            cookies.put(host, new ConcurrentHashMap<String, Cookie>());
+        if (!cacheCookies.containsKey(host)) {
+            cacheCookies.put(host, new ConcurrentHashMap<String, Cookie>());
         }
-        cookies.get(host).put(name, cookie);
-        //将cookies持久化到本地
-        cookieSp.putString(host, TextUtils.join(",", cookies.get(host).keySet()));
-        cookieSp.putString(name, encodeCookie(new HttpCookies(cookie)));
+        cacheCookies.get(host).put(name, cookie);
+        //将cacheCookies持久化到本地
+        cookieSp.putString(host, TextUtils.join(",", cacheCookies.get(host).entrySet()));
+        cookieSp.putString(name, encodeCookie(new SerializableHttpCookie(cookie)));
     }
 
     public List<Cookie> getCookies(@NonNull HttpUrl url) {
-        String host = compatibilityMultitypeHost(url.host());
+        String host = supportDomains(url.host());
         ArrayList<Cookie> ret = new ArrayList<>();
         long time = System.currentTimeMillis();
-        if (cookies.containsKey(host)) {
-            ConcurrentHashMap<String, Cookie> maps = cookies.get(host);
+        if (cacheCookies.containsKey(host)) {
+            ConcurrentHashMap<String, Cookie> maps = cacheCookies.get(host);
             for (Map.Entry<String, Cookie> entry : maps.entrySet()) {
                 if (entry.getValue().expiresAt() > time) {
                     ret.add(entry.getValue());
@@ -130,7 +130,7 @@ public final class PersistentCookieStore {
     public List<Cookie> getCookies() {
         ArrayList<Cookie> ret = new ArrayList<>();
         long time = System.currentTimeMillis();
-        for (Map.Entry<String, ConcurrentHashMap<String, Cookie>> entry : cookies.entrySet()) {
+        for (Map.Entry<String, ConcurrentHashMap<String, Cookie>> entry : cacheCookies.entrySet()) {
             ConcurrentHashMap<String, Cookie> maps = entry.getValue();
             for (Map.Entry<String, Cookie> cookieEntry : maps.entrySet()) {
                 if (cookieEntry.getValue().expiresAt() > time) {
@@ -142,19 +142,19 @@ public final class PersistentCookieStore {
     }
 
     public void removeAll() {
-        cookies.clear();
+        cacheCookies.clear();
         cookieSp.clear();
     }
 
     public boolean remove(@NonNull HttpUrl url, @NonNull Cookie cookie) {
-        String host = compatibilityMultitypeHost(url.host());
+        String host = supportDomains(url.host());
         String name = getCookieToken(cookie);
-        if (cookies.containsKey(host) && cookies.get(host).containsKey(name)) {
-            cookies.get(host).remove(name);
+        if (cacheCookies.containsKey(host) && cacheCookies.get(host).containsKey(name)) {
+            cacheCookies.get(host).remove(name);
             if (cookieSp.contains(name)) {
                 cookieSp.remove(name);
             }
-            cookieSp.putString(host, TextUtils.join(",", cookies.get(host).keySet()));
+            cookieSp.putString(host, TextUtils.join(",", cacheCookies.get(host).keySet()));
             return true;
         } else {
             return false;
@@ -162,12 +162,12 @@ public final class PersistentCookieStore {
     }
 
     /**
-     * cookies 序列化成 string
+     * cacheCookies 序列化成 string
      *
      * @param cookie 要序列化的cookie
      * @return 序列化之后的string
      */
-    protected String encodeCookie(@NonNull HttpCookies cookie) {
+    protected String encodeCookie(@NonNull SerializableHttpCookie cookie) {
         if (cookie == null)
             return null;
         ByteArrayOutputStream os = new ByteArrayOutputStream();
@@ -182,9 +182,9 @@ public final class PersistentCookieStore {
     }
 
     /**
-     * 将字符串反序列化成cookies
+     * 将字符串反序列化成cacheCookies
      *
-     * @param cookieString cookies string
+     * @param cookieString cacheCookies string
      * @return cookie object
      */
     protected Cookie decodeCookie(@NonNull String cookieString) {
@@ -193,7 +193,7 @@ public final class PersistentCookieStore {
         Cookie cookie = null;
         try {
             ObjectInputStream objectInputStream = new ObjectInputStream(byteArrayInputStream);
-            cookie = ((HttpCookies) objectInputStream.readObject()).getCookies();
+            cookie = ((SerializableHttpCookie) objectInputStream.readObject()).getCookies();
         } catch (IOException pE) {
             L.e(pE.getMessage());
         } catch (ClassNotFoundException pE) {

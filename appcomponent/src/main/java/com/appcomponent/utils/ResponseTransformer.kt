@@ -1,13 +1,12 @@
 package com.appcomponent.utils
 
-import android.support.v7.app.AppCompatActivity
+import com.polymerization.core.retrofit.Exception.LocalException
+import com.polymerization.core.retrofit.Exception.ServiceException
+import com.polymerization.core.retrofit.respond.Response
 import io.reactivex.Observable
 import io.reactivex.ObservableSource
 import io.reactivex.ObservableTransformer
 import io.reactivex.functions.Function
-import com.polymerization.core.retrofit.Exception.LocalException
-import com.polymerization.core.retrofit.Exception.ServiceException
-import com.polymerization.core.retrofit.respond.Response
 
 /**
  * Author: yangweichao
@@ -50,10 +49,10 @@ import com.polymerization.core.retrofit.respond.Response
 
         @Throws(Exception::class)
         override fun apply(tResponse: Response<T>): ObservableSource<T> {
-            val code = tResponse.showapi_res_code
-            val message = tResponse.showapi_res_error
+            val code = tResponse.errorCode
+            val message = tResponse.errorMsg
             return if (code == 0) {
-                Observable.just(tResponse.showapi_res_body!!)
+                Observable.just(tResponse.data!!)
             } else {
                 Observable.error(ServiceException(code, message))
             }

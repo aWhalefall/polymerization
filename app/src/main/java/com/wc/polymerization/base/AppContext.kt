@@ -4,7 +4,7 @@ import android.content.Context
 import android.support.multidex.MultiDex
 import com.alibaba.android.arouter.launcher.ARouter
 import com.polymerization.core.corebase.CoreBase
-import com.polymerization.core.okhttp.NetWorkManager
+import com.polymerization.core.okhttp.NetUtils
 import com.polymerization.core.utils.sptool.SpManager
 import com.scwang.smartrefresh.layout.SmartRefreshLayout
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter
@@ -26,7 +26,7 @@ class AppContext : CoreBase(){
         //init sharepreference
         SpManager.setContext(this)
         //初始化网路
-        NetWorkManager.getInstance().init()
+        NetUtils.getInstance().init()
     }
 
     //静态常量

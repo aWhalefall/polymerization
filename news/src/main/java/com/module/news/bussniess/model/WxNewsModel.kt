@@ -7,7 +7,7 @@ import com.appcomponent.utils.RxLoading
 import com.appcomponent.utils.StackManager
 import com.module.news.bussniess.NewPresenter
 import com.polymerization.core.bean.JavaBean
-import com.polymerization.core.okhttp.NetWorkManager
+import com.polymerization.core.okhttp.NetUtils
 import com.safframework.log.L
 import io.reactivex.functions.Action
 import io.reactivex.functions.Consumer
@@ -19,16 +19,16 @@ import io.reactivex.functions.Consumer
  */
 class WxNewsModel(basePresenter: NewPresenter) : AbsBaseModel<NewPresenter>(basePresenter) {
 
+    // TODO: 2018/11/23fase
     override fun requestToServer(param: Any) {
         val args = param as Array<*>
 
-        NetWorkManager.getRequest()
+        NetUtils.getRequest()
                 .getWeatherByAddress(
                         args[0].toString(),
                         args[1].toString())
                 .compose(RxJavaUtils.observableToMain())
                 .compose(ResponseTransformer.handleResult())
-                .compose(RxLoading.applyProgressBar(StackManager.currentActivity()))
                 .subscribe(Consumer<JavaBean> {
                     basePresenter.serverResponse(it)
                     L.d(it.toString())
@@ -50,7 +50,6 @@ class WxNewsModel(basePresenter: NewPresenter) : AbsBaseModel<NewPresenter>(base
     override fun requestToServer() {
 
     }
-
 
     override fun setRequestType(method: Int) {
         this.method = method
