@@ -3,6 +3,7 @@ package com.wc.polymerization.base
 import android.content.Context
 import android.support.multidex.MultiDex
 import com.alibaba.android.arouter.launcher.ARouter
+import com.lib.dialogext.extoast.Ts
 import com.polymerization.core.corebase.CoreBase
 import com.polymerization.core.okhttp.NetUtils
 import com.polymerization.core.utils.sptool.SpManager
@@ -27,6 +28,8 @@ class AppContext : CoreBase(){
         SpManager.setContext(this)
         //初始化网路
         NetUtils.getInstance().init()
+        //初始化Toaste
+        Ts.initTs(this)
     }
 
     //静态常量

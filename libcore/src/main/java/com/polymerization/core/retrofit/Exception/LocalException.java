@@ -3,6 +3,7 @@ package com.polymerization.core.retrofit.Exception;
 import android.net.ParseException;
 
 import com.google.gson.JsonParseException;
+import com.lib.dialogext.extoast.Ts;
 
 import org.json.JSONException;
 
@@ -53,6 +54,7 @@ public class LocalException {
         } else if (e instanceof UnknownHostException || e instanceof SocketTimeoutException) {
             //连接错误
             ex = new ServiceException(NETWORK_ERROR, e.getMessage());
+            Ts.show("网络异常，请检查网络");
             return ex;
         } else {
             //未知错误
