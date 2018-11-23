@@ -11,6 +11,7 @@ import com.scwang.smartrefresh.layout.footer.ClassicsFooter
 import com.scwang.smartrefresh.layout.header.ClassicsHeader
 
 
+
 class AppContext : CoreBase(){
 
     //设置全局刷新的Header，Footer 样式
