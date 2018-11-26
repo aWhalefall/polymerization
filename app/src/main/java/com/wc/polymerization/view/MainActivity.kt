@@ -66,7 +66,7 @@ class MainActivity : ToolbarBaseActivity(), OnTabSelectListener, OnTabReselectLi
                     newsFragment = ArouterHelper.getServiceByClazz(NewsFragmentDelegate::class.java).fragment
                 }
                 showFragment(newsFragment!!, TAG_ONE)
-                setDefaultTitle("视频")
+                setDefaultTitle("精选")
             }
 
             R.id.tab_search -> {

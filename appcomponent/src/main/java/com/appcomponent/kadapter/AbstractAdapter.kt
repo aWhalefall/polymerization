@@ -10,6 +10,17 @@ abstract class AbstractAdapter<in ITEM> constructor(private var itemList: Mutabl
                                                     private val layoutResId: Int)
     : RecyclerView.Adapter<AbstractAdapter.Holder>() {
 
+    val TYPE_HEADER = 0
+    val TYPE_NORMAL = 1
+
+
+    lateinit var mHeaderView: View
+
+    fun setHeaderView(headerView: View) {
+        mHeaderView = headerView
+        notifyItemInserted(0)
+    }
+
     protected abstract fun onItemClick(itemView: View, position: Int)
 
     protected abstract fun View.bind(item: ITEM)
@@ -17,6 +28,9 @@ abstract class AbstractAdapter<in ITEM> constructor(private var itemList: Mutabl
     override fun getItemCount() = itemList.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
+        if (mHeaderView != null && viewType == TYPE_HEADER) {
+            return Holder(mHeaderView)
+        }
         val view = LayoutInflater.from(parent.context).inflate(layoutResId, parent, false)
         val viewHolder = Holder(view)
         val itemView = viewHolder.itemView
@@ -29,7 +43,16 @@ abstract class AbstractAdapter<in ITEM> constructor(private var itemList: Mutabl
         return viewHolder
     }
 
+    override fun getItemViewType(position: Int): Int {
+        return when {
+            mHeaderView == null -> TYPE_NORMAL
+            position == 0 -> TYPE_HEADER
+            else -> TYPE_NORMAL
+        }
+    }
+
     override fun onBindViewHolder(holder: Holder, position: Int) {
+        if(getItemViewType(position) == TYPE_HEADER) return
         val item = itemList[position]
         holder.itemView.bind(item)
     }

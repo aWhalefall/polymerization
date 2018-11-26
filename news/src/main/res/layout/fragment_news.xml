@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
@@ -10,26 +9,25 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <android.support.v4.widget.NestedScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        <!--<android.support.v4.widget.NestedScrollView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent">-->
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+        <!--<RelativeLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent">-->
 
-                <RelativeLayout
-                    android:id="@+id/banner"
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp">
+        <!--<RelativeLayout-->
+        <!--android:id="@+id/banner"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="200dp">-->
 
-                    <com.bigkoo.convenientbanner.ConvenientBanner
-                        android:id="@+id/convenientBanner"
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        app:canLoop="true" />
-                </RelativeLayout>
-
+        <!--<com.bigkoo.convenientbanner.ConvenientBanner-->
+        <!--android:id="@+id/convenientBanner"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="200dp"-->
+        <!--app:canLoop="true" />-->
+        <!--</RelativeLayout>-->
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/recycle"
@@ -38,9 +36,9 @@
                     android:layout_below="@+id/banner"
                     android:layout_alignParentBottom="true"
                     android:overScrollMode="never" />
-            </RelativeLayout>
+        <!--</RelativeLayout>-->
 
-        </android.support.v4.widget.NestedScrollView>
+        <!--</android.support.v4.widget.NestedScrollView>-->
 
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 </LinearLayout>

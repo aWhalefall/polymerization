@@ -2,7 +2,6 @@ package com.module.news
 
 import android.content.Context
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import android.widget.ImageView
 import com.alibaba.android.arouter.facade.annotation.Route
@@ -46,11 +45,10 @@ class NewsFragment : BaseFragment(), NewsFragmentDelegate, View.OnClickListener,
     var currentPage: Int = 1 //当前页面
     var isLoadMore: Boolean = false //是否是加载更多
     private var mrefreshLayout: RefreshLayout? = null
-
+    private lateinit var bannerLayout: View
 
     fun init() {
         newPresenter = NewPresenter(this, ArticleBo::class.java)
-        newPresenter.requestBaner()
 
     }
 
@@ -78,6 +76,7 @@ class NewsFragment : BaseFragment(), NewsFragmentDelegate, View.OnClickListener,
 
 
 
+
     override fun showDataSuccess(obj: Any) {
         with(obj as ArticleBo) {
             if (isLoadMore) {
@@ -92,14 +91,19 @@ class NewsFragment : BaseFragment(), NewsFragmentDelegate, View.OnClickListener,
             } else {
                 newList = obj.datas
                 kadapter = recycle.setUp(newList, R.layout.item_article, {
-                    txt_date.text = "发布时间: ${it.niceDate}"
-                    txt_tag.text = "分类: ${it.superChapterName}"
-                    txt_summary.text = it.title
-                    txt_author.text = "作者: ${it.author}"
+                    //header 调整
+                    if (this != kadapter.mHeaderView) {
+                        txt_date.text = "发布时间: ${it.niceDate}"
+                        txt_tag.text = "分类: ${it.superChapterName}"
+                        txt_summary.text = it.title
+                        txt_author.text = "作者: ${it.author}"
+                    }
                 }, {
                     ARouter.getInstance().build(PathConfig.WEBVIEW_ACTIVITY).withString(ConstanPool.WEB_URL, this.link)
                             .navigation()
                 })
+
+                kadapter.setHeaderView(bannerLayout)
                 refreshLayout.finishRefresh()
                 refreshLayout.setNoMoreData(false)
 
@@ -109,10 +113,17 @@ class NewsFragment : BaseFragment(), NewsFragmentDelegate, View.OnClickListener,
 
     }
 
+    override fun initView() {
+        super.initView()
+        bannerLayout = View.inflate(context, R.layout.banner_layout, null)
+    }
+
+
     override fun initValue() {
         super.initValue()
-        recycle.layoutManager = LinearLayoutManager(activity)
-        recycle.isNestedScrollingEnabled = false
+//        recycle.layoutManager = LinearLayoutManager(activity)
+//        recycle.isNestedScrollingEnabled = false
+        newPresenter.requestBaner()
 
     }
 
@@ -187,10 +198,13 @@ class NewsFragment : BaseFragment(), NewsFragmentDelegate, View.OnClickListener,
     }
 
     override fun bannerrSuccess(obj: Any) {
-
         if (obj is List<*>) {
             var list = obj as List<Nothing>
-            convenientBanner.setPages(CbHolder, list).startTurning(3000).setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.CENTER_HORIZONTAL)
+            var convenbanner = bannerLayout.findViewById<ConvenientBanner<*>>(R.id.convenientBanner)
+            convenbanner.
+                    setPages(CbHolder, list).
+                    startTurning(3000).
+                    setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.CENTER_HORIZONTAL)
             return
         }
     }
