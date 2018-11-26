@@ -4,4 +4,5 @@ import com.appcomponent.base.BaseView
 
 interface NewView : BaseView {
 
+    fun bannerrSuccess(obj: Any)
 }

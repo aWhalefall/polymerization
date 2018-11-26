@@ -38,5 +38,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     kapt rootProject.ext.opt["arouter-compiler"]
     api project(':appcomponent')
+    //banner
+    compile 'com.bigkoo:ConvenientBanner:2.1.4'
 
 }

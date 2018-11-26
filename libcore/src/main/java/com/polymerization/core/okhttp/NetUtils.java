@@ -5,6 +5,9 @@ import com.polymerization.core.okhttp.Cookie.HttpCookieJar;
 import com.polymerization.core.retrofit.interceptor.CommonInterceptor;
 import com.polymerization.core.retrofit.request.Request;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
@@ -38,6 +41,11 @@ public class NetUtils {
     private static long NET_CONNECT_WRITER =10;
     private static long NET_CONNECT_TIMEOUT = 10;
     private static long NET_CONNECT_READ = 30;
+
+    /**
+     * module cache
+     */
+    private static Map cacheRetrofit=new ConcurrentHashMap();
 
 
     //网络读写时间
@@ -94,7 +102,14 @@ public class NetUtils {
      * @return
      */
     public static  <service>  service creatRequest(Class<service> requestServerClazz){
-        return retrofit.create(requestServerClazz);
+
+        if(cacheRetrofit!=null&& cacheRetrofit.get(requestServerClazz)!=null){
+            return (service) cacheRetrofit.get(requestServerClazz);
+        }
+        //添加模块缓存
+        service service=retrofit.create(requestServerClazz);
+        cacheRetrofit.put(requestServerClazz,service);
+        return service;
     }
 
 

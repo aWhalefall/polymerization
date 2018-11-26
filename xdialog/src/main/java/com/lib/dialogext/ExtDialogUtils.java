@@ -10,9 +10,11 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import com.lib.dialogext.adapter.InnerWaitPayment;
 import com.lib.dialogext.adapter.ListAdapter;
 import com.lib.dialogext.widget.NyDialog;
+
 import java.util.ArrayList;
 
 public class ExtDialogUtils {
@@ -223,11 +225,7 @@ public class ExtDialogUtils {
     }
 
     private static NyDialog buildDialog(NyDialog.Builder builder) {
-        if (dialog == null) {
             return builder.create();
-        } else {
-            return dialog;
-        }
     }
 
 }
