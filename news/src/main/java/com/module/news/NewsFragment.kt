@@ -26,7 +26,6 @@ import io.github.armcha.recyclerviewkadapter.kadapter.setUp
 import kotlinx.android.synthetic.main.fragment_news.*
 import kotlinx.android.synthetic.main.item_article.view.*
 
-
 /**
  * Author: yangweichao
  * Date:   2018/11/14 5:35 PM
@@ -74,11 +73,8 @@ class NewsFragment : BaseFragment(), NewsFragmentDelegate, View.OnClickListener,
 
     }
 
-
-
-
     override fun showDataSuccess(obj: Any) {
-        with(obj as ArticleBo) {
+        obj as ArticleBo
             if (isLoadMore) {
                 newList.addAll(obj.datas)
                 kadapter.update(newList)
@@ -107,8 +103,8 @@ class NewsFragment : BaseFragment(), NewsFragmentDelegate, View.OnClickListener,
                 refreshLayout.finishRefresh()
                 refreshLayout.setNoMoreData(false)
 
+
             }
-        }
 
 
     }
@@ -182,6 +178,7 @@ class NewsFragment : BaseFragment(), NewsFragmentDelegate, View.OnClickListener,
 
 
     override fun onClick(v: View?) {
+
     }
 
     inner class LocalImageHolderView(itemView: View?) : Holder<BannerBo>(itemView) {
@@ -204,7 +201,8 @@ class NewsFragment : BaseFragment(), NewsFragmentDelegate, View.OnClickListener,
             convenbanner.
                     setPages(CbHolder, list).
                     startTurning(3000).
-                    setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.CENTER_HORIZONTAL)
+                    setPointViewVisible(true).setPageIndicator(intArrayOf(R.drawable.enable,R.drawable.disable)).
+                    setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.ALIGN_PARENT_RIGHT)
             return
         }
     }

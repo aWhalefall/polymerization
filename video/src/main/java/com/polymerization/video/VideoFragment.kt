@@ -13,15 +13,13 @@ import com.component.router.delegate.VideFragmentDelegate
 import com.module.video.R
 import com.polymerization.video.bussiness.VideoPresenter
 import com.polymerization.video.bussiness.VideoView
-import com.polymerization.video.model.FlowerBean
-import com.polymerization.video.model.ItemEntity
+import com.polymerization.video.model.ProjectBo
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener
 import io.github.armcha.recyclerviewkadapter.kadapter.Kadapter
 import io.github.armcha.recyclerviewkadapter.kadapter.setUp
 import kotlinx.android.synthetic.main.item_view.view.*
 import kotlinx.android.synthetic.main.videmo_fragment.*
-import java.util.*
 
 
 /**
@@ -36,23 +34,22 @@ import java.util.*
 class VideoFragment : BaseFragment(), VideFragmentDelegate, VideoView {
 
 
+    private var videoPresenter: VideoPresenter = VideoPresenter(this)
+    private lateinit var newList: MutableList<ProjectBo.DatasBo>
+    private lateinit var kadapter: Kadapter<ProjectBo.DatasBo>
+    private var isLoadMore: Boolean = false
+    private var currentPage: Int = 1
+
+
+
     override fun initContentView(): Int {
         return R.layout.videmo_fragment
     }
 
-    private var videoPresenter: VideoPresenter = VideoPresenter(this, FlowerBean::class.java)
-
-    private lateinit var newList: MutableList<ItemEntity>
-
-
     init {
-        val randomInt = Random().nextInt(8) + 33
-        videoPresenter.requestServer(randomInt, 10, 1)
+        videoPresenter.requestServer("0")
     }
 
-    private lateinit var kadapter: Kadapter<ItemEntity>
-
-    private var isLoadMore: Boolean = false
     override val fragment: BaseFragment
         get() = this
 
@@ -64,32 +61,24 @@ class VideoFragment : BaseFragment(), VideFragmentDelegate, VideoView {
         context
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         initListener()
     }
 
-
-    private var currentPage: Int = 1
-
     override fun initListener() {
-
         refreshLayout.setOnRefreshLoadMoreListener(object : OnRefreshLoadMoreListener {
             override fun onLoadMore(refreshLayout: RefreshLayout) {
                 isLoadMore = true
                 currentPage++
-                val randomInt = Random().nextInt(8) + 33
-                videoPresenter.requestServer(randomInt, 10, currentPage)
+                videoPresenter.requestServer(currentPage)
             }
 
             override fun onRefresh(refreshLayout: RefreshLayout) {
                 isLoadMore = false
-                currentPage = 1
-                val randomInt = Random().nextInt(8) + 33
-                videoPresenter.requestServer(randomInt, 10, currentPage)
-
+                currentPage = 0
+                videoPresenter.requestServer(currentPage)
             }
 
         })
@@ -98,9 +87,9 @@ class VideoFragment : BaseFragment(), VideFragmentDelegate, VideoView {
 
 
     override fun showDataSuccess(obj: Any) {
-        with(obj as FlowerBean) {
+        with(obj as ProjectBo) {
             if (isLoadMore) {
-                newList.addAll(obj.flowers)
+                newList.addAll(obj.datas)
                 kadapter.update(newList)
 
                 if (kadapter.itemCount > 200) {
@@ -108,15 +97,16 @@ class VideoFragment : BaseFragment(), VideFragmentDelegate, VideoView {
                 } else {
                     refreshLayout.finishLoadMore()
                 }
-
             } else {
-                newList = obj.flowers
+                newList = obj.datas
                 kadapter = recycle.setUp(newList, R.layout.item_view, {
-
-                    txt_title.text = it.title
-                    Glide.with(context).load(it.thumb).into(imgPhoto)
-                }, {
-                    ARouter.getInstance().build(PathConfig.WEBVIEW_ACTIVITY).withString(ConstanPool.WEB_URL, this.url)
+                    txt_date.text = "发布时间: ${it.niceDate}"
+                    txt_tag.text = "分类: ${it.superChapterName}"
+                    txt_summary.text = it.title
+                    txt_author.text = "作者: ${it.author}"
+                    Glide.with(context).load(it.envelopePic).into(img_holder)
+                },{
+                    ARouter.getInstance().build(PathConfig.WEBVIEW_ACTIVITY).withString(ConstanPool.WEB_URL, this.link)
                             .navigation()
                 })
                 refreshLayout.finishRefresh()

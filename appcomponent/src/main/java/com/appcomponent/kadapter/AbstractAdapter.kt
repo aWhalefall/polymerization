@@ -14,7 +14,7 @@ abstract class AbstractAdapter<in ITEM> constructor(private var itemList: Mutabl
     val TYPE_NORMAL = 1
 
 
-    lateinit var mHeaderView: View
+    var mHeaderView: View? = null
 
     fun setHeaderView(headerView: View) {
         mHeaderView = headerView
@@ -29,7 +29,7 @@ abstract class AbstractAdapter<in ITEM> constructor(private var itemList: Mutabl
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         if (mHeaderView != null && viewType == TYPE_HEADER) {
-            return Holder(mHeaderView)
+            return Holder(mHeaderView!!)
         }
         val view = LayoutInflater.from(parent.context).inflate(layoutResId, parent, false)
         val viewHolder = Holder(view)
