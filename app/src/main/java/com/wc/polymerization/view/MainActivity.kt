@@ -15,7 +15,6 @@ import com.component.router.delegate.NewsFragmentDelegate
 import com.component.router.delegate.VideFragmentDelegate
 import com.safframework.log.L
 import com.wc.polymerization.R
-import io.reactivex.Observable
 import kotlinx.android.synthetic.main.activity_main.*
 
 /**
@@ -54,19 +53,19 @@ class MainActivity : ToolbarBaseActivity(), OnTabSelectListener, OnTabReselectLi
 
     override fun onTabSelected(tabId: Int) {
         when (tabId) {
-            R.id.tab_video -> {
+            R.id.tab_mine -> {
                 if (userCenterFragment == null) {
                     userCenterFragment = ArouterHelper.getServiceByClazz(MineFragmentDelegate::class.java).fragment
                 }
                 showFragment(userCenterFragment!!, TAG_TWO)
-                setDefaultTitle("微信精选")
+                setDefaultTitle("我的")
             }
             R.id.tab_news -> {
                 if (newsFragment == null) {
                     newsFragment = ArouterHelper.getServiceByClazz(NewsFragmentDelegate::class.java).fragment
                 }
                 showFragment(newsFragment!!, TAG_ONE)
-                setDefaultTitle("精选")
+                setDefaultTitle("首页")
             }
 
             R.id.tab_search -> {
@@ -74,7 +73,7 @@ class MainActivity : ToolbarBaseActivity(), OnTabSelectListener, OnTabReselectLi
                     videoFragment = ArouterHelper.getServiceByClazz(VideFragmentDelegate::class.java).fragment
                 }
                 showFragment(videoFragment!!, TAG_THREE)
-                setDefaultTitle("搜索")
+                setDefaultTitle("项目")
             }
         }
     }

@@ -48,7 +48,6 @@ public class UserCenterFragment extends BaseFragment implements MineFragmentDele
 
     @Override
     public void initListener() {
-        findView(R.id.tv_text).setOnClickListener(this);
 
     }
 
@@ -67,9 +66,7 @@ public class UserCenterFragment extends BaseFragment implements MineFragmentDele
 //                L.d("第二个 " + o.toString());
 //            }
 //        });
-
     }
-
 
     @Override
     public void onClick(View v) {
