@@ -60,34 +60,6 @@
     <dimen name="width_113">113dp</dimen>
 
 
-    <!--common dialog-->
-    <dimen name="dlg_m_height">223dip</dimen>
-    <dimen name="dlg_big_height">240dip</dimen>
-    <dimen name="dlg_big_height8">290dip</dimen>
-    <dimen name="dlg_big_height2">260dip</dimen>
-    <dimen name="dlg_m_width">280dip</dimen>
-    <dimen name="dlg_g_width">335dip</dimen>
-    <dimen name="dlg_g_width_n">310dip</dimen>
-    <dimen name="dlg_g_height">240dip</dimen>
-    <dimen name="dlg_g_height_n">270dip</dimen>
-    <dimen name="dlg_g_cancel_mragin_bot">45.5dip</dimen>
-    <dimen name="dlg_g_cancel_mragin_right">30.5dip</dimen>
-    <dimen name="dlg_g_cancel_mragin_top">15dip</dimen>
-    <dimen name="dlg_container_margin_left">21dip</dimen>
-    <dimen name="dlg_container_margin_right">21dip</dimen>
-    <dimen name="dlg_cancel_width">30dip</dimen>
-    <dimen name="dlg_cancel_height">30dip</dimen>
-    <dimen name="dlg_cancel_margin_top">50dip</dimen>
-    <dimen name="dlg_btn_margin_left">20dip</dimen>
-    <dimen name="dlg_btn_margin_right">20dip</dimen>
-    <dimen name="dlg_btn_margin_bottom">25dip</dimen>
-    <dimen name="dlg_btn_margin_top">0dip</dimen>
-    <dimen name="dlg_btn_width">110dip</dimen>
-    <dimen name="dlg_btn_height">40dip</dimen>
-    <dimen name="dlg_btn_margin_mid">10dip</dimen>
-    <dimen name="dlg_btn_one_width">240dip</dimen>
-    <dimen name="dlg_title_margin_top">45dip</dimen>
-
 
     <!-- 时间框 -->
     <dimen name="time_title_textsize">18sp</dimen>

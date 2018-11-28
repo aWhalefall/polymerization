@@ -171,8 +171,8 @@ public class NyDialogView extends RelativeLayout {
         int marginLeft = getResources().getDimensionPixelSize(R.dimen.dlg_btn_margin_left);
         int marginRight = getResources().getDimensionPixelSize(R.dimen.dlg_btn_margin_right);
         int marginTop = getResources().getDimensionPixelSize(R.dimen.dlg_btn_margin_top);
-        int marginBot = getResources().getDimensionPixelSize(R.dimen.dlg_btn_margin_bottom);
-        lp = new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT);
+        int marginBot = getResources().getDimensionPixelSize(R.dimen.dlg_btn_bottom);
+        lp = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
         lp.setMargins(marginLeft, marginTop, marginRight, marginBot);
         mVisibleArea.addView(mGrpButtons, lp);
 
@@ -230,6 +230,8 @@ public class NyDialogView extends RelativeLayout {
         rp.topMargin = mActivity.getResources().getDimensionPixelSize(R.dimen.dlg_cancel_margin_top);
         rp.addRule(RelativeLayout.CENTER_HORIZONTAL);
         rp.addRule(RelativeLayout.BELOW, View_ID_55);
+        //默认关闭
+        mCancelBottomView.setVisibility(GONE);
         addView(mCancelBottomView, rp);
 
     }

@@ -16,5 +16,8 @@
     <color name="color_e2e2e2">#e2e2e2</color>
     <color name="color_00B0FF">#00B0FF</color>
     <color name="color_f8f8f8">#f8f8f8</color>
+    <color name="text_divide_line">#DEDEE0</color>
+    <color name="color_red">#ff0000</color>
+    <color name="color_00f">#00f</color>
     <color name="color_d2d2d2">#d2d2d2</color>
 </resources>

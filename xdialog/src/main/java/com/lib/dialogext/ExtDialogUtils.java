@@ -3,6 +3,7 @@ package com.lib.dialogext;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -216,6 +217,26 @@ public class ExtDialogUtils {
                 .setContentView(view);
         dialog = buildDialog(builder);
         dialog.setCanceledOnTouchOutside(true);
+        dialog.show();
+    }
+
+
+    public static void exit(Activity activity, DialogInterface.OnClickListener onClickListener) {
+        NyDialog.Builder builder = new NyDialog.Builder(activity);
+        builder.setTitleVisible(false);
+        builder.setTextContent("您确定退出登录?");
+        builder.setBottomDivideColor(R.color.text_divide_line);
+        builder.setTitleVisible(false);
+        // 背景色
+        builder.setVisibleAreaBackgroundResource(R.drawable.circle_bg); //互斥
+        builder.setBottomViableAreaBackgroundColor(activity.getResources().getColor(R.color.main_color_white));
+        builder.setPositiveBtnText("确定");
+        builder.setNegativeButtonText("取消");
+        // builder.setBtnNegativeBackgroundResource(R.drawable.btn_com_buy_selected); //shap
+        // builder.setBtnPositiveBackgroundResource(R.drawable.btn_com_buy_selected);
+        builder.setPositiveBtnTextColor(activity.getResources().getColor(R.color.color_red));
+        builder.setPositiveButtonListener(onClickListener);
+        dialog = builder.create();
         dialog.show();
     }
 

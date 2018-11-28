@@ -1,8 +1,11 @@
 package com.module.news.bussniess.model
 
 import com.appcomponent.base.AbsBaseModel
+import com.appcomponent.model.Nullable
 import com.appcomponent.utils.ResponseTransformer
 import com.appcomponent.utils.RxJavaUtils
+import com.appcomponent.utils.RxLoading
+import com.appcomponent.utils.StackManager
 import com.module.news.bussniess.Articlesevice
 import com.module.news.bussniess.NewPresenter
 import com.polymerization.core.okhttp.NetUtils
@@ -59,6 +62,24 @@ class WxNewsModel(basePresenter: NewPresenter) : AbsBaseModel<NewPresenter>(base
 
     override fun setRequestType(method: Int) {
         this.method = method
+    }
+
+    fun addFavorite(param: Any) {
+        val args = param as Array<*>
+        NetUtils.creatRequest(Articlesevice::class.java).addFavorite(args[0].toString())
+                .compose(RxJavaUtils.observableToMain())
+                .compose(ResponseTransformer.handleResult())
+                .compose(RxLoading.applyProgressBar(StackManager.currentActivity()))
+                .subscribe(Consumer<Nullable> {
+                    basePresenter.addFavoriteSuccess(it)
+                    L.d(it.toString())
+                }, Consumer<Throwable> {
+                    // basePresenter.requestError(it.localizedMessage)
+                }, Action {
+                    L.d("网络请求完毕")
+                }, Consumer {
+                    addDisposable(it)
+                })
     }
 
 }

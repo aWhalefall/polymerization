@@ -27,7 +27,7 @@
     <dimen name="dlg_cancel_margin_top">50dip</dimen>
     <dimen name="dlg_btn_margin_left">20dip</dimen>
     <dimen name="dlg_btn_margin_right">20dip</dimen>
-    <dimen name="dlg_btn_margin_bottom">0dip</dimen>
+    <dimen name="dlg_btn_bottom">0dip</dimen>
     <dimen name="dlg_btn_margin_top">0dip</dimen>
     <dimen name="dlg_btn_width">130dip</dimen>
     <dimen name="dlg_btn_height">50dip</dimen>

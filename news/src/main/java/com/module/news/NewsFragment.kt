@@ -89,10 +89,15 @@ class NewsFragment : BaseFragment(), NewsFragmentDelegate, View.OnClickListener,
                 kadapter = recycle.setUp(newList, R.layout.item_article, {
                     //header 调整
                     if (this != kadapter.mHeaderView) {
-                        txt_date.text = "发布时间: ${it.niceDate}"
+                        txt_date.text = "时间: ${it.niceDate}"
                         txt_tag.text = "分类: ${it.superChapterName}"
                         txt_summary.text = it.title
                         txt_author.text = "作者: ${it.author}"
+                        txt_favorite.visibility = if (it.collect) View.GONE else View.VISIBLE
+                        var bo = it
+                        txt_favorite.setOnClickListener {
+                            newPresenter.addFavorite(bo.id)
+                        }
                     }
                 }, {
                     ARouter.getInstance().build(PathConfig.WEBVIEW_ACTIVITY).withString(ConstanPool.WEB_URL, this.link)
@@ -119,7 +124,7 @@ class NewsFragment : BaseFragment(), NewsFragmentDelegate, View.OnClickListener,
         super.initValue()
 //        recycle.layoutManager = LinearLayoutManager(activity)
 //        recycle.isNestedScrollingEnabled = false
-        newPresenter.requestBaner()
+        newPresenter.requestBanner()
 
     }
 
@@ -135,12 +140,9 @@ class NewsFragment : BaseFragment(), NewsFragmentDelegate, View.OnClickListener,
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         refreshLayout.autoRefresh()
-
         init()
         initListener()
-        newPresenter.requestServer("0")
     }
 
 
