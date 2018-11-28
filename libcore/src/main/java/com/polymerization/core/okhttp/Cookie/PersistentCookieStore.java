@@ -3,6 +3,8 @@ package com.polymerization.core.okhttp.Cookie;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
+import com.polymerization.core.utils.sptool.SpManager;
+import com.polymerization.core.utils.sptool.SpTool;
 import com.safframework.log.L;
 
 import java.io.ByteArrayInputStream;
@@ -11,21 +13,22 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 import java.util.concurrent.ConcurrentHashMap;
 
 import okhttp3.Cookie;
 import okhttp3.HttpUrl;
-import com.polymerization.core.utils.sptool.SpManager;
-import com.polymerization.core.utils.sptool.SpTool;
 
 /**
  * Author: yangweichao
  * Date:   2018/11/14 2:32 PM
  * Description:
+ * cookie 优化
  */
 
 
@@ -34,10 +37,10 @@ public final class PersistentCookieStore {
     private final String cookieSpName = "spCookie";
     private final Map<String, ConcurrentHashMap<String, Cookie>> cacheCookies;
 
+
     public PersistentCookieStore() {
         cookieSp = SpManager.getSp(cookieSpName);
         cacheCookies = new ConcurrentHashMap<>();
-
         // 将持久化的cacheCookies缓存到内存中 即map cacheCookies
         Map<String, ?> prefsMap = cookieSp.getAll();
         for (Map.Entry<String, ?> entry : prefsMap.entrySet()) {
@@ -97,7 +100,7 @@ public final class PersistentCookieStore {
     }*/
 
     protected String getCookieToken(@NonNull Cookie cookie) {
-        return cookie.name() + "#$" + cookie.domain();
+        return cookie.name();
     }
 
     public void add(@NonNull HttpUrl url, @NonNull Cookie cookie) {
@@ -108,8 +111,21 @@ public final class PersistentCookieStore {
         }
         cacheCookies.get(host).put(name, cookie);
         //将cacheCookies持久化到本地
-        cookieSp.putString(host, TextUtils.join(",", cacheCookies.get(host).entrySet()));
+        cookieSp.putString(host, TextUtils.join(",", compatKeySet(cacheCookies.get(host))));
         cookieSp.putString(name, encodeCookie(new SerializableHttpCookie(cookie)));
+    }
+
+    //1.8 提供keyset 在低版本无法使用
+    public Set<String> compatKeySet(ConcurrentHashMap<String, Cookie> map) {
+        Set set = new TreeSet();
+        if (map.size() > 0) {
+            Set<Map.Entry<String, Cookie>> entry = map.entrySet();
+            Iterator<Map.Entry<String, Cookie>> it = entry.iterator();
+            while (it.hasNext()) {
+                set.add(it.next().getKey());
+            }
+        }
+        return set;
     }
 
     public List<Cookie> getCookies(@NonNull HttpUrl url) {
@@ -154,7 +170,7 @@ public final class PersistentCookieStore {
             if (cookieSp.contains(name)) {
                 cookieSp.remove(name);
             }
-            cookieSp.putString(host, TextUtils.join(",", cacheCookies.get(host).keySet()));
+            cookieSp.putString(host, TextUtils.join(",", compatKeySet(cacheCookies.get(host))));
             return true;
         } else {
             return false;

@@ -3,6 +3,7 @@ package com.wc.polymerization.base
 import android.content.Context
 import android.support.multidex.MultiDex
 import com.alibaba.android.arouter.launcher.ARouter
+import com.appcomponent.utils.AccountManager
 import com.lib.dialogext.extoast.Ts
 import com.polymerization.core.corebase.CoreBase
 import com.polymerization.core.okhttp.NetUtils
@@ -10,7 +11,6 @@ import com.polymerization.core.utils.sptool.SpManager
 import com.scwang.smartrefresh.layout.SmartRefreshLayout
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter
 import com.scwang.smartrefresh.layout.header.ClassicsHeader
-
 
 
 class AppContext : CoreBase(){
@@ -30,6 +30,9 @@ class AppContext : CoreBase(){
         NetUtils.getInstance().init()
         //初始化Toaste
         Ts.initTs(this)
+        //初始化登录
+        AccountManager.getInstance().getAccount(this)
+
     }
 
     //静态常量

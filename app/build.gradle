@@ -76,5 +76,4 @@ dependencies {
     kapt rootProject.ext.opt["arouter-compiler"]
     implementation project(':video')
     implementation project(':loginmodule')
-
 }

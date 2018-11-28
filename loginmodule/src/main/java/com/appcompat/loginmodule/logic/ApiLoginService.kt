@@ -1,7 +1,7 @@
 package com.appcompat.loginmodule.logic
 
-import com.appcompat.loginmodule.UserInfo
 import com.appcomponent.constant.UrlConstans
+import com.appcomponent.model.UserInfo
 import com.polymerization.core.retrofit.respond.Response
 import io.reactivex.Observable
 import retrofit2.http.POST

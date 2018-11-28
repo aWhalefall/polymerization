@@ -5,7 +5,10 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.appcompat.loginmodule.logic.LoginPresenter
 import com.appcompat.loginmodule.logic.LoginView
 import com.appcomponent.base.ToolbarBaseActivity
+import com.appcomponent.model.UserInfo
 import com.appcomponent.router.PathConfig
+import com.appcomponent.utils.AccountManager
+import com.lib.dialogext.extoast.Ts
 import kotlinx.android.synthetic.main.activity_login.*
 
 @Route(path = PathConfig.LOGIN_ACTIVITY)
@@ -24,6 +27,12 @@ class LoginActivity : ToolbarBaseActivity(), View.OnClickListener, LoginView {
     }
 
     override fun showDataSuccess(obj: Any) {
+        //存储
+        obj as UserInfo
+        AccountManager.getInstance().setAccount(this, obj)
+        Ts.show("登录成功")
+        finish()
+
     }
 
 

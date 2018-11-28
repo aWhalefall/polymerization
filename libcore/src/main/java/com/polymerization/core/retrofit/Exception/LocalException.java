@@ -24,6 +24,8 @@ public class LocalException {
      */
     public static final int UNKNOWN = 1000;
 
+    public static final int UNLOGIN= -1000;
+
     /**
      * 解析错误
      */

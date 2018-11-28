@@ -53,13 +53,7 @@ class MainActivity : ToolbarBaseActivity(), OnTabSelectListener, OnTabReselectLi
 
     override fun onTabSelected(tabId: Int) {
         when (tabId) {
-            R.id.tab_mine -> {
-                if (userCenterFragment == null) {
-                    userCenterFragment = ArouterHelper.getServiceByClazz(MineFragmentDelegate::class.java).fragment
-                }
-                showFragment(userCenterFragment!!, TAG_TWO)
-                setDefaultTitle("我的")
-            }
+
             R.id.tab_news -> {
                 if (newsFragment == null) {
                     newsFragment = ArouterHelper.getServiceByClazz(NewsFragmentDelegate::class.java).fragment
@@ -74,6 +68,13 @@ class MainActivity : ToolbarBaseActivity(), OnTabSelectListener, OnTabReselectLi
                 }
                 showFragment(videoFragment!!, TAG_THREE)
                 setDefaultTitle("项目")
+            }
+            R.id.tab_mine -> {
+                if (userCenterFragment == null) {
+                    userCenterFragment = ArouterHelper.getServiceByClazz(MineFragmentDelegate::class.java).fragment
+                }
+                showFragment(userCenterFragment!!, TAG_TWO)
+                setDefaultTitle("我的")
             }
         }
     }

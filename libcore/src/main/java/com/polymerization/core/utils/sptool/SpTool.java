@@ -278,6 +278,36 @@ public final class SpTool {
         }
         return result;
     }
+
+    public Map<String, ?> getAll(SharedPreferences sharedPreferences) {
+
+        Map<String, ?> map = sharedPreferences.getAll();
+
+        Map<String, Object> result = new HashMap<>();
+
+        for (Map.Entry<String, ?> entry : map.entrySet()) {
+            String key = decode(entry.getKey());
+            if (entry.getValue() instanceof Set) {
+                result.put(key, typeParseSet((Set<String>) entry.getValue()));
+            } else {
+                String[] obj = typeParse(entry.getValue());
+                if (obj != null && obj.length >= 2 && obj[0] != null && obj[1] != null) {
+                    if (obj[1] == INT_STR) {
+                        result.put(key, Integer.parseInt(obj[0]));
+                    } else if (obj[1] == LONG_STR) {
+                        result.put(key, Long.parseLong(obj[0]));
+                    } else if (obj[1] == FLOAT_STR) {
+                        result.put(key, Float.parseFloat(obj[0]));
+                    } else if (obj[1] == BOOLEAN_STR) {
+                        result.put(key, Boolean.parseBoolean(obj[0]));
+                    } else if (obj[1] == STRING_STR) {
+                        result.put(key, obj[0]);
+                    }
+                }
+            }
+        }
+        return result;
+    }
     //-------------------------------------------- get end
 
     //-----------------------private 方法,无需关心------------------------------
@@ -307,30 +337,30 @@ public final class SpTool {
      * 加密
      */
     private String encode(@NonNull String pStr) {
-        String str = null;
-        if (SpManager.sEncodeDecodeCallback != null) {
-            String result = SpManager.sEncodeDecodeCallback.encode(pStr);
-            if (result != null) {
-                // 去掉结尾无用字符
-                str = result.trim();
-            }
-        }
-        return str;
+//        String str = null;
+//        if (SpManager.sEncodeDecodeCallback != null) {
+//            String result = SpManager.sEncodeDecodeCallback.encode(pStr);
+//            if (result != null) {
+//                // 去掉结尾无用字符
+//                str = result.trim();
+//            }
+//        }
+        return pStr;
     }
 
     /**
      * 解密
      */
     private String decode(@NonNull String pStr) {
-        String str = null;
-        if (SpManager.sEncodeDecodeCallback != null) {
-            String result = SpManager.sEncodeDecodeCallback.decode(pStr);
-            if (result != null) {
-                // 去掉结尾无用字符
-                str = result.trim();
-            }
-        }
-        return str;
+//        String str = null;
+//        if (SpManager.sEncodeDecodeCallback != null) {
+//            String result = SpManager.sEncodeDecodeCallback.decode(pStr);
+//            if (result != null) {
+//                // 去掉结尾无用字符
+//                str = result.trim();
+//            }
+//        }
+        return pStr;
     }
 
     /**

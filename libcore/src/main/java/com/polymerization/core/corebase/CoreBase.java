@@ -11,4 +11,8 @@ public abstract class CoreBase extends Application {
         super.onCreate();
         context=this;
     }
+
+    public static Context getInstance() {
+        return context;
+    }
 }

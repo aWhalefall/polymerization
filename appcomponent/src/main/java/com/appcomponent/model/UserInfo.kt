@@ -1,4 +1,4 @@
-package com.appcompat.loginmodule
+package com.appcomponent.model
 
 class UserInfo {
 
