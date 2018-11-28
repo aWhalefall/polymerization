@@ -24,6 +24,6 @@ interface Articlesevice {
 
 
     @POST("lg/collect/{id}/json")
-    fun addFavorite(@Path("id") v1: String): Observable<Response<Nullable>>
+    fun addFavorite(@Path("id") v1: String): Observable<Response<Int>>
 
 }

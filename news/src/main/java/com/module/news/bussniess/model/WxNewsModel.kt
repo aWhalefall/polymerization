@@ -70,11 +70,11 @@ class WxNewsModel(basePresenter: NewPresenter) : AbsBaseModel<NewPresenter>(base
                 .compose(RxJavaUtils.observableToMain())
                 .compose(ResponseTransformer.handleResult())
                 .compose(RxLoading.applyProgressBar(StackManager.currentActivity()))
-                .subscribe(Consumer<Nullable> {
-                    basePresenter.addFavoriteSuccess(it)
+                .subscribe(Consumer<Any> {
+                    //basePresenter.addFavoriteSuccess(it)
                     L.d(it.toString())
                 }, Consumer<Throwable> {
-                    // basePresenter.requestError(it.localizedMessage)
+                    L.d("error")
                 }, Action {
                     L.d("网络请求完毕")
                 }, Consumer {

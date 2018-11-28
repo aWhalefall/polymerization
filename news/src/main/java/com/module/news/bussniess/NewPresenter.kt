@@ -39,7 +39,7 @@ class NewPresenter(mBaseView: NewView, clazz: Class<ArticleBo>) :
         (mBaseView as NewView).bannerrSuccess(bannerBo)
     }
 
-    fun addFavoriteSuccess(it: Nullable) {
+    fun addFavoriteSuccess(it:Any) {
         mBaseView.showDataSuccess(it)
     }
 

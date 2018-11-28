@@ -54,7 +54,7 @@ import io.reactivex.functions.Function
             val code = tResponse.errorCode
             val message = tResponse.errorMsg
             return if (code == 0) {
-                Observable.just(tResponse.data!!)
+                Observable.just(tResponse.data)
             } else {
                 detalCode(code, message)
                 Observable.error(ServiceException(code, message))

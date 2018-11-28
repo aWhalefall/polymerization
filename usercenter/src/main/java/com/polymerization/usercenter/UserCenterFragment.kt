@@ -11,12 +11,37 @@ import com.appcomponent.router.PathConfig
 import com.appcomponent.utils.AccountManager
 import com.component.router.delegate.MineFragmentDelegate
 import com.lib.dialogext.ExtDialogUtils
+import com.lib.dialogext.extoast.Ts
+import com.polymerization.core.utils.sptool.SpManager
+import com.polymerization.usercenter.business.UserCenterPresenter
+import com.polymerization.usercenter.business.UserCenterView
 import com.wc.polymerization.usercenter.R
 import kotlinx.android.synthetic.main.click_main.*
 
 @Route(path = "/mine/usercenter")
-class UserCenterFragment : BaseFragment(), MineFragmentDelegate, View.OnClickListener {
+class UserCenterFragment : BaseFragment(), MineFragmentDelegate, View.OnClickListener, UserCenterView {
 
+
+    override fun showLoading(isShow: Boolean) {
+
+    }
+
+    override fun showDataSuccess(msg: String) {
+
+    }
+
+    override fun showDataFailure(msg: String) {
+
+    }
+
+    override fun showDataSuccess(obj: Any) {
+        AccountManager.getInstance().setAccount(context, null)
+        //清除cookie
+        SpManager.getCommonSp("spCookie").clear()
+
+        //刷新界面
+        initValue()
+    }
 
     internal var TAG = UserCenterFragment::class.java.simpleName
 
@@ -34,7 +59,7 @@ class UserCenterFragment : BaseFragment(), MineFragmentDelegate, View.OnClickLis
     }
 
     override fun initParameter() {
-
+        userPresenter = UserCenterPresenter(this)
     }
 
     override fun init(context: Context) {
@@ -48,9 +73,14 @@ class UserCenterFragment : BaseFragment(), MineFragmentDelegate, View.OnClickLis
         btn_exit.setOnClickListener {
             ExtDialogUtils.exit(context as Activity) { dialog, _ ->
                 dialog.dismiss()
+                Ts.show("确定")
+                userPresenter.requestServer("")
+
             }
         }
     }
+
+    private lateinit var userPresenter: UserCenterPresenter
 
     override fun initValue() {
         userInfo = AccountManager.mAccount
