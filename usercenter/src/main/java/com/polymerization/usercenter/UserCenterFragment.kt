@@ -37,8 +37,8 @@ class UserCenterFragment : BaseFragment(), MineFragmentDelegate, View.OnClickLis
     override fun showDataSuccess(obj: Any) {
         AccountManager.getInstance().setAccount(context, null)
         //清除cookie
-        SpManager.getCommonSp("spCookie").clear()
-
+        if (SpManager.getSp("spCookie") != null)
+            SpManager.getSp("spCookie").clear()
         //刷新界面
         initValue()
     }
@@ -87,10 +87,17 @@ class UserCenterFragment : BaseFragment(), MineFragmentDelegate, View.OnClickLis
         if (userInfo != null) {
             txt_username.text = userInfo!!.username + "\n" + userInfo!!.email
             txt_username.isClickable = false
+            btn_exit.visibility = View.VISIBLE
         } else {
             txt_username.text = "登录/注册"
             txt_username.isClickable = true
+            btn_exit.visibility = View.GONE
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        initValue()
     }
 
     override fun onClick(v: View) {

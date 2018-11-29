@@ -1,7 +1,7 @@
 package com.module.news.bussniess.model
 
 import com.appcomponent.base.AbsBaseModel
-import com.appcomponent.model.Nullable
+import com.appcomponent.base.refactorone.AbsRefactor1BaseModel
 import com.appcomponent.utils.ResponseTransformer
 import com.appcomponent.utils.RxJavaUtils
 import com.appcomponent.utils.RxLoading
@@ -17,7 +17,9 @@ import io.reactivex.functions.Consumer
 /**
  * // TODO: 2018/11/22  将参数传递给父类，写法繁琐
  */
-class WxNewsModel(basePresenter: NewPresenter) : AbsBaseModel<NewPresenter>(basePresenter) {
+class WxNewsModel(basePresenter: NewPresenter) : AbsRefactor1BaseModel<NewPresenter>(basePresenter) {
+
+    private var method: Int = 0
 
     // TODO: 2018/11/23fase
     override fun requestToServer(param: Any) {
@@ -36,12 +38,7 @@ class WxNewsModel(basePresenter: NewPresenter) : AbsBaseModel<NewPresenter>(base
                 }, Consumer {
                     addDisposable(it)
                 })
-
-
     }
-
-
-    private var method: Int = 0
 
 
     override fun requestToServer() {
@@ -71,8 +68,7 @@ class WxNewsModel(basePresenter: NewPresenter) : AbsBaseModel<NewPresenter>(base
                 .compose(ResponseTransformer.handleResult())
                 .compose(RxLoading.applyProgressBar(StackManager.currentActivity()))
                 .subscribe(Consumer<Any> {
-                    //basePresenter.addFavoriteSuccess(it)
-                    L.d(it.toString())
+                    basePresenter.addFavoriteSuccess(it)
                 }, Consumer<Throwable> {
                     L.d("error")
                 }, Action {

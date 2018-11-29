@@ -1,23 +1,22 @@
 package com.module.news.bussniess
 
-import com.appcomponent.base.AbstractBasePresenter
 import com.appcomponent.base.BaseModel
-import com.appcomponent.model.Nullable
-import com.module.news.bussniess.model.ArticleBo
+import com.appcomponent.base.refactorone.RefactorPresenter1
 import com.module.news.bussniess.model.BannerBo
 import com.module.news.bussniess.model.WxNewsModel
 
-class NewPresenter(mBaseView: NewView, clazz: Class<ArticleBo>) :
-        AbstractBasePresenter<Any, ArticleBo>(mBaseView, clazz) {
+class NewPresenter(mBaseView: NewView) :
+        RefactorPresenter1<NewView>(mBaseView) {
+
+    override fun serverResponse(data: Any) {
+        mBaseView.showDataSuccess(data)
+    }
 
 
     override fun requestSuccess(responseJson: String) {
 
     }
 
-    override fun serverResponse(data: ArticleBo) {
-        mBaseView.showDataSuccess(data)
-    }
 
     override fun requestServer(vararg args: Any) {
        mBaseModel.requestToServer(args)
@@ -36,7 +35,7 @@ class NewPresenter(mBaseView: NewView, clazz: Class<ArticleBo>) :
     }
 
     fun ServerResponse(bannerBo: List<BannerBo>) {
-        (mBaseView as NewView).bannerrSuccess(bannerBo)
+        mBaseView.bannerrSuccess(bannerBo)
     }
 
     fun addFavoriteSuccess(it:Any) {

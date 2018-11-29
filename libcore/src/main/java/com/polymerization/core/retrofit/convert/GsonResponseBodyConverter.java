@@ -2,7 +2,6 @@ package com.polymerization.core.retrofit.convert;
 
 import com.google.gson.Gson;
 import com.google.gson.TypeAdapter;
-import com.polymerization.core.retrofit.convert.exception.ServerResponseException;
 import com.polymerization.core.retrofit.respond.Response;
 
 import java.io.IOException;
@@ -27,17 +26,20 @@ final class GsonResponseBodyConverter<T> implements Converter<ResponseBody, Obje
     }
 
     @Override
-    public Object convert(ResponseBody value) throws IOException {
+    public T convert(ResponseBody value) throws IOException {
 
         try {
-            Response response = (Response) adapter.fromJson(value.charStream());
-
-            if (response.errorCode == 0) {
-                return response.data;
-            } else {
-                // TODO: 2018/11/20 抛出异常 ，如果定义
-                throw new ServerResponseException(response.errorCode, response.errorMsg);
-            }
+            T response = adapter.fromJson(value.charStream());
+//
+//            if (response.errorCode == 0) {
+//                return response.data;
+//            } else {
+//                // TODO: 2018/11/20 抛出异常 ，如果定义
+//                throw new ServerResponseException(response.errorCode, response.errorMsg);
+//            }
+            if (((Response) response).data == null)
+                ((Response) response).data = 1;
+            return response;
 
         } finally {
             value.close();

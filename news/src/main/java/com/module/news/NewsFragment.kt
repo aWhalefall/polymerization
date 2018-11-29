@@ -47,7 +47,7 @@ class NewsFragment : BaseFragment(), NewsFragmentDelegate, View.OnClickListener,
     private lateinit var bannerLayout: View
 
     fun init() {
-        newPresenter = NewPresenter(this, ArticleBo::class.java)
+        newPresenter = NewPresenter(this)
 
     }
 
@@ -74,7 +74,7 @@ class NewsFragment : BaseFragment(), NewsFragmentDelegate, View.OnClickListener,
     }
 
     override fun showDataSuccess(obj: Any) {
-        obj as ArticleBo
+        if (obj is ArticleBo) {
             if (isLoadMore) {
                 newList.addAll(obj.datas)
                 kadapter.update(newList)
@@ -110,7 +110,9 @@ class NewsFragment : BaseFragment(), NewsFragmentDelegate, View.OnClickListener,
 
 
             }
-
+        } else {
+            //其他位置异常不处理
+        }
 
     }
 

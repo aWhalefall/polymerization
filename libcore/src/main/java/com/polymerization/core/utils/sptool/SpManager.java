@@ -51,7 +51,6 @@ public final class SpManager {
     public static void setEncodeDecodeCallback(SpEncodeDecodeCallback pEncodeDecodeCallback) {
         sEncodeDecodeCallback = pEncodeDecodeCallback;
     }
-
     /**
      * 根据名称获取Sp实例 -> 获取全局Sp实例
      * * 如做全局字段变更监听,使用此函数获取实例

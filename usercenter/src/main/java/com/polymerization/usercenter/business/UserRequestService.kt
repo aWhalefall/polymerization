@@ -2,7 +2,7 @@ package com.polymerization.usercenter.business
 
 import com.polymerization.core.retrofit.respond.Response
 import io.reactivex.Observable
-import retrofit2.http.POST
+import retrofit2.http.GET
 
 
 /**
@@ -15,7 +15,7 @@ import retrofit2.http.POST
 interface UserRequestService {
 
     //退出
-    @POST("user/logout/json")
-    fun exit(): Observable<Response<Int>>
+    @GET("user/logout/json")
+    fun exit(): Observable<Response<Any>>
 
 }

@@ -13,7 +13,9 @@ class UserCenterModel(presenter: UserCenterPresenter) : AbsRefactor1BaseModel<Us
 
     override fun requestToServer() {
         NetUtils.creatRequest(UserRequestService::class.java).exit()
-                .compose(RxJavaUtils.observableToMain()).compose(ResponseTransformer.handleResult()).subscribe(
+                .compose(RxJavaUtils.observableToMain()).
+                        compose(ResponseTransformer.handleResult())
+                .subscribe(
                         Consumer<Any> {
                             basePresenter.serverResponse(it)
                         }, Consumer<Throwable> {
