@@ -68,7 +68,7 @@ class MainActivity : ToolbarBaseActivity(), OnTabSelectListener, OnTabReselectLi
                     videoFragment = ArouterHelper.getServiceByClazz(VideoFragmentDelegate::class.java).fragment
                 }
                 showFragment(videoFragment!!, TAG_THREE)
-                setDefaultTitle("搜索")
+                setDefaultTitle("项目")
             }
             R.id.tab_video -> {
                 if (SortFragment == null) {
