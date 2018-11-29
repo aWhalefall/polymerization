@@ -62,11 +62,6 @@ class SortFragment : BaseFragment(), SortFragmentDelegate, SortView {
 
     }
 
-    override fun onResume() {
-        super.onResume()
-        sortPresenter?.requestServer()
-    }
-
     override fun showDataSuccess(obj: Any) {
         if (obj is ArrayList<*>) {
             newList.addAll(obj as ArrayList<SortBo>)
