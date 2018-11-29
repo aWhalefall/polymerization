@@ -50,6 +50,7 @@ dependencies {
     api deps.polymerizationDependencies.gson
     api deps.polymerizationDependencies.design
     api deps.polymerizationDependencies.glide
+    api 'com.android.support.constraint:constraint-layout:1.0.2'
 
 //    刷新库
     api 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.5.1'

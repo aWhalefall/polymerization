@@ -12,7 +12,8 @@ import com.appcomponent.widget.bottombar.OnTabReselectListener
 import com.appcomponent.widget.bottombar.OnTabSelectListener
 import com.component.router.delegate.MineFragmentDelegate
 import com.component.router.delegate.NewsFragmentDelegate
-import com.component.router.delegate.VideFragmentDelegate
+import com.component.router.delegate.SortFragmentDelegate
+import com.component.router.delegate.VideoFragmentDelegate
 import com.safframework.log.L
 import com.wc.polymerization.R
 import kotlinx.android.synthetic.main.activity_main.*
@@ -31,11 +32,11 @@ class MainActivity : ToolbarBaseActivity(), OnTabSelectListener, OnTabReselectLi
     val TAG_FOUR = 3
     private lateinit var fm: FragmentManager
     internal var newsFragment: BaseFragment? = null
-    var videoFragment: BaseFragment? = null
-    var userCenterFragment: BaseFragment? = null
+    internal var SortFragment: BaseFragment? = null
+    internal var videoFragment: BaseFragment? = null
+    internal var userCenterFragment: BaseFragment? = null
     private var showFg: Fragment? = null
     private var showPage = TAG_ONE
-
 
     override fun initListener() {
         super.initListener()
@@ -64,16 +65,23 @@ class MainActivity : ToolbarBaseActivity(), OnTabSelectListener, OnTabReselectLi
 
             R.id.tab_search -> {
                 if (videoFragment == null) {
-                    videoFragment = ArouterHelper.getServiceByClazz(VideFragmentDelegate::class.java).fragment
+                    videoFragment = ArouterHelper.getServiceByClazz(VideoFragmentDelegate::class.java).fragment
                 }
                 showFragment(videoFragment!!, TAG_THREE)
-                setDefaultTitle("项目")
+                setDefaultTitle("搜索")
+            }
+            R.id.tab_video -> {
+                if (SortFragment == null) {
+                    SortFragment = ArouterHelper.getServiceByClazz(SortFragmentDelegate::class.java).fragment
+                }
+                showFragment(SortFragment!!, TAG_TWO)
+                setDefaultTitle("分类")
             }
             R.id.tab_mine -> {
                 if (userCenterFragment == null) {
                     userCenterFragment = ArouterHelper.getServiceByClazz(MineFragmentDelegate::class.java).fragment
                 }
-                showFragment(userCenterFragment!!, TAG_TWO)
+                showFragment(userCenterFragment!!, TAG_FOUR)
                 setDefaultTitle("我的")
             }
         }
@@ -112,9 +120,7 @@ class MainActivity : ToolbarBaseActivity(), OnTabSelectListener, OnTabReselectLi
             ft.commitAllowingStateLoss()
             supportFragmentManager.executePendingTransactions()
         }
-
         if (tagPage != TAG_FOUR) intent.putExtra("page", tagPage)
-
     }
 
     override fun initValue() {
@@ -132,16 +138,13 @@ class MainActivity : ToolbarBaseActivity(), OnTabSelectListener, OnTabReselectLi
                 findViewById<View>(R.id.tab_search).performClick()
             }
 //
-//            TAG_FOUR -> {
-//            }
+            TAG_FOUR -> {
+                findViewById<View>(R.id.tab_mine).performClick()
+            }
             else -> {
                 L.d("没有选择任何")
             }
         }
-    }
-
-    private fun switchFg(page: Int) {
-
     }
 
     override fun onDestroy() {

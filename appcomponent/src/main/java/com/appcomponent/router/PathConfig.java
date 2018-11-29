@@ -26,6 +26,7 @@ public class PathConfig {
     private static final String GROUP_VIDEO = "/video/";
 
     public static final String VIDEO_FRAGMENT = GROUP_VIDEO + "video_fragment_delegate";
+    public static final String ARTICLE_ACTIVITY = GROUP_VIDEO + "article_activity";
 
 
     /**

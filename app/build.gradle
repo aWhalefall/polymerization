@@ -65,8 +65,6 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     testImplementation 'junit:junit:4.12'
     implementation project(':appcomponent')
     compile deps.polymerizationDependencies.annotations
@@ -76,4 +74,5 @@ dependencies {
     kapt rootProject.ext.opt["arouter-compiler"]
     implementation project(':video')
     implementation project(':loginmodule')
+    implementation project(':sortmodule')
 }

@@ -33,6 +33,10 @@ abstract class RefactorPresenter1<T : BaseView> : SimpleBasePresenter {
         mBaseModel.cancelRequest()
     }
 
+    override fun requestServer(vararg param: Any) {
+        mBaseModel.requestToServer(param)
+    }
+
 
     override fun requestError(code: Int, errorMsg: String) {
         mBaseView.showDataFailure(code.toString() + ":" + errorMsg)

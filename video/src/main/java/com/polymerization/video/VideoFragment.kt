@@ -9,7 +9,7 @@ import com.appcomponent.base.BaseFragment
 import com.appcomponent.constant.ConstanPool
 import com.appcomponent.router.PathConfig
 import com.bumptech.glide.Glide
-import com.component.router.delegate.VideFragmentDelegate
+import com.component.router.delegate.VideoFragmentDelegate
 import com.module.video.R
 import com.polymerization.video.bussiness.VideoPresenter
 import com.polymerization.video.bussiness.VideoView
@@ -31,7 +31,7 @@ import kotlinx.android.synthetic.main.videmo_fragment.*
 
 
 @Route(path = "/module/video")
-class VideoFragment : BaseFragment(), VideFragmentDelegate, VideoView {
+class VideoFragment : BaseFragment(), VideoFragmentDelegate, VideoView {
 
 
     private var videoPresenter: VideoPresenter = VideoPresenter(this)
