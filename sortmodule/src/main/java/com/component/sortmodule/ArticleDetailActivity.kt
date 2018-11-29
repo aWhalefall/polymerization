@@ -1,6 +1,8 @@
 package com.component.sortmodule
 
 import android.os.Bundle
+import android.support.design.widget.TabLayout.MODE_FIXED
+import android.support.design.widget.TabLayout.MODE_SCROLLABLE
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.appcomponent.base.BaseFragment
 import com.appcomponent.base.ToolbarBaseActivity
@@ -41,6 +43,7 @@ class ArticleDetailActivity : ToolbarBaseActivity() {
         super.initValue()
 
         var stringArray = arrayOfNulls<String>(sortBo.children?.size!!)
+        tabLayout.tabMode = if (stringArray.size > 3) MODE_SCROLLABLE else MODE_FIXED
         setDefaultTitle(sortBo.name)
         var list = mutableListOf<BaseFragment>()
         sortBo.children!!.forEachIndexed { index, childrenBo ->
