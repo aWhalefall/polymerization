@@ -1,7 +1,6 @@
 package com.module.news.bussniess.model
 
-import com.appcomponent.base.AbsBaseModel
-import com.appcomponent.base.refactorone.AbsRefactor1BaseModel
+import com.appcomponent.base.refactorone.AbsRefactorBaseModel
 import com.appcomponent.utils.ResponseTransformer
 import com.appcomponent.utils.RxJavaUtils
 import com.appcomponent.utils.RxLoading
@@ -17,7 +16,7 @@ import io.reactivex.functions.Consumer
 /**
  * // TODO: 2018/11/22  将参数传递给父类，写法繁琐
  */
-class WxNewsModel(basePresenter: NewPresenter) : AbsRefactor1BaseModel<NewPresenter>(basePresenter) {
+class WxNewsModel(basePresenter: NewPresenter) : AbsRefactorBaseModel<NewPresenter>(basePresenter) {
 
     private var method: Int = 0
 

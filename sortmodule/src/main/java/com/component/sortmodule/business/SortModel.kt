@@ -1,6 +1,6 @@
 package com.component.sortmodule.business
 
-import com.appcomponent.base.refactorone.AbsRefactor1BaseModel
+import com.appcomponent.base.refactorone.AbsRefactorBaseModel
 import com.appcomponent.utils.ResponseTransformer
 import com.appcomponent.utils.RxJavaUtils
 import com.component.sortmodule.SortService
@@ -9,7 +9,7 @@ import com.safframework.log.L
 import io.reactivex.functions.Action
 import io.reactivex.functions.Consumer
 
-class SortModel(sortPresenter: SortPresenter) : AbsRefactor1BaseModel<SortPresenter>(sortPresenter) {
+class SortModel(sortPresenter: SortPresenter) : AbsRefactorBaseModel<SortPresenter>(sortPresenter) {
 
     override fun requestToServer() {
 

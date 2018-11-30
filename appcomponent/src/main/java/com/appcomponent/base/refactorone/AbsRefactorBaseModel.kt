@@ -13,8 +13,8 @@ import io.reactivex.disposables.Disposable
  * 3.结果通知presenter 层
  */
 
-// TODO: 2018/11/22   AbstractBasePresenter<*, *>  定义方式太操蛋，首个泛型用法需要重新斟酌
-abstract class AbsRefactor1BaseModel<T : SimpleBasePresenter>(basePresenter: T) : BaseModel {
+
+abstract class AbsRefactorBaseModel<T : SimpleBasePresenter>(basePresenter: T) : BaseModel {
 
     var basePresenter: T = basePresenter
 

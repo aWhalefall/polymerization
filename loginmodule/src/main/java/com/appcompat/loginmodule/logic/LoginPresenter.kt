@@ -1,7 +1,7 @@
 package com.appcompat.loginmodule.logic
 
 import com.appcomponent.base.BaseModel
-import com.appcomponent.base.refactorone.RefactorPresenter1
+import com.appcomponent.base.refactorone.RefactorPresenter
 
 /**
  * Author: yangweichao
@@ -11,7 +11,7 @@ import com.appcomponent.base.refactorone.RefactorPresenter1
  *
  */
 
-class LoginPresenter(view: LoginView) : RefactorPresenter1<LoginView>(view) {
+class LoginPresenter(view: LoginView) : RefactorPresenter<LoginView>(view) {
 
     override fun serverResponse(data: Any) {
         mBaseView.showDataSuccess(data)

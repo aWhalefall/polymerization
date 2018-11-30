@@ -1,6 +1,6 @@
 package com.appcompat.loginmodule.logic
 
-import com.appcomponent.base.refactorone.AbsRefactor1BaseModel
+import com.appcomponent.base.refactorone.AbsRefactorBaseModel
 import com.appcomponent.utils.ResponseTransformer
 import com.appcomponent.utils.RxJavaUtils
 import com.appcomponent.utils.RxLoading
@@ -17,7 +17,7 @@ import io.reactivex.functions.Consumer
  * Description: model
  */
 
-class LoginModel(loginPresenter: LoginPresenter) : AbsRefactor1BaseModel<LoginPresenter>(loginPresenter) {
+class LoginModel(loginPresenter: LoginPresenter) : AbsRefactorBaseModel<LoginPresenter>(loginPresenter) {
 
     override fun requestToServer() {
 

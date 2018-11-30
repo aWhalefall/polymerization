@@ -1,7 +1,5 @@
 package com.appcomponent.base
 
-import java.util.*
-
 
 abstract class AbstractBasePresenter<Params, Data> : BasePresenter {
 
@@ -43,7 +41,4 @@ abstract class AbstractBasePresenter<Params, Data> : BasePresenter {
         return mBaseModel
     }
 
-    override fun getParams(): HashMap<String, String> {
-        return HashMap()
-    }
 }

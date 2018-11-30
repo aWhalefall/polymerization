@@ -1,10 +1,10 @@
 package com.polymerization.video.bussiness
 
 import com.appcomponent.base.BaseModel
-import com.appcomponent.base.refactorone.RefactorPresenter1
+import com.appcomponent.base.refactorone.RefactorPresenter
 
 
-class VideoPresenter(mview: VideoView) : RefactorPresenter1<VideoView>(mview) {
+class VideoPresenter(mview: VideoView) : RefactorPresenter<VideoView>(mview) {
 
     override fun serverResponse(data: Any) {
         mBaseView.showDataSuccess(data)

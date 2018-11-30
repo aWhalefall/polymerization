@@ -18,13 +18,13 @@ import com.appcomponent.router.PathConfig;
 import com.appcomponent.utils.StringUtil;
 import com.appcomponent.utils.UrlConstans;
 import com.appcomponent.widget.TopBar;
+import com.polymerization.core.okhttp.Cookie.HttpCookieJar;
 import com.safframework.log.L;
 import com.wx.polymerization.appcomponent.R;
 
 import java.net.URI;
 import java.util.List;
 
-import com.polymerization.core.okhttp.Cookie.HttpCookieJar;
 import okhttp3.Cookie;
 import okhttp3.HttpUrl;
 
@@ -169,7 +169,7 @@ public class WebActivity extends BaseActivity implements DownloadListener, TopBa
         if (isFinishStartMain) {
             // TODO: 2018/8/1 调整跳转方式
             //ARouter.getInstance().build(PathConfig.MAIN_ACTIVITY).navigation();
-            //startActivity(new Intent(this, MainActivity.class));
+            //            //startActivity(new Intent(this, MainActivity.class));
         }
         super.finish();
     }
@@ -180,7 +180,7 @@ public class WebActivity extends BaseActivity implements DownloadListener, TopBa
 
     @Override
     public void callBackHtmlTitle(String title) {
-        String titleTemp = StringUtil.formatString(6, title);
+        String titleTemp = StringUtil.formatString(12, title);
         topbar.setTopbarTitle(StringUtil.isEmpty(this.title) ? titleTemp : this.title);
         //这里每次都有回调，所以处理callbackImg的显示状态
 //        if (webView.canGoBack()) {

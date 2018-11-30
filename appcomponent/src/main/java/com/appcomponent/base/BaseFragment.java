@@ -77,9 +77,6 @@ public abstract class BaseFragment extends RxFragment implements BaseTemplate {
     @Override
     public void onResume() {
         super.onResume();
-//        Observable.just("d").doOnDispose(() -> L.i("Unsubscribing subscription from onResume()"))
-//                .compose(bindUntilEvent(FragmentEvent.PAUSE))
-//                .subscribe(num -> L.i("Started in onResume(), running until in onDestroy(): " + num));
     }
 
     @Override

@@ -1,12 +1,12 @@
 package com.module.news.bussniess
 
 import com.appcomponent.base.BaseModel
-import com.appcomponent.base.refactorone.RefactorPresenter1
+import com.appcomponent.base.refactorone.RefactorPresenter
 import com.module.news.bussniess.model.BannerBo
 import com.module.news.bussniess.model.WxNewsModel
 
 class NewPresenter(mBaseView: NewView) :
-        RefactorPresenter1<NewView>(mBaseView) {
+        RefactorPresenter<NewView>(mBaseView) {
 
     override fun serverResponse(data: Any) {
         mBaseView.showDataSuccess(data)

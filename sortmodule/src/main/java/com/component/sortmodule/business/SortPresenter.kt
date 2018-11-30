@@ -1,9 +1,9 @@
 package com.component.sortmodule.business
 
 import com.appcomponent.base.BaseModel
-import com.appcomponent.base.refactorone.RefactorPresenter1
+import com.appcomponent.base.refactorone.RefactorPresenter
 
-class SortPresenter(view: SortView) : RefactorPresenter1<SortView>(view) {
+class SortPresenter(view: SortView) : RefactorPresenter<SortView>(view) {
 
     override fun serverResponse(data: Any) {
         mBaseView.showDataSuccess(data)

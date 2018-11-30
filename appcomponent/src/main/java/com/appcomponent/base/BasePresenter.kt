@@ -1,7 +1,5 @@
 package com.appcomponent.base
 
-import java.util.*
-
 /**
  * Author: yangweichao
  * Date:   2018/11/14 3:07 PM
@@ -59,13 +57,6 @@ interface BasePresenter{
 
     fun getModel(): BaseModel
 
-    /**
-     * Author: yangweichao
-     * Date:   2018/11/14 3:36 PM
-     * Description: model 层调用
-     */
-
-    fun getParams(): HashMap<String, String>
 
 
 }

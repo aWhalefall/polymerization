@@ -1,7 +1,7 @@
 package com.polymerization.usercenter.business
 
 import com.appcomponent.base.BaseModel
-import com.appcomponent.base.refactorone.RefactorPresenter1
+import com.appcomponent.base.refactorone.RefactorPresenter
 
 /**
  * Author: yangweichao
@@ -10,7 +10,7 @@ import com.appcomponent.base.refactorone.RefactorPresenter1
  */
 
 
-class UserCenterPresenter(view: UserCenterView) : RefactorPresenter1<UserCenterView>(view) {
+class UserCenterPresenter(view: UserCenterView) : RefactorPresenter<UserCenterView>(view) {
 
     override fun serverResponse(data: Any) {
         mBaseView.showDataSuccess(data)

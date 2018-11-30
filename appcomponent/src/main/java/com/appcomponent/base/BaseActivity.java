@@ -10,15 +10,9 @@ import com.appcomponent.base.action.BaseTemplate;
 import com.appcomponent.base.action.ProxyActionTemplate;
 import com.appcomponent.utils.StackManager;
 import com.appcomponent.widget.CompositeDisposableManager;
-import com.safframework.log.L;
-import com.trello.rxlifecycle2.android.ActivityEvent;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
 import org.jetbrains.annotations.NotNull;
-
-import java.util.concurrent.TimeUnit;
-
-import io.reactivex.Observable;
 
 public abstract class BaseActivity extends RxAppCompatActivity implements BaseTemplate {
 
@@ -29,7 +23,7 @@ public abstract class BaseActivity extends RxAppCompatActivity implements BaseTe
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // 将此Activity添加到ActivityStackManager中管理
-        StackManager.INSTANCE.addActivity(this);
+         StackManager.INSTANCE.addActivity(this);
         initParameter();
         initLayout();
         initView();
@@ -41,7 +35,6 @@ public abstract class BaseActivity extends RxAppCompatActivity implements BaseTe
     protected void onStart() {
         super.onStart();
         deleteAction = new ProxyActionTemplate();
-
     }
 
     @Override
@@ -95,6 +88,7 @@ public abstract class BaseActivity extends RxAppCompatActivity implements BaseTe
     @Override
     protected void onDestroy() {
         super.onDestroy();
+
         StackManager.INSTANCE.removeActivity(this);
         //todo 取消解绑原理
         CompositeDisposableManager.INSTANCE.removeAll();

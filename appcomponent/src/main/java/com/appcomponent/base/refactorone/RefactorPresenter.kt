@@ -2,7 +2,7 @@ package com.appcomponent.base.refactorone
 
 import com.appcomponent.base.BaseModel
 import com.appcomponent.base.BaseView
-import java.util.*
+import java.lang.ref.WeakReference
 
 
 /**
@@ -11,12 +11,13 @@ import java.util.*
  * Description: 去掉多余的泛型
  */
 
-abstract class RefactorPresenter1<T : BaseView> : SimpleBasePresenter {
+abstract class RefactorPresenter<T : BaseView> : SimpleBasePresenter {
 
     val TAG: String = this.javaClass.simpleName
     var mBaseModel: BaseModel
     var mBaseView: T
 
+    private lateinit var weakReference: WeakReference<T>
 
     constructor(mBaseView: T) {
         this.mBaseView = mBaseView
@@ -44,10 +45,6 @@ abstract class RefactorPresenter1<T : BaseView> : SimpleBasePresenter {
 
     override fun getModel(): BaseModel {
         return mBaseModel
-    }
-
-    override fun getParams(): HashMap<String, String> {
-        return HashMap()
     }
 
 }
