@@ -200,13 +200,17 @@ class NewsFragment : BaseFragment(), NewsFragmentDelegate, View.OnClickListener,
 
     override fun bannerrSuccess(obj: Any) {
         if (obj is List<*>) {
-            var list = obj as List<Nothing>
-            var convenbanner = bannerLayout.findViewById<ConvenientBanner<*>>(R.id.convenientBanner)
+            var list = obj as List<BannerBo>
+            var convenbanner = bannerLayout.findViewById<ConvenientBanner<BannerBo>>(R.id.convenientBanner)
             convenbanner.
                     setPages(CbHolder, list).
                     startTurning(3000).
                     setPointViewVisible(true).setPageIndicator(intArrayOf(R.drawable.enable,R.drawable.disable)).
                     setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.ALIGN_PARENT_RIGHT)
+                    .setOnItemClickListener {
+                        ARouter.getInstance().build(PathConfig.WEBVIEW_ACTIVITY).withString(ConstanPool.WEB_URL, list[it].url)
+                                .navigation()
+                    }
             return
         }
     }
