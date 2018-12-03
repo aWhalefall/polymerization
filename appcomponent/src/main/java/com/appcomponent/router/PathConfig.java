@@ -21,7 +21,7 @@ public class PathConfig {
 
 
     /**
-     * 视频
+     * 分类
      */
     private static final String GROUP_VIDEO = "/video/";
 
@@ -55,5 +55,11 @@ public class PathConfig {
     public static final String GROUP_COM = "/com/";
 
     public static final String WEBVIEW_ACTIVITY = GROUP_COM + "webview_activity";
+    /**
+     * 用户中心
+     */
+    public static final String GROUP_CENTER = "/usencenter/";
+
+    public static final String FAVORITELIST_ACTIVITY = GROUP_CENTER + "favoritelist_activity";
 
 }

@@ -107,7 +107,6 @@ public abstract class ToolbarBaseActivity extends BaseActivity implements IActio
 
     }
 
-
     @Override
     public int getActionBarContainerId() {
         return 0;

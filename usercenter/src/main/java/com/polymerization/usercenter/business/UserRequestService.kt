@@ -1,8 +1,10 @@
 package com.polymerization.usercenter.business
 
 import com.polymerization.core.retrofit.respond.Response
+import com.polymerization.usercenter.model.ArticleBo
 import io.reactivex.Observable
 import retrofit2.http.GET
+import retrofit2.http.Path
 
 
 /**
@@ -17,5 +19,9 @@ interface UserRequestService {
     //退出
     @GET("user/logout/json")
     fun exit(): Observable<Response<Any>>
+
+    //收藏列表
+    @GET("/lg/collect/list/{page}/json")
+    fun getFavoriteList(@Path("page") v1: String): Observable<Response<ArticleBo>>
 
 }

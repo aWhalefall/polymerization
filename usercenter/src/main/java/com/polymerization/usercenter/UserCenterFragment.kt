@@ -22,6 +22,9 @@ import kotlinx.android.synthetic.main.click_main.*
 class UserCenterFragment : BaseFragment(), MineFragmentDelegate, View.OnClickListener, UserCenterView {
 
 
+    internal var TAG = UserCenterFragment::class.java.simpleName
+    private lateinit var userPresenter: UserCenterPresenter
+
     override fun showLoading(isShow: Boolean) {
 
     }
@@ -43,7 +46,6 @@ class UserCenterFragment : BaseFragment(), MineFragmentDelegate, View.OnClickLis
         initValue()
     }
 
-    internal var TAG = UserCenterFragment::class.java.simpleName
 
     override val fragment: BaseFragment
         get() = this
@@ -67,20 +69,12 @@ class UserCenterFragment : BaseFragment(), MineFragmentDelegate, View.OnClickLis
     }
 
     override fun initListener() {
-        txt_username.setOnClickListener {
-            ArouterHelper.startActivity(PathConfig.LOGIN_ACTIVITY)
-        }
-        btn_exit.setOnClickListener {
-            ExtDialogUtils.exit(context as Activity) { dialog, _ ->
-                dialog.dismiss()
-                Ts.show("确定")
-                userPresenter.requestServer("")
-
-            }
-        }
+        txt_username.setOnClickListener(this)
+        btn_exit.setOnClickListener(this)
+        tv_budget_set.setOnClickListener(this)
     }
 
-    private lateinit var userPresenter: UserCenterPresenter
+
 
     override fun initValue() {
         userInfo = AccountManager.mAccount
@@ -101,6 +95,21 @@ class UserCenterFragment : BaseFragment(), MineFragmentDelegate, View.OnClickLis
     }
 
     override fun onClick(v: View) {
-        ArouterHelper.startActivity(PathConfig.LOGIN_ACTIVITY)
+        when (v.id) {
+            R.id.txt_username -> {
+                ArouterHelper.startActivity(PathConfig.LOGIN_ACTIVITY)
+            }
+            R.id.tv_budget_set -> {
+                ArouterHelper.startActivity(PathConfig.FAVORITELIST_ACTIVITY)
+            }
+            R.id.btn_exit -> {
+                ExtDialogUtils.exit(context as Activity) { dialog, _ ->
+                    dialog.dismiss()
+                    Ts.show("确定")
+                    userPresenter.requestServer("")
+                }
+            }
+        }
+
     }
 }
