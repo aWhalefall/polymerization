@@ -16,13 +16,14 @@ import com.polymerization.core.utils.sptool.SpManager
 import com.polymerization.usercenter.business.UserCenterPresenter
 import com.polymerization.usercenter.business.UserCenterView
 import com.wc.polymerization.usercenter.R
-import kotlinx.android.synthetic.main.click_main.*
+import kotlinx.android.synthetic.main.activity_user_center.*
 
 @Route(path = "/mine/usercenter")
 class UserCenterFragment : BaseFragment(), MineFragmentDelegate, View.OnClickListener, UserCenterView {
 
 
     internal var TAG = UserCenterFragment::class.java.simpleName
+
     private lateinit var userPresenter: UserCenterPresenter
 
     override fun showLoading(isShow: Boolean) {
@@ -57,7 +58,7 @@ class UserCenterFragment : BaseFragment(), MineFragmentDelegate, View.OnClickLis
 
 
     override fun initContentView(): Int {
-        return R.layout.click_main
+        return R.layout.activity_user_center
     }
 
     override fun initParameter() {
@@ -70,6 +71,7 @@ class UserCenterFragment : BaseFragment(), MineFragmentDelegate, View.OnClickLis
 
     override fun initListener() {
         txt_username.setOnClickListener(this)
+        txt_hot.setOnClickListener(this)
         btn_exit.setOnClickListener(this)
         tv_budget_set.setOnClickListener(this)
     }
@@ -101,6 +103,9 @@ class UserCenterFragment : BaseFragment(), MineFragmentDelegate, View.OnClickLis
             }
             R.id.tv_budget_set -> {
                 ArouterHelper.startActivity(PathConfig.FAVORITELIST_ACTIVITY)
+            }
+            R.id.txt_hot -> {
+                ArouterHelper.startActivity(PathConfig.TAG_HOTKEY_ACTIVITY)
             }
             R.id.btn_exit -> {
                 ExtDialogUtils.exit(context as Activity) { dialog, _ ->

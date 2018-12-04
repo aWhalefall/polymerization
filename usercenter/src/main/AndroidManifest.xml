@@ -3,7 +3,8 @@
     package="com.wc.polymerization.usercenter">
 
     <application>
-        <activity android:name="com.polymerization.usercenter.FavoritesListActivity"></activity>
+        <activity android:name="com.polymerization.usercenter.FavoritesListActivity" />
+        <activity android:name="com.polymerization.usercenter.TagCloudActivity"></activity>
     </application>
 
 </manifest>

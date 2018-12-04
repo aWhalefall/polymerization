@@ -47,6 +47,38 @@
             android:textColor="@color/text_666666"
             android:textSize="@dimen/text_14dp" />
 
+        <TextView
+            android:layout_marginTop="1dp"
+            android:id="@+id/txt_hot"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:drawableRight="@drawable/ic_entry"
+            android:drawablePadding="@dimen/padding_10dp"
+            android:paddingLeft="@dimen/padding_16dp"
+            android:paddingTop="@dimen/padding_13dp"
+            android:paddingRight="@dimen/padding_16dp"
+            android:paddingBottom="@dimen/padding_13dp"
+            android:text="搜索热词"
+            android:textColor="@color/text_666666"
+            android:textSize="@dimen/text_14dp" />
+
+        <TextView
+            android:layout_marginTop="1dp"
+            android:id="@+id/txt_bill_todo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:drawableRight="@drawable/ic_entry"
+            android:drawablePadding="@dimen/padding_10dp"
+            android:paddingLeft="@dimen/padding_16dp"
+            android:paddingTop="@dimen/padding_13dp"
+            android:paddingRight="@dimen/padding_16dp"
+            android:paddingBottom="@dimen/padding_13dp"
+            android:text="todo清单"
+            android:textColor="@color/text_666666"
+            android:textSize="@dimen/text_14dp" />
+
     </LinearLayout>
 
 
