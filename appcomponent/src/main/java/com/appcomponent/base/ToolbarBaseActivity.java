@@ -1,5 +1,6 @@
 package com.appcomponent.base;
 
+import android.support.annotation.CallSuper;
 import android.support.v7.widget.AppCompatImageButton;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -22,7 +23,7 @@ public abstract class ToolbarBaseActivity extends BaseActivity implements IActio
 
     protected Toolbar mToolbar;
 
-
+    @CallSuper
     @Override
     public void initView() {
         super.initView();

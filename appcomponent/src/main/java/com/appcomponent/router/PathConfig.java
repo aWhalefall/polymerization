@@ -61,5 +61,6 @@ public class PathConfig {
     public static final String GROUP_CENTER = "/usencenter/";
 
     public static final String FAVORITELIST_ACTIVITY = GROUP_CENTER + "favoritelist_activity";
+    public static final String TAG_HOTKEY_ACTIVITY = GROUP_CENTER + "tag_cloud_activity";
 
 }

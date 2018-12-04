@@ -32,6 +32,7 @@ class FavoritesListActivity : ToolbarBaseActivity(), SimpleBaseView {
     override fun initParameter() {
         super.initParameter()
         favoritePresenter = FavoritesPresenter(this)
+        refreshLayout.autoRefresh()
     }
 
     override fun initLayout() {
@@ -40,7 +41,8 @@ class FavoritesListActivity : ToolbarBaseActivity(), SimpleBaseView {
     }
 
     override fun initView() {
-        refreshLayout.autoRefresh()
+        super.initView()
+
     }
 
     override fun initValue() {

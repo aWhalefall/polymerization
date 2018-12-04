@@ -33,6 +33,5 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:rotation="270"
-        android:src="@android:drawable/arrow_down_float" />
+        android:src="@drawable/ic_entry" />
 </RelativeLayout>
