@@ -44,6 +44,11 @@ class TagCloudActivity : ToolbarBaseActivity(), SimpleBaseView, TagFlowLayout.On
         id_flowlayout.setOnTagClickListener(this)
     }
 
+    override fun initValue() {
+        super.initValue()
+        setDefaultTitle("搜索热词")
+    }
+
     override fun getActionBarId(): Int {
         return R.id.toolbar
     }
