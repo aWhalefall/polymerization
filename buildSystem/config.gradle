@@ -21,7 +21,7 @@ versions.packerVersion = "2.0.0"
 versions.greenDaoVersion = "3.2.0"
 versions.easyPermissionsVersion = '1.0.1'
 versions.debugdbVersion = "1.0.0"
-versions.constraintVersion = "1.1.0"
+versions.constraintVersion = "1.1.3"
 versions.multidexVersion = "1.0.3"
 versions.jodoVersion = '2.9.4'
 

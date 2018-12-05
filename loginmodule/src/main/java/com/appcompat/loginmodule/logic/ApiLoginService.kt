@@ -24,4 +24,13 @@ interface ApiLoginService {
     fun login(@Query("username") v3: String,
               @Query("password") v4: String): Observable<Response<UserInfo>>
 
+    /**
+     * 注册
+     */
+    @POST("user/register")
+    fun register(@Query("username") v3: String,
+              @Query("password") v4: String,
+              @Query("repassword") v5: String
+              ): Observable<Response<Any>>
+
 }

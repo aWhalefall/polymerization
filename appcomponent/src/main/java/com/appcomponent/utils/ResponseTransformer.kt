@@ -2,6 +2,7 @@ package com.appcomponent.utils
 
 import com.appcomponent.router.ArouterHelper
 import com.appcomponent.router.PathConfig
+import com.lib.dialogext.extoast.Ts
 import com.polymerization.core.retrofit.Exception.LocalException
 import com.polymerization.core.retrofit.Exception.ServiceException
 import com.polymerization.core.retrofit.respond.Response
@@ -56,7 +57,7 @@ import io.reactivex.functions.Function
             return if (code == 0) {
                 Observable.just(tResponse.data)
             } else {
-                detalCode(code, message)
+                detalCode(tResponse.errorCode, tResponse.errorMsg)
                 Observable.error(ServiceException(code, message))
             }
         }
@@ -68,6 +69,9 @@ import io.reactivex.functions.Function
             when (code) {
                 -1001 -> { //未登录或者登录态失效
                     ArouterHelper.startActivity(PathConfig.LOGIN_ACTIVITY)
+                }
+                -1 -> {
+                    Ts.show(message!!)
                 }
             }
         }

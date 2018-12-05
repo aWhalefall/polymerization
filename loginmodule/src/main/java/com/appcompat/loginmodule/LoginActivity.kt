@@ -1,5 +1,6 @@
 package com.appcompat.loginmodule
 
+import android.content.Intent
 import android.view.View
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.appcompat.loginmodule.logic.LoginPresenter
@@ -17,6 +18,10 @@ class LoginActivity : ToolbarBaseActivity(), View.OnClickListener, LoginView {
 
     private lateinit var loginPresen: LoginPresenter
 
+
+    override fun initView() {
+        super.initView()
+    }
     override fun showLoading(isShow: Boolean) {
     }
 
@@ -61,10 +66,21 @@ class LoginActivity : ToolbarBaseActivity(), View.OnClickListener, LoginView {
     override fun initListener() {
         super.initListener()
         login.setOnClickListener(this)
+        register.setOnClickListener(this)
     }
 
-    override fun onClick(v: View?) {
-        loginPresen.requestServer(edit_account.text.toString(), edit_password.text.toString())
+    override fun onClick(v: View) {
+        clickLimit(v)
+        when (v.id) {
+
+            R.id.register -> {
+                startActivity(Intent(this@LoginActivity, RegisterActivity::class.java))
+            }
+            R.id.login -> {
+                loginPresen.requestServer(edit_account.text.toString(), edit_password.text.toString())
+            }
+        }
+
     }
 
 
