@@ -20,7 +20,7 @@ class AppContext : CoreBase(){
         SmartRefreshLayout.setDefaultRefreshHeaderCreator { _, _ -> ClassicsHeader(applicationContext) }
         SmartRefreshLayout.setDefaultRefreshFooterCreator { _, _ -> ClassicsFooter(applicationContext) }
     }
-
+   //dd
     override fun onCreate() {
         super.onCreate()
        initArouter()
