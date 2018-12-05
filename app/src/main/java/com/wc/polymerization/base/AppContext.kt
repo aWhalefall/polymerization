@@ -15,7 +15,7 @@ import com.scwang.smartrefresh.layout.header.ClassicsHeader
 
 class AppContext : CoreBase(){
 
-    //设置全局刷新的Header，Footer 样式
+    //设置全局刷新的Header，Footer 样式fd
 
     init {
         SmartRefreshLayout.setDefaultRefreshHeaderCreator { _, _ -> ClassicsHeader(applicationContext) }
