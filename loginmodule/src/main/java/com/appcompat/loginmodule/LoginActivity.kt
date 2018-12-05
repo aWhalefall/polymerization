@@ -33,6 +33,7 @@ class LoginActivity : ToolbarBaseActivity(), View.OnClickListener, LoginView {
         Ts.show("登录成功")
         finish()
 
+
     }
 
 
