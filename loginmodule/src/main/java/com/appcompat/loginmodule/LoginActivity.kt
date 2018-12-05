@@ -28,6 +28,7 @@ class LoginActivity : ToolbarBaseActivity(), View.OnClickListener, LoginView {
 
     override fun showDataSuccess(obj: Any) {
         //存储
+
         obj as UserInfo
         AccountManager.getInstance().setAccount(this, obj)
         Ts.show("登录成功")
