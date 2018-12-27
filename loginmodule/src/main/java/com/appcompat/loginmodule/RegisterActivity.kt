@@ -13,8 +13,10 @@ class RegisterActivity : ToolbarBaseActivity(), View.OnClickListener, SimpleBase
     private lateinit var registerPresenter: RegisterPresenter
 
 
+    override fun initView() {
+        super.initView()
+    }
     override fun initLayout() {
-        super.initLayout()
         setContentView(R.layout.activity_register)
     }
 
@@ -24,7 +26,7 @@ class RegisterActivity : ToolbarBaseActivity(), View.OnClickListener, SimpleBase
     }
 
     override fun getActionBarTitleId(): Int {
-        return R.id.action_bar
+        return R.id.actionbar_title
     }
 
     override fun initListener() {

@@ -39,5 +39,8 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     kapt rootProject.ext.opt["arouter-compiler"]
+//    def nav_version = '1.0.0-alpha06'
+//    implementation "android.arch.navigation:navigation-fragment:$nav_version"
+//    implementation "android.arch.navigation:navigation-ui:$nav_version"
     api project(':appcomponent')
 }

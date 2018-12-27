@@ -15,6 +15,7 @@ import com.appcomponent.base.action.ProxyActionTemplate;
 import com.appcomponent.widget.CompositeDisposableManager;
 import com.trello.rxlifecycle2.android.FragmentEvent;
 import com.trello.rxlifecycle2.components.support.RxFragment;
+import com.umeng.analytics.MobclickAgent;
 
 public abstract class BaseFragment extends RxFragment implements BaseTemplate {
 
@@ -77,6 +78,13 @@ public abstract class BaseFragment extends RxFragment implements BaseTemplate {
     @Override
     public void onResume() {
         super.onResume();
+        MobclickAgent.onResume(context);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(context);
     }
 
     @Override

@@ -11,6 +11,7 @@ import com.appcomponent.base.action.ProxyActionTemplate;
 import com.appcomponent.utils.StackManager;
 import com.appcomponent.widget.CompositeDisposableManager;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
+import com.umeng.analytics.MobclickAgent;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -44,16 +45,18 @@ public abstract class BaseActivity extends RxAppCompatActivity implements BaseTe
 
     @Override
     public void initLayout() {
-
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-//        Observable.interval(1, TimeUnit.SECONDS)
-//                .doOnDispose(() -> L.i("Unsubscribing subscription from onResume()"))
-//                .compose(bindUntilEvent(ActivityEvent.DESTROY))
-//                .subscribe(num -> L.i("Started in onResume(), running until in onDestroy(): " + num));
+        MobclickAgent.onResume(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
     }
 
     @Override
@@ -94,4 +97,6 @@ public abstract class BaseActivity extends RxAppCompatActivity implements BaseTe
         CompositeDisposableManager.INSTANCE.removeAll();
 
     }
+
+
 }

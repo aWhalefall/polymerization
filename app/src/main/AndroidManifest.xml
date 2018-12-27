@@ -28,6 +28,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".view.Main2Activity"></activity>
+
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="55c24490db465f55be000030d" />
     </application>
 
 </manifest>

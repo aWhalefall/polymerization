@@ -58,4 +58,6 @@ dependencies {
     api project(':libcore')
 
     kapt rootProject.ext.opt["arouter-compiler"]
+    api  'com.umeng.umsdk:analytics:7.5.4'
+    api 'com.umeng.umsdk:common:1.5.4'
 }

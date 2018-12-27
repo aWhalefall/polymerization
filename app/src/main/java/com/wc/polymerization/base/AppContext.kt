@@ -11,6 +11,7 @@ import com.polymerization.core.utils.sptool.SpManager
 import com.scwang.smartrefresh.layout.SmartRefreshLayout
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter
 import com.scwang.smartrefresh.layout.header.ClassicsHeader
+import com.umeng.commonsdk.UMConfigure
 
 
 class AppContext : CoreBase(){
@@ -34,7 +35,9 @@ class AppContext : CoreBase(){
         //初始化登录
         AccountManager.getInstance().getAccount(this)
 
-    }
+       UMConfigure.init(this, "5c24490db465f55be000030d", "baidu", UMConfigure.DEVICE_TYPE_PHONE, null)
+
+   }
 
     //静态常量
     object  Instance {
